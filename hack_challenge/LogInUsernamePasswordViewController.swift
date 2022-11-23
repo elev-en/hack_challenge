@@ -11,7 +11,9 @@ class LogInUsernamePasswordViewController: UIViewController {
 
     let background = UIImageView()
     let welcomeBackLabel = UILabel()
+    let usernameImageView = UIImageView()
     let usernameTextField = UITextField()
+    let passwordImageView = UIImageView()
     let passwordTextField = UITextField()
     let usernameStackView = UIStackView()
     let passwordStackView = UIStackView()
@@ -38,6 +40,22 @@ class LogInUsernamePasswordViewController: UIViewController {
         welcomeBackLabel.adjustsFontForContentSizeCategory = true
         welcomeBackLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(welcomeBackLabel)
+        
+        usernameImageView.image = UIImage(systemName: "person.crop.circle")
+        usernameImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(usernameImageView)
+        
+        usernameTextField.placeholder = "Username"
+        usernameTextField.backgroundColor = UIColor.white
+        view.addSubview(usernameTextField)
+        
+        passwordImageView.image = UIImage(systemName: "lock.open.fill")
+        passwordImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(passwordImageView)
+        
+        passwordTextField.placeholder = "Password"
+        passwordTextField.backgroundColor = UIColor.white
+        view.addSubview(passwordTextField)
         
         setupConstraints()
     }

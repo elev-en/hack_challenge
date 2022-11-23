@@ -29,6 +29,7 @@
 		EC336EA829248F5D00520624 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC336EA629248F5D00520624 /* LaunchScreen.storyboard */; };
 		EC65B07C292C598600D04BA0 /* CreateUsernamePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */; };
 		EC65B07E292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B07D292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift */; };
+		EC65B084292EB78700D04BA0 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B083292EB78700D04BA0 /* PasswordTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernamePasswordViewController.swift; sourceTree = "<group>"; };
 		EC65B07D292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUsernamePasswordViewController.swift; sourceTree = "<group>"; };
 		EC65B082292C60DE00D04BA0 /* Alteron-OV9no.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alteron-OV9no.otf"; sourceTree = "<group>"; };
+		EC65B083292EB78700D04BA0 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				EC336E9D29248F5B00520624 /* SceneDelegate.swift */,
 				EC336E9F29248F5B00520624 /* ViewController.swift */,
 				EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */,
+				EC65B083292EB78700D04BA0 /* PasswordTextField.swift */,
 				EC65B07D292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift */,
 				5FB0D6F8292AE0EE00EC8018 /* ExploreViewController.swift */,
 				5FB0D6FA292AE11F00EC8018 /* SearchViewController.swift */,
@@ -270,6 +273,7 @@
 				EC336E9C29248F5B00520624 /* AppDelegate.swift in Sources */,
 				5FB0D701292AE7B000EC8018 /* PersonalPostPushViewController.swift in Sources */,
 				EC336E9E29248F5B00520624 /* SceneDelegate.swift in Sources */,
+				EC65B084292EB78700D04BA0 /* PasswordTextField.swift in Sources */,
 				5FB0D6F9292AE0EE00EC8018 /* ExploreViewController.swift in Sources */,
 				5FB0D703292AEA1F00EC8018 /* EditProfilePushViewController.swift in Sources */,
 				5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */,
