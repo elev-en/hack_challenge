@@ -1,12 +1,13 @@
 //
-//  PasswordTextField.swift
-//  hack_challenge
+//  ConfirmPasswordTextField.swift
+//  Pods
 //
 //  Created by Elaine Tsai on 11/23/22.
 //
 
 import Foundation
 import UIKit
+import Lottie
 
 class PasswordTextField: UITextField {
     
@@ -49,3 +50,4 @@ class PasswordTextField: UITextField {
         self.isSecureTextEntry = !sender.isSelected
     }
 }
+

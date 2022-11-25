@@ -1,5 +1,5 @@
 //
-//  PasswordTextField.swift
+//  UsernameTextField.swift
 //  hack_challenge
 //
 //  Created by Elaine Tsai on 11/23/22.
@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 
-class PasswordTextField: UITextField {
+class UsernameTextField: UITextField {
     
     var textPadding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+    
+    var imagePadding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,20 +34,13 @@ class PasswordTextField: UITextField {
     }
     
     private func setup(){
-        self.isSecureTextEntry = true
     
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
-        button.setImage(UIImage(systemName: "eye"), for: .selected)
-        button.addTarget(self, action: #selector(showHidePassword(_:)), for: .touchUpInside)
+        let iconView = UIImageView()
         
-        rightView = button
-        rightViewMode = .always
+        iconView.image = UIImage(systemName: "person.crop.circle")
         
-    }
-    
-    @objc private func showHidePassword(_ sender: UIButton){
-        sender.isSelected = !sender.isSelected
-        self.isSecureTextEntry = !sender.isSelected
+        leftView = iconView
+        leftViewMode = .always
+        
     }
 }

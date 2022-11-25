@@ -11,15 +11,10 @@ class CreateUsernamePasswordViewController: UIViewController {
     
     let background = UIImageView()
     let welcomeLabel = UILabel()
-    let usernameTextField = UITextField()
-    let passwordTextField = UITextField()
+    let usernameTextField = UsernameTextField()
+    let passwordTextField = PasswordTextField()
     let confirmPasswordTextField = UITextField()
-    let usernameImageView = UIImageView()
-    let passwordImageView = UIImageView()
-    let confirmPasswordImageView = UIImageView()
-    let usernameStackView = UIStackView()
-    let passwordStackView = UIStackView()
-    let confirmPasswordStackView = UIStackView()
+    let signUpButton = UIButton()
    
 
     override func viewDidLoad() {
@@ -44,23 +39,57 @@ class CreateUsernamePasswordViewController: UIViewController {
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(welcomeLabel)
         
-        usernameImageView.image = UIImage(systemName: "person.crop.circle")
-        usernameImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(usernameImageView)
-        
         usernameTextField.placeholder = "Username"
-        usernameTextField.backgroundColor = UIColor.white
+        usernameTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
+        usernameTextField.layer.cornerRadius = 5
+        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(usernameTextField)
         
-        passwordImageView.image = UIImage(systemName: "lock.open.fill")
-        passwordImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(passwordImageView)
-        
         passwordTextField.placeholder = "Password"
-        passwordTextField.backgroundColor = UIColor.white
-        view.addSubview(passwordTextField
+        passwordTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
+        passwordTextField.layer.cornerRadius = 5
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(passwordTextField)
+        
+        confirmPasswordTextField.placeholder = "Confirm Password"
+        confirmPasswordTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
+        confirmPasswordTextField.layer.cornerRadius = 5
+        confirmPasswordTextField.isSecureTextEntry = true
+        confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(confirmPasswordTextField)
+        
+        signUpButton.setTitle("Create Account", for: .normal)
+        signUpButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25)
+        signUpButton.layer.borderColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
+        signUpButton.layer.borderWidth = 2
+        signUpButton.layer.cornerRadius = 5
+        signUpButton.translatesAutoresizingMaskIntoConstraints = false
+        signUpButton.addTarget(self, action: #selector(pushEnterClassesViewController), for: .touchUpInside)
+        view.addSubview(signUpButton)
         
         setupConstraints()
+    }
+    
+    @objc func pushEnterClassesViewController() {
+        if(passwordTextField.text == confirmPasswordTextField.text){
+            navigationController?.pushViewController(EnterClassesViewController(), animated: true)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Passwords do not match. Please make sure the passwords entered are the same.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+                    
+                    case .cancel:
+                    print("cancel")
+                    
+                    case .destructive:
+                    print("destructive")
+                    
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func setupConstraints(){
@@ -74,7 +103,45 @@ class CreateUsernamePasswordViewController: UIViewController {
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -view.bounds.width/10),
             welcomeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.1)
         ])
+    
+        NSLayoutConstraint.activate([
+            usernameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            usernameTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -view.bounds.height*0.05),
+            usernameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            usernameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+        ])
+        
+        NSLayoutConstraint.activate([
+            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: view.bounds.height*0.02),
+            passwordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            passwordTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+        ])
+        
+        NSLayoutConstraint.activate([
+            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: view.bounds.height*0.02),
+            passwordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            passwordTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+        ])
+        
+        NSLayoutConstraint.activate([
+            confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor),
+            confirmPasswordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            confirmPasswordTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+        ])
+        
+        NSLayoutConstraint.activate([
+            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signUpButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: view.bounds.height * 0.02),
+            signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            signUpButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
+        ])
     }
 
 }
 
+protocol usernamePasswordDelegate {
+    
+}

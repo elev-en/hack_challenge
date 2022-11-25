@@ -11,12 +11,9 @@ class LogInUsernamePasswordViewController: UIViewController {
 
     let background = UIImageView()
     let welcomeBackLabel = UILabel()
-    let usernameImageView = UIImageView()
-    let usernameTextField = UITextField()
-    let passwordImageView = UIImageView()
-    let passwordTextField = UITextField()
-    let usernameStackView = UIStackView()
-    let passwordStackView = UIStackView()
+    let usernameTextField = UsernameTextField()
+    let passwordTextField = PasswordTextField()
+    let signInButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,23 +38,53 @@ class LogInUsernamePasswordViewController: UIViewController {
         welcomeBackLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(welcomeBackLabel)
         
-        usernameImageView.image = UIImage(systemName: "person.crop.circle")
-        usernameImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(usernameImageView)
-        
         usernameTextField.placeholder = "Username"
-        usernameTextField.backgroundColor = UIColor.white
+        usernameTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
+        usernameTextField.layer.cornerRadius = 5
+        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(usernameTextField)
         
-        passwordImageView.image = UIImage(systemName: "lock.open.fill")
-        passwordImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(passwordImageView)
-        
         passwordTextField.placeholder = "Password"
-        passwordTextField.backgroundColor = UIColor.white
+        passwordTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
+        passwordTextField.layer.cornerRadius = 5
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(passwordTextField)
         
+        signInButton.setTitle("Sign In", for: .normal)
+        signInButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25)
+        signInButton.layer.borderColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
+        signInButton.layer.borderWidth = 2
+        signInButton.layer.cornerRadius = 5
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        signInButton.addTarget(self, action: #selector(pushEnterClassesViewController), for: .touchUpInside)
+        view.addSubview(signInButton)
+        
         setupConstraints()
+    }
+    
+    @objc func pushEnterClassesViewController() {
+        /*let user: () = NetworkManager.getUser(username: usernameTextField.text!) {_ in
+            
+        }*/
+        if(passwordTextField.text == "password")  {
+            navigationController?.pushViewController(EnterClassesViewController(), animated: true)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Incorrect pas", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+                    
+                    case .cancel:
+                    print("cancel")
+                    
+                    case .destructive:
+                    print("destructive")
+                    
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func setupConstraints(){
