@@ -9,6 +9,5 @@ import Foundation
 
 
 class Course: Codable {
-    let course: String
-    let courseName: String
+    let name: String
 }

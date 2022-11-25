@@ -29,13 +29,13 @@ class NetworkManager {
         }
     }
     
-    static func getAllClasses(completion: @escaping ( (Course)) -> Void) {
+    static func getAllClasses(completion: @escaping ([Course]) -> Void) {
         let endpoint = "\(host)courses/"
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch response.result {
-            case .success(let data):
+            case .success(let data): 
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode([String].self, from: data) {
+                if let userResponse = try? jsonDecoder.decode([Course].self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode getAllPosts")
@@ -44,5 +44,5 @@ class NetworkManager {
                 print(error.localizedDescription)
             }
         }
-    
+    }
 }
