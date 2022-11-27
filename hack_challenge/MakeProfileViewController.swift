@@ -13,7 +13,7 @@ class MakeProfileViewController: UIViewController {
     let background = UIImageView()
     var lightbulbAnimation = LottieAnimationView()
     let makeProfileLabel = UILabel()
-    let enterClassInfoButton = UIButton()
+    let makeProfileButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,19 +42,19 @@ class MakeProfileViewController: UIViewController {
         view.addSubview(lightbulbAnimation)
         lightbulbAnimation.play()
         
-        enterClassInfoButton.setTitle("Enter Class Info", for: .normal)
-        enterClassInfoButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        enterClassInfoButton.layer.borderWidth = 2
-        enterClassInfoButton.layer.cornerRadius = 5
-        enterClassInfoButton.translatesAutoresizingMaskIntoConstraints = false
-        enterClassInfoButton.addTarget(self, action: #selector(pushAddClassesViewController), for: .touchUpInside)
-        view.addSubview(enterClassInfoButton)
+        makeProfileButton.setTitle("Make Profile", for: .normal)
+        makeProfileButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
+        makeProfileButton.layer.borderWidth = 2
+        makeProfileButton.layer.cornerRadius = 5
+        makeProfileButton.translatesAutoresizingMaskIntoConstraints = false
+        makeProfileButton.addTarget(self, action: #selector(pushSetProfileInfoViewController), for: .touchUpInside)
+        view.addSubview(makeProfileButton)
         
         setupConstraints()
         
     }
     
-    @objc func pushAddClassesViewController() {
+    @objc func pushSetProfileInfoViewController() {
         navigationController?.pushViewController(SetProfileInfoViewController(), animated: true)
     }
     
@@ -76,10 +76,10 @@ class MakeProfileViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            enterClassInfoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            enterClassInfoButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            enterClassInfoButton.widthAnchor.constraint(equalTo: view.widthAnchor),
-            enterClassInfoButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+            makeProfileButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            makeProfileButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            makeProfileButton.widthAnchor.constraint(equalTo: view.widthAnchor),
+            makeProfileButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
         ])
     }
 

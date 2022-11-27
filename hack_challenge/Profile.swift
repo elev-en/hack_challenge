@@ -8,6 +8,7 @@
 import Foundation
 
 struct Profile: Codable {
+    let id: Int
     let username: String
     let password: String
     let name: String
@@ -17,6 +18,7 @@ struct Profile: Codable {
     let friends: [Profile]
     
     enum CodingKeys: String, CodingKey{
+        case id
         case username
         case password
         case name
