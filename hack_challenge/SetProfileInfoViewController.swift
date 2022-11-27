@@ -10,6 +10,8 @@ import UIKit
 class SetProfileInfoViewController: UIViewController {
     
     let background = UIImageView()
+    let nameLabel = UILabel()
+    let nameTextField = UITextField()
     let bioLabel = UILabel()
     let bioTextField = UITextField()
     let gradLabel = UILabel()
@@ -23,6 +25,22 @@ class SetProfileInfoViewController: UIViewController {
         background.image = UIImage(named: "background")
         background.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(background)
+        
+        nameLabel.text = "Enter your name"
+        nameLabel.numberOfLines = 2
+        nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        nameLabel.textAlignment = .left
+        nameLabel.adjustsFontForContentSizeCategory = true
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(nameLabel)
+        
+        nameTextField.placeholder = "Name"
+        nameTextField.font = .systemFont(ofSize: 20)
+        nameTextField.textAlignment = .center
+        nameTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        nameTextField.layer.cornerRadius = 5
+        nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(nameTextField)
         
         bioLabel.text = "Describe yourself using \none sentence"
         bioLabel.numberOfLines = 2
@@ -76,8 +94,21 @@ class SetProfileInfoViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.1),
+            nameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
+        ])
+        
+        NSLayoutConstraint.activate([
+            nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: view.bounds.height*0.05),
+            nameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            nameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
+        ])
+        
+        NSLayoutConstraint.activate([
             bioLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bioLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.1),
+            bioLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: view.bounds.height*0.1),
             bioLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         ])
         
