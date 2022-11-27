@@ -54,4 +54,12 @@ class ClassesTableViewCell: UITableViewCell {
     func configure(course: Course){
         courseLabel.text = course.name
     }
+    
+    func changeBackground(selected: Bool){
+        if(selected){
+            contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        } else {
+            contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        }
+    }
 }

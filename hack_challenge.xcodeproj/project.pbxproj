@@ -27,6 +27,10 @@
 		EC336EA029248F5B00520624 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9F29248F5B00520624 /* ViewController.swift */; };
 		EC336EA529248F5D00520624 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC336EA429248F5D00520624 /* Assets.xcassets */; };
 		EC336EA829248F5D00520624 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC336EA629248F5D00520624 /* LaunchScreen.storyboard */; };
+		EC5213602932BB8E0029A754 /* ClassesCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC52135F2932BB8E0029A754 /* ClassesCartViewController.swift */; };
+		EC5213622932CF670029A754 /* MakeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5213612932CF670029A754 /* MakeProfileViewController.swift */; };
+		EC5213642932D0890029A754 /* SetProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5213632932D0890029A754 /* SetProfilePictureViewController.swift */; };
+		EC5213662932FB900029A754 /* SetProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5213652932FB900029A754 /* SetProfileInfoViewController.swift */; };
 		EC65B07C292C598600D04BA0 /* CreateUsernamePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */; };
 		EC65B07E292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B07D292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift */; };
 		EC65B084292EB78700D04BA0 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B083292EB78700D04BA0 /* PasswordTextField.swift */; };
@@ -63,6 +67,10 @@
 		EC336EA429248F5D00520624 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC336EA729248F5D00520624 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC336EA929248F5D00520624 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC52135F2932BB8E0029A754 /* ClassesCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesCartViewController.swift; sourceTree = "<group>"; };
+		EC5213612932CF670029A754 /* MakeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeProfileViewController.swift; sourceTree = "<group>"; };
+		EC5213632932D0890029A754 /* SetProfilePictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfilePictureViewController.swift; sourceTree = "<group>"; };
+		EC5213652932FB900029A754 /* SetProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileInfoViewController.swift; sourceTree = "<group>"; };
 		EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernamePasswordViewController.swift; sourceTree = "<group>"; };
 		EC65B07D292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUsernamePasswordViewController.swift; sourceTree = "<group>"; };
 		EC65B082292C60DE00D04BA0 /* Alteron-OV9no.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alteron-OV9no.otf"; sourceTree = "<group>"; };
@@ -134,7 +142,11 @@
 				EC336E9F29248F5B00520624 /* ViewController.swift */,
 				EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */,
 				EC65B088292F017C00D04BA0 /* EnterClassesViewController.swift */,
+				EC5213612932CF670029A754 /* MakeProfileViewController.swift */,
+				EC5213632932D0890029A754 /* SetProfilePictureViewController.swift */,
 				EC65B08C29302B3E00D04BA0 /* AddClassesViewController.swift */,
+				EC52135F2932BB8E0029A754 /* ClassesCartViewController.swift */,
+				EC5213652932FB900029A754 /* SetProfileInfoViewController.swift */,
 				EC65B09029310BF200D04BA0 /* ClassesTableViewCell.swift */,
 				EC65B083292EB78700D04BA0 /* PasswordTextField.swift */,
 				EC65B085292EBB8300D04BA0 /* UsernameTextField.swift */,
@@ -284,12 +296,15 @@
 				EC65B08B292F0A7F00D04BA0 /* NetworkManager.swift in Sources */,
 				EC336EA029248F5B00520624 /* ViewController.swift in Sources */,
 				EC65B09129310BF200D04BA0 /* ClassesTableViewCell.swift in Sources */,
+				EC5213602932BB8E0029A754 /* ClassesCartViewController.swift in Sources */,
 				EC65B07E292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift in Sources */,
 				EC65B089292F017C00D04BA0 /* EnterClassesViewController.swift in Sources */,
 				EC65B07C292C598600D04BA0 /* CreateUsernamePasswordViewController.swift in Sources */,
 				5FB0D6F72927CC6200EC8018 /* Comment.swift in Sources */,
+				EC5213622932CF670029A754 /* MakeProfileViewController.swift in Sources */,
 				5FB0D6FB292AE11F00EC8018 /* SearchViewController.swift in Sources */,
 				5FB0D705292AEA8D00EC8018 /* PostSearchPushViewController.swift in Sources */,
+				EC5213642932D0890029A754 /* SetProfilePictureViewController.swift in Sources */,
 				EC65B08F293084D800D04BA0 /* Class.swift in Sources */,
 				5FB0D6F32927C93600EC8018 /* Profile.swift in Sources */,
 				EC336E9C29248F5B00520624 /* AppDelegate.swift in Sources */,
@@ -299,6 +314,7 @@
 				EC65B086292EBB8300D04BA0 /* UsernameTextField.swift in Sources */,
 				5FB0D6F9292AE0EE00EC8018 /* ExploreViewController.swift in Sources */,
 				5FB0D703292AEA1F00EC8018 /* EditProfilePushViewController.swift in Sources */,
+				EC5213662932FB900029A754 /* SetProfileInfoViewController.swift in Sources */,
 				5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */,
 				5FB0D709292AEB3E00EC8018 /* CoursesSearchPushViewController.swift in Sources */,
 				5FB0D6FD292AE69400EC8018 /* PersonalProfileViewController.swift in Sources */,

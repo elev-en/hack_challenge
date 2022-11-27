@@ -1,18 +1,18 @@
 //
-//  EnterClassesViewController.swift
+//  MakeProfileViewController.swift
 //  hack_challenge
 //
-//  Created by Elaine Tsai on 11/23/22.
+//  Created by Elaine Tsai on 11/26/22.
 //
 
 import UIKit
 import Lottie
 
-class EnterClassesViewController: UIViewController {
-    
+class MakeProfileViewController: UIViewController {
+
     let background = UIImageView()
-    var bookAnimation = LottieAnimationView()
-    let enterClassesLabel = UILabel()
+    var lightbulbAnimation = LottieAnimationView()
+    let makeProfileLabel = UILabel()
     let enterClassInfoButton = UIButton()
     
     override func viewDidLoad() {
@@ -25,22 +25,22 @@ class EnterClassesViewController: UIViewController {
         background.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(background)
         
-        enterClassesLabel.text = "Tell the world \nabout your classes"
-        enterClassesLabel.numberOfLines = 2
-        enterClassesLabel.font = .systemFont(ofSize: 30, weight: .bold)
-        enterClassesLabel.textAlignment = .left
-        enterClassesLabel.adjustsFontForContentSizeCategory = true
-        enterClassesLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(enterClassesLabel)
+        makeProfileLabel.text = "Make your profile \nsparkle!"
+        makeProfileLabel.numberOfLines = 2
+        makeProfileLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        makeProfileLabel.textAlignment = .left
+        makeProfileLabel.adjustsFontForContentSizeCategory = true
+        makeProfileLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(makeProfileLabel)
         
-        bookAnimation = LottieAnimationView(name: "book")
-        bookAnimation.frame = view.bounds
-        bookAnimation.contentMode = .scaleAspectFill
-        bookAnimation.loopMode = .loop
-        bookAnimation.animationSpeed = 1
-        bookAnimation.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bookAnimation)
-        bookAnimation.play()
+        lightbulbAnimation = LottieAnimationView(name: "book")
+        lightbulbAnimation.frame = view.bounds
+        lightbulbAnimation.contentMode = .scaleAspectFill
+        lightbulbAnimation.loopMode = .loop
+        lightbulbAnimation.animationSpeed = 1
+        lightbulbAnimation.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(lightbulbAnimation)
+        lightbulbAnimation.play()
         
         enterClassInfoButton.setTitle("Enter Class Info", for: .normal)
         enterClassInfoButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
@@ -55,7 +55,7 @@ class EnterClassesViewController: UIViewController {
     }
     
     @objc func pushAddClassesViewController() {
-        navigationController?.pushViewController(AddClassesViewController(), animated: true)
+        navigationController?.pushViewController(SetProfileInfoViewController(), animated: true)
     }
     
     func setupConstraints(){
@@ -66,13 +66,13 @@ class EnterClassesViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            enterClassesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            enterClassesLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.1)
+            makeProfileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            makeProfileLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.1)
         ])
         
         NSLayoutConstraint.activate([
-            bookAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bookAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            lightbulbAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lightbulbAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -82,5 +82,5 @@ class EnterClassesViewController: UIViewController {
             enterClassInfoButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
         ])
     }
-    
+
 }

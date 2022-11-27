@@ -80,8 +80,6 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(LogInUsernamePasswordViewController(), animated: true)
     }
     
-    
-    
     func setupConstraints() {
         
         NSLayoutConstraint.activate([

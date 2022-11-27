@@ -14,11 +14,15 @@ class AddClassesViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     
     let addClassesButton = UIButton()
+    let classCartButton = UIBarButtonItem()
     
     var allClasses: [Course] = []
     var filteredClasses: [Course] = []
-    let selectedClasses: [Course] = []
+    var selectedClasses: [Course] = []
+    var classList: [Course] = []
     var filter: [Bool] = []
+    
+    weak var delegate: sendClassListDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,19 @@ class AddClassesViewController: UIViewController {
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.barTintColor = UIColor.darkGray
         
+        classCartButton.image = UIImage(systemName: "cart")
+        classCartButton.target = self
+        classCartButton.action = #selector(pushClassesCartView)
+        navigationItem.rightBarButtonItem = classCartButton
+        
+        addClassesButton.setTitle("Add Classes", for: .normal)
+        addClassesButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
+        addClassesButton.layer.borderWidth = 2
+        addClassesButton.layer.cornerRadius = 5
+        addClassesButton.translatesAutoresizingMaskIntoConstraints = false
+        addClassesButton.addTarget(self, action: #selector(addClasses), for: .touchUpInside)
+        view.addSubview(addClassesButton)
+        
         createData()
         
         setupConstraints()
@@ -47,6 +64,43 @@ class AddClassesViewController: UIViewController {
             classesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             classesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            addClassesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addClassesButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            addClassesButton.widthAnchor.constraint(equalTo: view.widthAnchor),
+            addClassesButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+        ])
+    }
+    
+    @objc func addClasses(){
+        if selectedClasses.count != 0 {
+            for i in 0 ... selectedClasses.count {
+                if !classList.contains(selectedClasses[i]) {
+                    classList.append(selectedClasses[i])
+                }
+            }
+            selectedClasses.removeAll()
+            for i in 0 ... filter.count {
+                filter[i] = false
+            }
+        } else {
+            let alert = UIAlertController(title: "Error", message: "No classes were selected to be added into cart.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+                    
+                    case .cancel:
+                    print("cancel")
+                    
+                    case .destructive:
+                    print("destructive")
+                    
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func createData(){
@@ -55,6 +109,11 @@ class AddClassesViewController: UIViewController {
             self.classesTableView.reloadData()
             self.filter = Array(repeating: false, count: self.allClasses.count)
         }
+    }
+    
+    @objc func pushClassesCartView(){
+        self.delegate?.sendClassList(list: classList)
+        navigationController?.pushViewController(ClassesCartViewController(), animated: true)
     }
     
 }
@@ -79,7 +138,17 @@ extension AddClassesViewController: UITableViewDelegate {
         let cell = classesTableView.cellForRow(at: indexPath) as! ClassesTableViewCell
         for i in 0 ... allClasses.count {
             if cell.courseLabel.text?.lowercased() == allClasses[i].name.lowercased() {
-                filter[i] = true
+                if(filter[i]){
+                    filter[i] = false
+                    cell.changeBackground(selected: filter[i])
+                    if let index = selectedClasses.firstIndex(of: allClasses[i]) {
+                        selectedClasses.remove(at: index)
+                    }
+                } else {
+                    filter[i] = true
+                    cell.changeBackground(selected: filter[i])
+                    selectedClasses.append(allClasses[i])
+                }
             }
         }
         
@@ -112,3 +181,9 @@ extension AddClassesViewController: UITableViewDataSource {
         return true
     }
 }
+
+protocol sendClassListDelegate: UIViewController {
+    func sendClassList(list: [Course])
+}
+
+
