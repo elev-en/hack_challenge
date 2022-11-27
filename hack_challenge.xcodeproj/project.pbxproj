@@ -22,6 +22,8 @@
 		5FB0D709292AEB3E00EC8018 /* CoursesSearchPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D708292AEB3E00EC8018 /* CoursesSearchPushViewController.swift */; };
 		5FB0D70B292AECC500EC8018 /* PostPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */; };
 		5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */; };
+		60BB230F293400810033CD1B /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */; };
+		60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB2310293401050033CD1B /* ProfileTableViewCell.swift */; };
 		EC336E9C29248F5B00520624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9B29248F5B00520624 /* AppDelegate.swift */; };
 		EC336E9E29248F5B00520624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9D29248F5B00520624 /* SceneDelegate.swift */; };
 		EC336EA029248F5B00520624 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9F29248F5B00520624 /* ViewController.swift */; };
@@ -59,6 +61,8 @@
 		5FB0D708292AEB3E00EC8018 /* CoursesSearchPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesSearchPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePushViewController.swift; sourceTree = "<group>"; };
+		60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
+		60BB2310293401050033CD1B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		754C4AF2060ED296A409E9B9 /* Pods-hack_challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hack_challenge.debug.xcconfig"; path = "Target Support Files/Pods-hack_challenge/Pods-hack_challenge.debug.xcconfig"; sourceTree = "<group>"; };
 		7EED149C9A87723D975C21FD /* Pods-hack_challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hack_challenge.release.xcconfig"; path = "Target Support Files/Pods-hack_challenge/Pods-hack_challenge.release.xcconfig"; sourceTree = "<group>"; };
 		EC336E9829248F5B00520624 /* hack_challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hack_challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +174,8 @@
 				EC336EA429248F5D00520624 /* Assets.xcassets */,
 				EC336EA629248F5D00520624 /* LaunchScreen.storyboard */,
 				EC336EA929248F5D00520624 /* Info.plist */,
+				60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */,
+				60BB2310293401050033CD1B /* ProfileTableViewCell.swift */,
 			);
 			path = hack_challenge;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 				EC65B08B292F0A7F00D04BA0 /* NetworkManager.swift in Sources */,
 				EC336EA029248F5B00520624 /* ViewController.swift in Sources */,
 				EC65B09129310BF200D04BA0 /* ClassesTableViewCell.swift in Sources */,
+				60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */,
 				EC5213602932BB8E0029A754 /* ClassesCartViewController.swift in Sources */,
 				EC65B07E292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift in Sources */,
 				EC65B089292F017C00D04BA0 /* EnterClassesViewController.swift in Sources */,
@@ -313,6 +320,7 @@
 				5FB0D6F32927C93600EC8018 /* Profile.swift in Sources */,
 				EC336E9C29248F5B00520624 /* AppDelegate.swift in Sources */,
 				5FB0D701292AE7B000EC8018 /* PersonalPostPushViewController.swift in Sources */,
+				60BB230F293400810033CD1B /* CourseCollectionViewCell.swift in Sources */,
 				EC336E9E29248F5B00520624 /* SceneDelegate.swift in Sources */,
 				EC65B084292EB78700D04BA0 /* PasswordTextField.swift in Sources */,
 				EC65B086292EBB8300D04BA0 /* UsernameTextField.swift in Sources */,

@@ -6,19 +6,20 @@
 //
 
 import Foundation
+import UIKit
 
 struct Profile: Codable {
-    let id: Int
     let username: String
     let password: String
     let name: String
-    let courses: [String]
+    let courses: [Course]
     let bio: String
     let gradYear: Int
     let friends: [Profile]
+    let posts: [Post]
+//    let profileImage: UIImage
     
     enum CodingKeys: String, CodingKey{
-        case id
         case username
         case password
         case name
@@ -26,6 +27,8 @@ struct Profile: Codable {
         case bio
         case gradYear
         case friends
+        case posts
+//        case profileImage
     }
 }
 // we will need to add more code here but I'm not exactly sure what

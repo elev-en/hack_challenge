@@ -45,4 +45,24 @@ class NetworkManager {
             }
         }
     }
+    
+    
+    
+    static func getAllProfiles(completion: @escaping ([Profile]) -> Void) {
+        let endpoint = "\(host)profiles/"
+        AF.request(endpoint, method: .get).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let userResponse = try? jsonDecoder.decode([Profile].self, from: data) {
+                    completion(userResponse)
+                } else {
+                    print("Failed to decode getAllrofiles")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
 }
