@@ -20,11 +20,12 @@ class ProfilePushViewController: UIViewController {
     let enrolledInLabel = UILabel()
     let bioTextField = UITextField()
     var courses: [Course] = []
+    var friends: [Profile] = []
     var lineView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 1.0))
 
-//    let FriendsReuseIdentifier: String = "FriendsReuseIdentifier"
-//    var friendsCollectionView: UICollectionView!
-//    let spacing: CGFloat = 10
+    let FriendsReuseIdentifier: String = "FriendsReuseIdentifier"
+    var friendsCollectionView: UICollectionView!
+    let spacing: CGFloat = 10
     
     var profile: Profile!
     weak var delegate: ChangeProfileInfoDelegate?
@@ -40,7 +41,10 @@ class ProfilePushViewController: UIViewController {
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         
 
-        //title = "\(profile.name), \(profile.gradYear)"
+        title = "\(profile.name)"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
 
         headerLabel.numberOfLines = 40
         headerLabel.backgroundColor = .systemGray6
@@ -65,27 +69,30 @@ class ProfilePushViewController: UIViewController {
         nameYearTextLabel.translatesAutoresizingMaskIntoConstraints = false
         
         numFriendsLabel.text = "\(profile.friends.count) friends"
-        numFriendsLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        numFriendsLabel.textColor = UIColor.black
+        numFriendsLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        numFriendsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         view.addSubview(numFriendsLabel)
         numFriendsLabel.isUserInteractionEnabled = false
         numFriendsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-//        let friendsLayout = UICollectionViewFlowLayout()
-//        friendsLayout.minimumLineSpacing = spacing
-//        friendsLayout.minimumInteritemSpacing = spacing
-//        friendsLayout.scrollDirection = .horizontal
-//
-//        friendsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: friendsLayout)
-//        friendsCollectionView.translatesAutoresizingMaskIntoConstraints = false
-//        friendsCollectionView.backgroundColor = UIColor.white
-//        friendsCollectionView.register(FriendsCollectionViewCell.self, forCellWithReuseIdentifier: FriendsReuseIdentifier)
-//        friendsCollectionView.dataSource = self
-//        friendsCollectionView.delegate = self
+        let friendsLayout = UICollectionViewFlowLayout()
+        friendsLayout.minimumLineSpacing = spacing
+        friendsLayout.minimumInteritemSpacing = spacing
+        friendsLayout.scrollDirection = .horizontal
+        
+        friends = profile.friends
+        friendsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: friendsLayout)
+        friendsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+        friendsCollectionView.register(FriendsCollectionViewCell.self, forCellWithReuseIdentifier: FriendsReuseIdentifier)
+        friendsCollectionView.dataSource = self
+        friendsCollectionView.delegate = self
+        friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+        view.addSubview(friendsCollectionView)
         
         numPostsLabel.text = "\(profile.posts.count) posts"
-        numPostsLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        numPostsLabel.textColor = UIColor.black
+        numPostsLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        numPostsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         view.addSubview(numPostsLabel)
         numPostsLabel.isUserInteractionEnabled = false
         numPostsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +100,7 @@ class ProfilePushViewController: UIViewController {
 
         bioTextField.text = "\(profile.bio)"
         bioTextField.font = .systemFont(ofSize: 14, weight: .regular)
-        bioTextField.textColor = UIColor.purple
+        bioTextField.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         bioTextField.isUserInteractionEnabled = false
         view.addSubview(bioTextField)
         bioTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -119,7 +126,7 @@ class ProfilePushViewController: UIViewController {
     func setUpConstraints(){
         
         let verticalPadding: CGFloat = 2
-        let sidePadding: CGFloat = 2
+        let sidePadding: CGFloat = 20
 
         NSLayoutConstraint.activate([
             headerLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
@@ -150,23 +157,21 @@ class ProfilePushViewController: UIViewController {
         
         
         NSLayoutConstraint.activate([
-            numFriendsLabel.topAnchor.constraint(equalTo: bioTextField.bottomAnchor, constant: view.bounds.height * 0.04),
-            numFriendsLabel.heightAnchor.constraint(equalToConstant: 20),
-            numFriendsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            numFriendsLabel.topAnchor.constraint(equalTo: bioTextField.bottomAnchor, constant: view.bounds.height * 0.065),
+            numFriendsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
         
-//        NSLayoutConstraint.activate([
-//            friendsCollectionView.topAnchor.constraint(equalTo: numFriendsLabel.bottomAnchor, constant: view.bounds.height * 0.0005),
-//            friendsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -verticalPadding),
-//            friendsCollectionView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
-//            friendsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
-//
-//        ])
+        NSLayoutConstraint.activate([
+            friendsCollectionView.topAnchor.constraint(equalTo: numFriendsLabel.bottomAnchor, constant: 5),
+            friendsCollectionView.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05),
+            friendsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
+            friendsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
+
+        ])
         
         NSLayoutConstraint.activate([
-            numPostsLabel.topAnchor.constraint(equalTo: numFriendsLabel.bottomAnchor, constant: view.bounds.height * 0.005),
-            numPostsLabel.heightAnchor.constraint(equalToConstant: 30),
-            numPostsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            numPostsLabel.topAnchor.constraint(equalTo: friendsCollectionView.bottomAnchor, constant: view.bounds.height * 0.07),
+            numPostsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
         
         
@@ -187,54 +192,61 @@ class ProfilePushViewController: UIViewController {
 
 }
 
-//extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
-//
-//    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
-//        return CGSize(width: collectionView.frame.width*0.5, height: collectionView.frame.height*0.15)
-//    }*/
-//
-//    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            return "String".size(withAttributes: nil)
-//    }*/
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            let profile = profile[indexPath.row]
-//        return CGSize(width: profile.name.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 2, height: collectionView.frame.height*0.6)
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView()
-//        return headerView
-//    }
-//}
-//
-//extension ProfileCollectionViewCell: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return profile.friends.count
-//    }
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-//        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseReuseIdentifier, for: indexPath) as? FriendsCollectionViewCell{
-//            cell.configure(profile: profile.friends[indexPath.row])
-//            cell.backgroundColor = UIColor.white
-//            //cell.layer.borderColor = UIColor.black.cgColor
-//            cell.contentView.layer.borderColor = UIColor.clear.cgColor
-//            //cell.layer.borderColor = UIColor.white.cgColor
-//            //cell.layer.cornerRadius = 15
-//            return cell
-//        }
-//        else{
-//            return UICollectionViewCell()
-//        }
-//    }
-//
-//}
+extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
+
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
+        return CGSize(width: collectionView.frame.width*0.5, height: collectionView.frame.height*0.15)
+    }*/
+
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return "String".size(withAttributes: nil)
+    }*/
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 150, height: friendsCollectionView.frame.height)
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        return headerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? FriendsCollectionViewCell {
+            let profileVC = ProfilePushViewController(profile: friends[indexPath.row], delegate: cell as? ChangeProfileInfoDelegate)
+            profileVC.title = "profile"
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+}
+
+extension ProfilePushViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return friends.count
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsReuseIdentifier, for: indexPath) as? FriendsCollectionViewCell{
+            cell.configure(profile: profile.friends[indexPath.row])
+            cell.backgroundColor = UIColor.white
+            //cell.layer.borderColor = UIColor.black.cgColor
+            cell.contentView.layer.borderColor = UIColor.clear.cgColor
+            //cell.layer.borderColor = UIColor.white.cgColor
+            cell.layer.cornerRadius = 20
+            return cell
+        }
+        else{
+            return UICollectionViewCell()
+        }
+    }
+
+}
 
 
 protocol ChangeProfileInfoDelegate: AnyObject {

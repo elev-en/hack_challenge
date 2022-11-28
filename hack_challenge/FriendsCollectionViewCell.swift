@@ -10,11 +10,8 @@ import UIKit
 class FriendsCollectionViewCell: UICollectionViewCell {
     let profileImageView = UIImageView()
     let profileName = UILabel()
-    let gradYearLabel = UILabel()
-    
-
-    let stackView = UIStackView()
-    
+    //let gradYearLabel = UILabel()
+        
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -22,8 +19,10 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
+        contentView.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
+        
         setupViews()
         setupConstraints()
     }
@@ -40,33 +39,28 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(systemName: "person.crop.circle")
+        profileImageView.image = UIImage(named: "Avatar 6")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         
         profileName.textAlignment = .left
-        profileName.font = UIFont.systemFont(ofSize: 20)
+        profileName.font = UIFont.systemFont(ofSize: 13)
         profileName.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(profileName)
+
         
-        gradYearLabel.font = UIFont.systemFont(ofSize: 10)
-        gradYearLabel.numberOfLines = 0
-        gradYearLabel.textColor = UIColor.gray
-        gradYearLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .leading
-        stackView.distribution = .equalSpacing
-        stackView.axis = .vertical
-        
-        stackView.addArrangedSubview(profileName)
-        stackView.addArrangedSubview(gradYearLabel)
-        contentView.addSubview(stackView)
+//        gradYearLabel.font = UIFont.systemFont(ofSize: 10)
+//        gradYearLabel.numberOfLines = 0
+//        gradYearLabel.textColor = UIColor.gray
+//        gradYearLabel.translatesAutoresizingMaskIntoConstraints = false
+//        contentView.addSubview(gradYearLabel)
+
     }
     
     func setupConstraints(){
         let verticalPadding: CGFloat = 5.0
         let sidePadding: CGFloat = 5.0
-        let profileImageDim: CGFloat = 10
+        let profileImageDim: CGFloat = 30
         
 
         NSLayoutConstraint.activate([
@@ -77,28 +71,21 @@ class FriendsCollectionViewCell: UICollectionViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            profileName.topAnchor.constraint(equalTo: profileImageView.topAnchor),
+            profileName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             profileName.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
         ])
         
-        NSLayoutConstraint.activate([
-            gradYearLabel.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: 5),
-            gradYearLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
-        ])
+//        NSLayoutConstraint.activate([
+//            gradYearLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 2),
+//            gradYearLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
+//        ])
 
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalPadding),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sidePadding),
-            stackView.heightAnchor.constraint(equalToConstant: 100),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
+    
     }
     
     func configure(profile: Profile){
         profileName.text = "\(profile.name)"
-        gradYearLabel.text = "\(profile.gradYear)"
+        //gradYearLabel.text = "\(profile.gradYear)"
     }
     
 }

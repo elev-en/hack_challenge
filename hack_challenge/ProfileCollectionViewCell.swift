@@ -29,7 +29,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         setupViews()
         setupConstraints()
@@ -188,7 +188,7 @@ extension ProfileCollectionViewCell: UICollectionViewDataSource {
             //cell.layer.borderColor = UIColor.black.cgColor
             cell.contentView.layer.borderColor = UIColor.clear.cgColor
             //cell.layer.borderColor = UIColor.white.cgColor
-            //cell.layer.cornerRadius = 15
+            cell.layer.cornerRadius = 15
             return cell
         }
         else{
