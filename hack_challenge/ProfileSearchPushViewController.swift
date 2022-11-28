@@ -129,8 +129,11 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
         let profile1 = Profile(username: "user", password: "pw", name: "martha pollack", courses: [course1, course2, course3, course4], bio: "i love cornhell!", gradYear: 1869, friends: [], posts: [])
         let profile2 = Profile(username: "user", password: "pw", name: "bill nye", courses: [course1, course2, course3, course4], bio: "science rocks!", gradYear: 1869, friends: [], posts: [])
         let profile3 = Profile(username: "user", password: "pw", name: "ur mom", courses: [course1, course2, course3, course4], bio: "i hate cornhell!", gradYear: 1869, friends: [], posts: [])
+        let profile4 = Profile(username: "user", password: "pw", name: "ur grandmom", courses: [course1, course2, course3, course4], bio: "i HATE cornhell!", gradYear: 1769, friends: [], posts: [])
+        let profile5 = Profile(username: "user", password: "pw", name: "you", courses: [course1, course2, course3, course4], bio: "i love milfs!", gradYear: 1869, friends: [], posts: [])
+        let profile6 = Profile(username: "user", password: "pw", name: "not ur mom", courses: [course1, course2, course3, course4], bio: "i hate milfs!", gradYear: 1869, friends: [], posts: [])
         
-        let profiles = [profile1, profile2, profile3]
+        let profiles = [profile1, profile2, profile3, profile4, profile5, profile6]
         
         self.allProfiles = profiles
         self.profileCollectionView.reloadData()
@@ -176,9 +179,8 @@ extension ProfileSearchPushViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width*0.92, height: collectionView.frame.height*0.15)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ProfileCollectionViewCell {
-               
             let profileVC = ProfilePushViewController(profile: allProfiles[indexPath.row], delegate: cell as? ChangeProfileInfoDelegate)
             profileVC.title = "profile"
             navigationController?.pushViewController(profileVC, animated: true)

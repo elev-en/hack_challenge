@@ -61,13 +61,13 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
 //        gradYearLabel.textColor = UIColor.purple
 //        gradYearLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        bioLabel.font = UIFont.systemFont(ofSize: 10)
+        bioLabel.font = UIFont.systemFont(ofSize: 14)
         bioLabel.numberOfLines = 0
         bioLabel.textColor = UIColor.purple
         bioLabel.translatesAutoresizingMaskIntoConstraints = false
         
         
-        var courseLayout = UICollectionViewFlowLayout()
+        let courseLayout = UICollectionViewFlowLayout()
         courseLayout.minimumLineSpacing = spacing
         courseLayout.minimumInteritemSpacing = spacing
         courseLayout.scrollDirection = .horizontal
