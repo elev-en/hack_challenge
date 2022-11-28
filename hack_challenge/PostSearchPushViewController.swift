@@ -97,9 +97,9 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
         let profile5 = Profile(username: "user", password: "pw", name: "you", courses: [course1, course2, course3, course4], bio: "i love milfs!", gradYear: 2023, friends: [profile1, profile2, profile3, profile4], posts: [])
         let profile6 = Profile(username: "user", password: "pw", name: "not ur mom", courses: [course1, course2, course3, course4], bio: "i hate milfs!", gradYear: 2024, friends: [profile1, profile2, profile3, profile4, profile5], posts: [])
         
-        let post1 = Post(poster: profile1, header: "Study sesh at Olin", body: "who wants to go to olin to study for the CS prelim tonight?",timeStamp: "12/09/21, 7:30 PM", location: "Olin Library",comments: [])
-        let post2 = Post(poster: profile2, header: "Hellooooo", body: "I dont have any studying to do i just wanted to post of the app for fun", timeStamp: "12/06/21, 2:03 PM", location: "nope", comments: [])
-        let post3 = Post(poster: profile3, header: "Time to Grind", body: "3:30 at mann. be there or be square", timeStamp: "9/03/22, 11:00 PM", location: "Mann Library", comments: [])
+        let post1 = Post(poster: profile1, header: "Study sesh at Olin", body: "who wants to go to olin to study for the CS prelim tonight?",timeStamp: "12/09/21, 7:30 PM", location: "Olin Library",comments: [], course: course1)
+        let post2 = Post(poster: profile2, header: "Hellooooo", body: "I dont have any studying to do i just wanted to post of the app for fun", timeStamp: "12/06/21, 2:03 PM", location: "nope", comments: [], course: course2)
+        let post3 = Post(poster: profile3, header: "Time to Grind", body: "3:30 at mann. be there or be square", timeStamp: "9/03/22, 11:00 PM", location: "Mann Library", comments: [], course: course3)
         
         let posts = [post1, post2, post3]
         
