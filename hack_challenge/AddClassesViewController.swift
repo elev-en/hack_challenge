@@ -74,33 +74,33 @@ class AddClassesViewController: UIViewController {
     }
     
     @objc func addClasses(){
-        if selectedClasses.count != 0 {
-            for i in 0 ... selectedClasses.count {
-                if !classList.contains(selectedClasses[i]) {
-                    classList.append(selectedClasses[i])
-                }
-            }
-            selectedClasses.removeAll()
-            for i in 0 ... filter.count {
-                filter[i] = false
-            }
-        } else {
-            let alert = UIAlertController(title: "Error", message: "No classes were selected to be added into cart.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                switch action.style{
-                    case .default:
-                    print("default")
-                    
-                    case .cancel:
-                    print("cancel")
-                    
-                    case .destructive:
-                    print("destructive")
-                    
-                }
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
+//        if selectedClasses.count != 0 {
+//            for i in 0 ... selectedClasses.count {
+//                if !classList.contains(selectedClasses[i]) {
+//                    classList.append(selectedClasses[i])
+//                }
+//            }
+//            selectedClasses.removeAll()
+//            for i in 0 ... filter.count {
+//                filter[i] = false
+//            }
+//        } else {
+//            let alert = UIAlertController(title: "Error", message: "No classes were selected to be added into cart.", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                switch action.style{
+//                    case .default:
+//                    print("default")
+//
+//                    case .cancel:
+//                    print("cancel")
+//
+//                    case .destructive:
+//                    print("destructive")
+//
+//                }
+//            }))
+//            self.present(alert, animated: true, completion: nil)
+//        }
     }
     
     func createData(){
@@ -135,22 +135,22 @@ extension AddClassesViewController: UISearchResultsUpdating {
 
 extension AddClassesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = classesTableView.cellForRow(at: indexPath) as! ClassesTableViewCell
-        for i in 0 ... allClasses.count {
-            if cell.courseLabel.text?.lowercased() == allClasses[i].name.lowercased() {
-                if(filter[i]){
-                    filter[i] = false
-                    cell.changeBackground(selected: filter[i])
-                    if let index = selectedClasses.firstIndex(of: allClasses[i]) {
-                        selectedClasses.remove(at: index)
-                    }
-                } else {
-                    filter[i] = true
-                    cell.changeBackground(selected: filter[i])
-                    selectedClasses.append(allClasses[i])
-                }
-            }
-        }
+//        let cell = classesTableView.cellForRow(at: indexPath) as! ClassesTableViewCell
+//        for i in 0 ... allClasses.count {
+//            if cell.courseLabel.text?.lowercased() == allClasses[i].name.lowercased() {
+//                if(filter[i]){
+//                    filter[i] = false
+//                    cell.changeBackground(selected: filter[i])
+//                    if let index = selectedClasses.firstIndex(of: allClasses[i]) {
+//                        selectedClasses.remove(at: index)
+//                    }
+//                } else {
+//                    filter[i] = true
+//                    cell.changeBackground(selected: filter[i])
+//                    selectedClasses.append(allClasses[i])
+//                }
+//            }
+//        }
         
     }
 

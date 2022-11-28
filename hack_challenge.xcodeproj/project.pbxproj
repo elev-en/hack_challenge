@@ -24,6 +24,7 @@
 		5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */; };
 		60BB230F293400810033CD1B /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */; };
 		60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB2310293401050033CD1B /* ProfileTableViewCell.swift */; };
+		60BB2313293415050033CD1B /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */; };
 		EC336E9C29248F5B00520624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9B29248F5B00520624 /* AppDelegate.swift */; };
 		EC336E9E29248F5B00520624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9D29248F5B00520624 /* SceneDelegate.swift */; };
 		EC336EA029248F5B00520624 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9F29248F5B00520624 /* ViewController.swift */; };
@@ -63,6 +64,7 @@
 		5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePushViewController.swift; sourceTree = "<group>"; };
 		60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
 		60BB2310293401050033CD1B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		754C4AF2060ED296A409E9B9 /* Pods-hack_challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hack_challenge.debug.xcconfig"; path = "Target Support Files/Pods-hack_challenge/Pods-hack_challenge.debug.xcconfig"; sourceTree = "<group>"; };
 		7EED149C9A87723D975C21FD /* Pods-hack_challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hack_challenge.release.xcconfig"; path = "Target Support Files/Pods-hack_challenge/Pods-hack_challenge.release.xcconfig"; sourceTree = "<group>"; };
 		EC336E9829248F5B00520624 /* hack_challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hack_challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 				EC336EA929248F5D00520624 /* Info.plist */,
 				60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */,
 				60BB2310293401050033CD1B /* ProfileTableViewCell.swift */,
+				60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */,
 			);
 			path = hack_challenge;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 			files = (
 				EC65B08B292F0A7F00D04BA0 /* NetworkManager.swift in Sources */,
 				EC336EA029248F5B00520624 /* ViewController.swift in Sources */,
+				60BB2313293415050033CD1B /* ProfileCollectionViewCell.swift in Sources */,
 				EC65B09129310BF200D04BA0 /* ClassesTableViewCell.swift in Sources */,
 				60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */,
 				EC5213602932BB8E0029A754 /* ClassesCartViewController.swift in Sources */,

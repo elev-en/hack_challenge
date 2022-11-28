@@ -8,11 +8,23 @@
 import Foundation
 
 
-class Course: Codable, Equatable {
-    static func == (lhs: Course, rhs: Course) -> Bool {
-        if lhs.name == rhs.name { return true }
-        return false
-    }
-    
+//class Course: Codable, Equatable {
+//    static func == (lhs: Course, rhs: Course) -> Bool {
+//        if lhs.name == rhs.name { return true }
+//        return false
+//    }
+//
+//    let name: String
+//}
+
+struct Course: Codable {
     let name: String
+
+//    let profileImage: UIImage
+    
+    enum CodingKeys: String, CodingKey{
+        case name
+        
+
+    }
 }

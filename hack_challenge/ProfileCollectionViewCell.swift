@@ -1,15 +1,13 @@
 //
-//  ProfileTableViewCell.swift
+//  ProfileCollectionViewCell.swift
 //  hack_challenge
 //
-//  Created by kaitlyn on 11/26/22.
+//  Created by kaitlyn on 11/27/22.
 //
-
-// table view for profile - includes profile name, grad year, collection view of courses
 
 import UIKit
 
-class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class ProfileCollectionViewCell: UICollectionViewCell{
     
     let profileImageView = UIImageView()
     let profileName = UILabel()
@@ -17,11 +15,10 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     let bioLabel = UILabel()
     var courses: [Course] = []
 
-    let spacing: CGFloat = 10
-    let ProfileReuseIdentifier: String = "ProfileReuseIdentifier"
-    
-    
+    let CourseReuseIdentifier: String = "CourseReuseIdentifier"
     var coursesCollectionView: UICollectionView!
+    let spacing: CGFloat = 10
+
     
     let stackView = UIStackView()
     
@@ -29,9 +26,11 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         super.awakeFromNib()
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        contentView.layer.cornerRadius = 8
+        contentView.clipsToBounds = true
         setupViews()
         setupConstraints()
     }
@@ -40,11 +39,11 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//
+//    }
     
     func setupViews(){
         //TODO change profile image to actual profile image
@@ -67,17 +66,18 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         bioLabel.translatesAutoresizingMaskIntoConstraints = false
         
         
-        var courseLayout = UICollectionViewFlowLayout()
+        let courseLayout = UICollectionViewFlowLayout()
         courseLayout.minimumLineSpacing = spacing
         courseLayout.minimumInteritemSpacing = spacing
         courseLayout.scrollDirection = .horizontal
         
         coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
         coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        coursesCollectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: ProfileReuseIdentifier)
+        coursesCollectionView.backgroundColor = UIColor.white
+        coursesCollectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: CourseReuseIdentifier)
         coursesCollectionView.dataSource = self
         coursesCollectionView.delegate = self
-        coursesCollectionView.allowsMultipleSelection = true
+        
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .leading
@@ -109,8 +109,16 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         ])
         
         NSLayoutConstraint.activate([
-            bioLabel.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: contentView.bounds.height * 0.15),
+            bioLabel.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: contentView.bounds.height * 0.05),
             bioLabel.leadingAnchor.constraint(equalTo: profileName.leadingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            coursesCollectionView.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: contentView.bounds.height * 0.6),
+            coursesCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalPadding),
+            coursesCollectionView.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
+            coursesCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sidePadding)
+    
         ])
         
         NSLayoutConstraint.activate([
@@ -126,27 +134,66 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         profileName.text = "\(profile.name)"
         bioLabel.text = profile.bio
         // profileImageView.image = profile.profileImage
-        // gradYearLabel.text = "\(profile.gradYear)"
         courses = profile.courses
     }
     
+    
+    
+    
+    
+}
+
+extension ProfileCollectionViewCell: UICollectionViewDelegateFlowLayout {
+    
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
+        return CGSize(width: collectionView.frame.width*0.5, height: collectionView.frame.height*0.15)
+    }*/
+    
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return "String".size(withAttributes: nil)
+    }*/
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let course = courses[indexPath.row]
+            //let itemSize = course.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+            //let courseNameSize = course.name.count
+        //return CGSize(width: itemSize, height: collectionView.frame.height*0.15)
+        return CGSize(width: course.name.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 2, height: collectionView.frame.height*0.6)
+
+    }
+    
+
+    
+
+    func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        return headerView
+    }
+}
+
+extension ProfileCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return courses.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileReuseIdentifier, for: indexPath) as? CoursesCollectionViewCell {
-            cell.configure(courseVar: courses[indexPath.row])
-            return cell
-        }
-        return UICollectionViewCell()
-    }
-    
-    
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
-}
 
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseReuseIdentifier, for: indexPath) as? CoursesCollectionViewCell{
+            cell.configure(courseVar: courses[indexPath.row])
+            cell.backgroundColor = UIColor.white
+            //cell.layer.borderColor = UIColor.black.cgColor
+            cell.contentView.layer.borderColor = UIColor.clear.cgColor
+            //cell.layer.borderColor = UIColor.white.cgColor
+            //cell.layer.cornerRadius = 15
+            return cell
+        }
+        else{
+            return UICollectionViewCell()
+        }
+    }
+
+}
