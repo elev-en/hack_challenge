@@ -14,6 +14,7 @@ struct Post: Codable {
     let timeStamp: String
     let location: String
     let comments: [Comment]
+    let course: Course
     
     enum CodingKeys: String, CodingKey{
         case poster
@@ -22,5 +23,6 @@ struct Post: Codable {
         case location
         case timeStamp
         case comments
+        case course
     }
 }

@@ -4,9 +4,9 @@
 //
 //  Created by kaitlyn on 11/27/22.
 //
-
+ 
 import UIKit
-
+ 
 class FriendsCollectionViewCell: UICollectionViewCell {
     let profileImageView = UIImageView()
     let profileName = UILabel()
@@ -18,7 +18,7 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+ 
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         contentView.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
@@ -47,14 +47,14 @@ class FriendsCollectionViewCell: UICollectionViewCell {
         profileName.font = UIFont.systemFont(ofSize: 13)
         profileName.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileName)
-
+ 
         
 //        gradYearLabel.font = UIFont.systemFont(ofSize: 10)
 //        gradYearLabel.numberOfLines = 0
 //        gradYearLabel.textColor = UIColor.gray
 //        gradYearLabel.translatesAutoresizingMaskIntoConstraints = false
 //        contentView.addSubview(gradYearLabel)
-
+ 
     }
     
     func setupConstraints(){
@@ -62,7 +62,7 @@ class FriendsCollectionViewCell: UICollectionViewCell {
         let sidePadding: CGFloat = 5.0
         let profileImageDim: CGFloat = 30
         
-
+ 
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
             profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sidePadding),
@@ -79,7 +79,7 @@ class FriendsCollectionViewCell: UICollectionViewCell {
 //            gradYearLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 2),
 //            gradYearLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
 //        ])
-
+ 
     
     }
     
@@ -90,4 +90,3 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
 }
     
-

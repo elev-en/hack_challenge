@@ -4,9 +4,9 @@
 //
 //  Created by kaitlyn on 11/27/22.
 //
-
+ 
 import UIKit
-
+ 
 class ProfileCollectionViewCell: UICollectionViewCell{
     
     let profileImageView = UIImageView()
@@ -14,11 +14,11 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     let gradYearLabel = UILabel()
     let bioLabel = UILabel()
     var courses: [Course] = []
-
+ 
     let CourseReuseIdentifier: String = "CourseReuseIdentifier"
     var coursesCollectionView: UICollectionView!
     let spacing: CGFloat = 10
-
+ 
     
     let stackView = UIStackView()
     
@@ -28,7 +28,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+ 
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         setupViews()
@@ -47,7 +47,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(systemName: "person.crop.circle")
+        profileImageView.image = UIImage(named: "Avatar 6")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         
@@ -95,7 +95,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
         let sidePadding: CGFloat = 20.0
         let profileImageDim: CGFloat = 40
         
-
+ 
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
             profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sidePadding),
@@ -142,7 +142,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     
     
 }
-
+ 
 extension ProfileCollectionViewCell: UICollectionViewDelegateFlowLayout {
     
     /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
@@ -159,18 +159,18 @@ extension ProfileCollectionViewCell: UICollectionViewDelegateFlowLayout {
             //let courseNameSize = course.name.count
         //return CGSize(width: itemSize, height: collectionView.frame.height*0.15)
         return CGSize(width: course.name.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 2, height: collectionView.frame.height*0.6)
-
+ 
     }
     
-
+ 
     
-
+ 
     func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         return headerView
     }
 }
-
+ 
 extension ProfileCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return courses.count
@@ -179,7 +179,7 @@ extension ProfileCollectionViewCell: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+ 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseReuseIdentifier, for: indexPath) as? CoursesCollectionViewCell{
@@ -195,5 +195,5 @@ extension ProfileCollectionViewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
     }
-
+ 
 }

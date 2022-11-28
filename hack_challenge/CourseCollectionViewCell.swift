@@ -4,9 +4,9 @@
 //
 //  Created by kaitlyn on 11/26/22.
 //
-
+ 
 import UIKit
-
+ 
 class CoursesCollectionViewCell: UICollectionViewCell {
     
     let course = UILabel()
@@ -17,11 +17,11 @@ class CoursesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+ 
         contentView.layer.cornerRadius = 7
         contentView.clipsToBounds = true
         contentView.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
-
+ 
         setupViews()
         setupConstraints()
     }
@@ -37,8 +37,8 @@ class CoursesCollectionViewCell: UICollectionViewCell {
         course.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(course)
     }
-
-
+ 
+ 
     func setupConstraints() {
         NSLayoutConstraint.activate([
             course.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -46,10 +46,10 @@ class CoursesCollectionViewCell: UICollectionViewCell {
         ])
         
     }
-
+ 
     func configure(courseVar: Course) {
         course.text = courseVar.name
     }
     
-
+ 
 }
