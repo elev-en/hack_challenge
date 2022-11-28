@@ -78,7 +78,9 @@ class ViewController: UIViewController {
     
     @objc func pushLogInViewController() {
         //navigationController?.pushViewController(LogInUsernamePasswordViewController(), animated: true)
-        navigationController?.pushViewController(ProfileSearchPushViewController(), animated: true)
+//        navigationController?.pushViewController(ProfileSearchPushViewController(), animated: true)
+        navigationController?.pushViewController(PostSearchPushViewController(), animated: true)
+
     }
     
     func setupConstraints() {

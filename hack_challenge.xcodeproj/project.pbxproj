@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02F6936BD8623ADA5D67B4F0 /* Pods_hack_challenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015176B8373A9F7CC8EB4AEE /* Pods_hack_challenge.framework */; };
+		5F7D9978293557C100427B81 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7D9977293557C100427B81 /* PostCollectionViewCell.swift */; };
 		5FB0D6F32927C93600EC8018 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D6F22927C93600EC8018 /* Profile.swift */; };
 		5FB0D6F52927CB3700EC8018 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D6F42927CB3700EC8018 /* Post.swift */; };
 		5FB0D6F72927CC6200EC8018 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D6F62927CC6200EC8018 /* Comment.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		015176B8373A9F7CC8EB4AEE /* Pods_hack_challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hack_challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F7D9977293557C100427B81 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		5FB0D6F22927C93600EC8018 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		5FB0D6F42927CB3700EC8018 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		5FB0D6F62927CC6200EC8018 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				EC336EA429248F5D00520624 /* Assets.xcassets */,
 				EC336EA629248F5D00520624 /* LaunchScreen.storyboard */,
 				EC336EA929248F5D00520624 /* Info.plist */,
+				5F7D9977293557C100427B81 /* PostCollectionViewCell.swift */,
 				60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */,
 				60BB2310293401050033CD1B /* ProfileTableViewCell.swift */,
 				60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */,
@@ -316,6 +319,7 @@
 				60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */,
 				EC5213602932BB8E0029A754 /* ClassesCartViewController.swift in Sources */,
 				EC65B07E292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift in Sources */,
+				5F7D9978293557C100427B81 /* PostCollectionViewCell.swift in Sources */,
 				EC65B089292F017C00D04BA0 /* EnterClassesViewController.swift in Sources */,
 				EC65B07C292C598600D04BA0 /* CreateUsernamePasswordViewController.swift in Sources */,
 				5FB0D6F72927CC6200EC8018 /* Comment.swift in Sources */,
