@@ -57,7 +57,7 @@ class ProfilePushViewController: UIViewController {
         view.addSubview(headerLabel)
         
         // fix profile image to use profile image
-        profileImageView.image = UIImage(named: "Avatar 6")
+        profileImageView.image = UIImage(named: "smiley face")
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)

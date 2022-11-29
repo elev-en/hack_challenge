@@ -39,7 +39,7 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(named: "Avatar 6")
+        profileImageView.image = UIImage(named: "frog")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         

@@ -41,7 +41,7 @@ class PostsCollectionViewCell: UICollectionViewCell {
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(named: "Avatar 6")
+        profileImageView.image = UIImage(named: "among us")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         
