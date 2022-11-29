@@ -147,13 +147,13 @@ extension PostSearchPushViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width*0.92, height: collectionView.frame.height*0.15)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if let cell = collectionView.cellForItem(at: indexPath) as? PostCollectionViewCell {
-//            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
-//            postVC.title = "post"
-//            navigationController?.pushViewController(postVC, animated: true)
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? PostCollectionViewCell {
+            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
+            postVC.title = "post"
+            navigationController?.pushViewController(postVC, animated: true)
+        }
+    }
     
 
     func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
