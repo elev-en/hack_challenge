@@ -47,8 +47,14 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(named: "Avatar 6")
+        profileImageView.image = UIImage(named: "bucket hat")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.layer.borderWidth = 1.0
+        //profileImageView.layer.masksToBounds = false
+        profileImageView.layer.isOpaque = false
+        profileImageView.layer.borderColor = UIColor.black.cgColor
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        profileImageView.clipsToBounds = true
         contentView.addSubview(profileImageView)
         
         profileName.textAlignment = .left
