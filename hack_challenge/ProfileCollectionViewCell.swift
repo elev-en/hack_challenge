@@ -47,7 +47,6 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(named: "bucket hat")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         //profileImageView.layer.masksToBounds = false
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
@@ -135,6 +134,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     
     func configure(profile: Profile){
         profileName.text = "\(profile.name)"
+        profileImageView.image = UIImage(named: profile.profileImage)
         bioLabel.text = profile.bio
         // profileImageView.image = profile.profileImage
         courses = profile.courses

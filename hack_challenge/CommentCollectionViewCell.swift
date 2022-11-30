@@ -36,7 +36,6 @@ class CommentCollectionViewCell: UICollectionViewCell{
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(named: "bucket hat")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         //profileImageView.layer.masksToBounds = false
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
@@ -99,6 +98,7 @@ class CommentCollectionViewCell: UICollectionViewCell{
     
     func configure(comment: Comment){
         profileName.text = "\(comment.commenter.name)"
+        profileImageView.image = UIImage(named: comment.commenter.profileImage)
         text.text = comment.body
     }
     

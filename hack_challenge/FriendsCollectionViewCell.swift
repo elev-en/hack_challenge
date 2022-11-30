@@ -39,7 +39,6 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(named: "frog")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         
@@ -85,6 +84,7 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     func configure(profile: Profile){
         profileName.text = "\(profile.name)"
+        profileImageView.image = UIImage(named: profile.profileImage)
         //gradYearLabel.text = "\(profile.gradYear)"
     }
     

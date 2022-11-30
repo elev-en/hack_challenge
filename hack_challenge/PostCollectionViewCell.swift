@@ -1,32 +1,28 @@
 //
-//  ProfileCollectionViewCell.swift
+//  PostCollectionViewCell.swift
 //  hack_challenge
 //
-//  Created by kaitlyn on 11/27/22.
+//  Created by kaitlyn on 11/28/22.
 //
-
+ 
 import UIKit
-
-class PostCollectionViewCell: UICollectionViewCell{
+ 
+class PostCollectionViewCell: UICollectionViewCell {
     
     let profileImageView = UIImageView()
     let profileName = UILabel()
-    let header = UILabel()
-    let body = UILabel()
-    let timestamp = UILabel()
-    
-    let spacing: CGFloat = 10
-
-    
-    let stackView = UIStackView()
-    
+    let titleLabel = UILabel()
+    let courseTextField = UITextField()
+    let timeStamp = UILabel()
+    let location = UILabel()
+        
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+ 
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         setupViews()
@@ -37,108 +33,114 @@ class PostCollectionViewCell: UICollectionViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//
+//    }
     
     func setupViews(){
         //TODO change profile image to actual profile image
-        profileImageView.image = UIImage(systemName: "person.crop.circle")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         
         profileName.textAlignment = .left
-        profileName.font = UIFont.systemFont(ofSize: 12)
+        profileName.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        profileName.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         profileName.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(profileName)
+ 
         
-        body.textAlignment = .left
-        body.font = UIFont.systemFont(ofSize: 10)
-        body.numberOfLines = 2
-        body.textColor = UIColor.purple
-        body.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(titleLabel)
+ 
         
+        courseTextField.textAlignment = .center
+        courseTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        courseTextField.translatesAutoresizingMaskIntoConstraints = false
+        courseTextField.layer.masksToBounds = true
+        courseTextField.layer.cornerRadius = 8.0
+        courseTextField.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        courseTextField.leftView = paddingView
+        courseTextField.leftViewMode = .always
+        courseTextField.rightView = paddingView
+        courseTextField.rightViewMode = .always
+        courseTextField.isUserInteractionEnabled = false
+        contentView.addSubview(courseTextField)
+ 
+        timeStamp.textAlignment = .left
+        timeStamp.font = UIFont.systemFont(ofSize: 10, weight: .bold)
+        timeStamp.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(timeStamp)
         
-        header.font = UIFont.systemFont(ofSize: 18)
-        header.textAlignment = .left
-        header.textColor = UIColor.black
-        header.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        timestamp.font = UIFont.systemFont(ofSize: 10)
-        timestamp.textAlignment = .left
-        timestamp.textColor = UIColor.gray
-        timestamp.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .leading
-        stackView.distribution = .equalSpacing
-        stackView.axis = .vertical
-        
-        stackView.addArrangedSubview(profileName)
-        stackView.addArrangedSubview(header)
-        stackView.addArrangedSubview(body)
-        stackView.addArrangedSubview(timestamp)
-        contentView.addSubview(stackView)
+        location.textAlignment = .left
+        location.font = UIFont.systemFont(ofSize: 10)
+        location.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(location)
+ 
     }
     
     func setupConstraints(){
-        let verticalPadding: CGFloat = 20.0
+        let verticalPadding: CGFloat = 15
         let sidePadding: CGFloat = 20.0
-        let profileImageDim: CGFloat = 40
-        
-
+ 
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
             profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sidePadding),
-            profileImageView.heightAnchor.constraint(equalToConstant: profileImageDim),
-            profileImageView.widthAnchor.constraint(equalToConstant: profileImageDim),
+            profileImageView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.6),
+            profileImageView.widthAnchor.constraint(equalToConstant: contentView.bounds.height * 0.6),
         ])
         
         NSLayoutConstraint.activate([
-            profileName.topAnchor.constraint(equalTo: profileImageView.topAnchor),
-            profileName.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
+            profileName.topAnchor.constraint(equalTo: profileImageView.bottomAnchor),
+            profileName.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor),
         ])
         
         NSLayoutConstraint.activate([
-            header.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: contentView.bounds.height * 0.05),
-            header.leadingAnchor.constraint(equalTo: profileName.leadingAnchor)
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
+            titleLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: contentView.bounds.width*0.04),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sidePadding)
         ])
         
         NSLayoutConstraint.activate([
-            body.topAnchor.constraint(equalTo: header.bottomAnchor, constant: contentView.bounds.height * 0.05),
-            body.leadingAnchor.constraint(equalTo: profileName.leadingAnchor)
+            courseTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: contentView.bounds.height*0.067),
+            courseTextField.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: contentView.bounds.width*0.04)
+ 
         ])
         
         NSLayoutConstraint.activate([
-            timestamp.topAnchor.constraint(equalTo: body.bottomAnchor, constant: contentView.bounds.height * 0.05),
-            timestamp.leadingAnchor.constraint(equalTo: profileName.leadingAnchor)
+            timeStamp.topAnchor.constraint(equalTo: courseTextField.bottomAnchor, constant: contentView.bounds.height*0.127),
+            timeStamp.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: contentView.bounds.width*0.04),
+            timeStamp.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sidePadding)
         ])
-        
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalPadding),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sidePadding),
-            stackView.heightAnchor.constraint(equalToConstant: 100),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            location.topAnchor.constraint(equalTo: timeStamp.bottomAnchor, constant: contentView.bounds.height*0.01),
+            location.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: contentView.bounds.width*0.04),
+            location.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sidePadding)
+ 
         ])
+        
+        
+    
     }
     
     func configure(post: Post){
-        profileName.text = "\(post.poster.name)"
-        header.text = post.header
-        body.text = post.body
+        var name = post.poster.name
+        let index = name.firstIndex(of: " ")!
+        let firstName = String(name[..<index])
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
-//        let timeStamp = dateFormatter.date(from: post.timeStamp)!
-//
-//        let coolDateFormatter = DateFormatter()
-//        coolDateFormatter.dateFormat = "MMM d, h:mm a"
-//        let coolDateString = coolDateFormatter.string(from: timeStamp)
-//        timestamp.text = "\(coolDateString)"
+        profileImageView.image = UIImage(named: post.poster.profileImage)
+        profileName.text = firstName
+        timeStamp.text = "wed, dec 1st, 5:00 pm"
+        // profileImageView.image = post.poster.profileImage
+        titleLabel.text = post.header
+        courseTextField.text = post.course.name
+        location.text = post.location
         
-        timestamp.text = post.timeStamp
-
     }
     
     
@@ -146,5 +148,3 @@ class PostCollectionViewCell: UICollectionViewCell{
     
     
 }
-
-

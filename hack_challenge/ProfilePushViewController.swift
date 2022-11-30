@@ -33,12 +33,21 @@ class ProfilePushViewController: UIViewController {
     
     var profile: Profile!
     weak var delegate: ChangeProfileInfoDelegate?
+    
+//    var post: Post!
+//    weak var postDelegate: ChangePostInfoDelegate?
  
     init(profile: Profile, delegate: ChangeProfileInfoDelegate?) {
         self.profile = profile
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
+    
+//    init(post: Post, postDelegate: ChangePostInfoDelegate){
+//        self.post = post
+//        self.postDelegate = postDelegate
+//        super.init(nibName: nil, bundle: nil)
+//    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +66,7 @@ class ProfilePushViewController: UIViewController {
         view.addSubview(headerLabel)
         
         // fix profile image to use profile image
-        profileImageView.image = UIImage(named: "smiley face")
+        profileImageView.image = UIImage(named: profile.profileImage)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
@@ -247,9 +256,9 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
         else{
             if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
                 print("post tapped")
-                //let postVC = ProfilePushViewController(profile: friends[indexPath.row], delegate: cell as? ChangeProfileInfoDelegate)
-                //profileVC.title = "profile"
-                //navigationController?.pushViewController(profileVC, animated: true)
+                let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
+                postVC.title = "post"
+                navigationController?.pushViewController(postVC, animated: true)
             }
         }
     }
@@ -310,3 +319,7 @@ extension ProfilePushViewController: UICollectionViewDataSource {
 protocol ChangeProfileInfoDelegate: AnyObject {
     func changeProfileInfo(profile: Profile)
 }
+
+//protocol ChangePostInfoDelegate: AnyObject {
+//    func changePostInfo(post: Post)
+//}

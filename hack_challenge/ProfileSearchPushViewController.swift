@@ -127,18 +127,18 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        
 
        
-       let profile1 = Profile(username: "user", password: "pw", name: "martha pollack", courses: [course1, course2, course3, course4], bio: "i love cornhell!", gradYear: 2026, friends: [], posts: [])
+       let profile1 = Profile(username: "user", password: "pw", name: "martha pollack", courses: [course1, course2, course3, course4], bio: "i love cornhell!", gradYear: 2026, friends: [], posts: [], profileImage: "smiley face")
        
        let post1 = Post(poster: profile1, header: "review together before prelim?", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "mann library, 2nd floor", comments: [], course: course3)
        let post2 = Post(poster: profile1, header: "work on problem set!", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "olin library, basement", comments: [], course: course2)
        let post3 = Post(poster: profile1, header: "study for finals", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "hu shih lounge", comments: [], course: course3)
        
        
-       let profile2 = Profile(username: "user", password: "pw", name: "bill nye", courses: [course1, course2, course3, course4], bio: "science rocks!", gradYear: 2023, friends: [profile1], posts: [post1, post2, post3])
-       let profile3 = Profile(username: "user", password: "pw", name: "ur mom", courses: [course1, course2, course3, course4], bio: "i hate cornhell!", gradYear: 2025, friends: [profile1, profile2], posts: [])
-       let profile4 = Profile(username: "user", password: "pw", name: "ur grandmom", courses: [course1, course2, course3, course4], bio: "i HATE cornhell!", gradYear: 2022, friends: [profile1, profile2, profile3], posts: [post1, post2, post3])
-       let profile5 = Profile(username: "user", password: "pw", name: "you", courses: [course1, course2, course3, course4], bio: "i love milfs!", gradYear: 2023, friends: [profile1, profile2, profile3, profile4], posts: [post1, post2, post3])
-       let profile6 = Profile(username: "user", password: "pw", name: "not ur mom", courses: [course1, course2, course3, course4], bio: "i hate milfs!", gradYear: 2024, friends: [profile1, profile2, profile3, profile4, profile5], posts: [post1, post2, post3])
+       let profile2 = Profile(username: "user", password: "pw", name: "bill nye", courses: [course1, course2, course3, course4], bio: "science rocks!", gradYear: 2023, friends: [profile1], posts: [post1, post2, post3], profileImage: "bucket hat")
+       let profile3 = Profile(username: "user", password: "pw", name: "ur mom", courses: [course1, course2, course3, course4], bio: "i hate cornhell!", gradYear: 2025, friends: [profile1, profile2], posts: [], profileImage: "frog")
+       let profile4 = Profile(username: "user", password: "pw", name: "ur grandmom", courses: [course1, course2, course3, course4], bio: "i HATE cornhell!", gradYear: 2022, friends: [profile1, profile2, profile3], posts: [post1, post2, post3], profileImage: "sprout")
+       let profile5 = Profile(username: "user", password: "pw", name: "you", courses: [course1, course2, course3, course4], bio: "i love milfs!", gradYear: 2023, friends: [profile1, profile2, profile3, profile4], posts: [post1, post2, post3], profileImage: "among us")
+       let profile6 = Profile(username: "user", password: "pw", name: "not ur mom", courses: [course1, course2, course3, course4], bio: "i hate milfs!", gradYear: 2024, friends: [profile1, profile2, profile3, profile4, profile5], posts: [post1, post2, post3], profileImage: "angel")
        
 
        
