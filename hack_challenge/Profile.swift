@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-struct Profile: Codable {
+struct Profile: Codable, Equatable {
+    
     let id: Int
     let username: String
     let password: String

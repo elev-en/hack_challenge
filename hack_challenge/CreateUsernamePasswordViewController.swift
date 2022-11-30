@@ -13,10 +13,9 @@ class CreateUsernamePasswordViewController: UIViewController {
     let welcomeLabel = UILabel()
     let usernameTextField = UsernameTextField()
     let passwordTextField = PasswordTextField()
-    let confirmPasswordTextField = UITextField()
+    let confirmPasswordTextField = ConfirmPasswordTextField()
     let signUpButton = UIButton()
    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
