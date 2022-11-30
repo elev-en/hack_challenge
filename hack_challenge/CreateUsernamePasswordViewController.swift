@@ -71,7 +71,24 @@ class CreateUsernamePasswordViewController: UIViewController {
     }
     
     @objc func pushEnterClassesViewController() {
-        if(passwordTextField.text == confirmPasswordTextField.text){
+        if usernameTextField.text == "" || passwordTextField.text == "" || confirmPasswordTextField.text == "" {
+            let alert = UIAlertController(title: "Error", message: "Please make sure all fields are entered.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+                    
+                    case .cancel:
+                    print("cancel")
+                    
+                    case .destructive:
+                    print("destructive")
+                    
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else if(passwordTextField.text == confirmPasswordTextField.text){
+            NetworkManager.createUser(username: usernameTextField.text!, password: passwordTextField.text!) {_ in }
             navigationController?.pushViewController(EnterClassesViewController(), animated: true)
         } else {
             let alert = UIAlertController(title: "Error", message: "Passwords do not match. Please make sure the passwords entered are the same.", preferredStyle: .alert)
@@ -140,8 +157,4 @@ class CreateUsernamePasswordViewController: UIViewController {
         ])
     }
 
-}
-
-protocol usernamePasswordDelegate {
-    
 }

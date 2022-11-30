@@ -48,6 +48,8 @@
 		EC65B08F293084D800D04BA0 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B08E293084D800D04BA0 /* Class.swift */; };
 		EC65B09129310BF200D04BA0 /* ClassesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B09029310BF200D04BA0 /* ClassesTableViewCell.swift */; };
 		ECA3F3DE2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA3F3DD2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift */; };
+		ECFFEF452936F9D100CAF926 /* ProfilePicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFEF442936F9D100CAF926 /* ProfilePicCollectionViewCell.swift */; };
+		ECFFEF472936FA5F00CAF926 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFEF462936FA5F00CAF926 /* TabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +99,8 @@
 		EC65B08E293084D800D04BA0 /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		EC65B09029310BF200D04BA0 /* ClassesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesTableViewCell.swift; sourceTree = "<group>"; };
 		ECA3F3DD2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfilePicViewController.swift; sourceTree = "<group>"; };
+		ECFFEF442936F9D100CAF926 /* ProfilePicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicCollectionViewCell.swift; sourceTree = "<group>"; };
+		ECFFEF462936FA5F00CAF926 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,8 +164,10 @@
 				EC65B088292F017C00D04BA0 /* EnterClassesViewController.swift */,
 				EC5213612932CF670029A754 /* MakeProfileViewController.swift */,
 				EC5213632932D0890029A754 /* SetProfilePictureViewController.swift */,
+				ECFFEF462936FA5F00CAF926 /* TabBar.swift */,
 				EC65B08C29302B3E00D04BA0 /* AddClassesViewController.swift */,
 				ECA3F3DD2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift */,
+				ECFFEF442936F9D100CAF926 /* ProfilePicCollectionViewCell.swift */,
 				EC52135F2932BB8E0029A754 /* ClassesCartViewController.swift */,
 				EC5213652932FB900029A754 /* SetProfileInfoViewController.swift */,
 				EC65B09029310BF200D04BA0 /* ClassesTableViewCell.swift */,
@@ -321,6 +327,7 @@
 				EC336EA029248F5B00520624 /* ViewController.swift in Sources */,
 				60D336F529347114009C6E73 /* FriendsCollectionViewCell.swift in Sources */,
 				60BB2313293415050033CD1B /* ProfileCollectionViewCell.swift in Sources */,
+				ECFFEF452936F9D100CAF926 /* ProfilePicCollectionViewCell.swift in Sources */,
 				5F7D997A2936B89300427B81 /* CommentCollectionViewCell.swift in Sources */,
 				EC65B09129310BF200D04BA0 /* ClassesTableViewCell.swift in Sources */,
 				60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */,
@@ -335,6 +342,7 @@
 				5FB0D705292AEA8D00EC8018 /* PostSearchPushViewController.swift in Sources */,
 				EC5213642932D0890029A754 /* SetProfilePictureViewController.swift in Sources */,
 				EC65B08F293084D800D04BA0 /* Class.swift in Sources */,
+				ECFFEF472936FA5F00CAF926 /* TabBar.swift in Sources */,
 				ECA3F3DE2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift in Sources */,
 				5FB0D6F32927C93600EC8018 /* Profile.swift in Sources */,
 				EC336E9C29248F5B00520624 /* AppDelegate.swift in Sources */,

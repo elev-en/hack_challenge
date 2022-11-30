@@ -10,10 +10,53 @@ import Foundation
 
 class NetworkManager {
 
-    static let host = "http://0.0.0.0:8000/api/"
-
-    static func getUser(username: String, completion: @escaping (Profile) -> Void) {
-        let endpoint = "\(host)users/\(username)/"
+    static let host = "34.150.155.25/api/"
+    
+    static func createUser(username: String, password: String, completion: @escaping (Profile) -> Void) {
+        let endpoint = "\(host)users/"
+        let params: Parameters = [
+            "username": username,
+            "password": password
+        ]
+        AF.request(endpoint, method: .post).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
+                    completion(userResponse)
+                } else {
+                    print("Failed to decode createUser")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func updateUser(id: Int, name: String, bio: String, gradYear: Int, completion: @escaping (Profile) -> Void) {
+        let endpoint = "\(host)users/\(id)/"
+        let params: Parameters = [
+            "name": name,
+            "bio": bio,
+            "gradYear": gradYear
+        ]
+        AF.request(endpoint, method: .post).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
+                    completion(userResponse)
+                } else {
+                    print("Failed to decode getAllPosts")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getUser(id: Int, completion: @escaping (Profile) -> Void) {
+        let endpoint = "\(host)users/\(id)/"
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let data):
@@ -30,10 +73,10 @@ class NetworkManager {
     }
     
     static func getAllClasses(completion: @escaping ([Course]) -> Void) {
-        let endpoint = "34.150.155.25/api/courses/"
+        let endpoint = "\(host)courses/"
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch response.result {
-            case .success(let data): 
+            case .success(let data):
                 let jsonDecoder = JSONDecoder()
                 if let userResponse = try? jsonDecoder.decode([Course].self, from: data) {
                     completion(userResponse)
