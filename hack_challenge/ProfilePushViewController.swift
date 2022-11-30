@@ -74,11 +74,8 @@ class ProfilePushViewController: UIViewController {
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerLabel)
         
-        //followButton.addTarget(self, action: #selector(follow), for: .touchUpInside)
         followButton.target = self
         followButton.action = #selector(follow)
-        //followButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        //followButton.translatesAutoresizingMaskIntoConstraints = false
         self.navigationItem.rightBarButtonItem = followButton
 
         
@@ -270,6 +267,7 @@ class ProfilePushViewController: UIViewController {
                 selfProfile.friends.remove(at: index)
             }
             followed = false
+            followButton.title = "follow  "
         }
         else{
             selfProfile.friends.append(profile)
@@ -309,14 +307,8 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
                 navigationController?.pushViewController(profileVC, animated: true)
             }
         }
-        else if(collectionView == coursesCollectionView){
-            if let cell = collectionView.cellForItem(at: indexPath) as? CoursesForProflePushCollectionViewCell {
-                print("course tapped")
-            }
-        }
         else{
             if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
-                print("post tapped")
                 let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
                 postVC.title = "post"
                 navigationController?.pushViewController(postVC, animated: true)

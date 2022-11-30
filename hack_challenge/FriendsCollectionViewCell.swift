@@ -10,7 +10,6 @@ import UIKit
 class FriendsCollectionViewCell: UICollectionViewCell {
     let profileImageView = UIImageView()
     let profileName = UILabel()
-    //let gradYearLabel = UILabel()
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,12 +29,6 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//
-//    }
     
     func setupViews(){
         //TODO change profile image to actual profile image
@@ -74,10 +67,6 @@ class FriendsCollectionViewCell: UICollectionViewCell {
             profileName.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
         ])
         
-//        NSLayoutConstraint.activate([
-//            gradYearLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 2),
-//            gradYearLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: sidePadding),
-//        ])
  
     
     }
@@ -85,7 +74,6 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     func configure(profile: Profile){
         profileName.text = "\(profile.name)"
         profileImageView.image = UIImage(named: profile.profileImage)
-        //gradYearLabel.text = "\(profile.gradYear)"
     }
     
 }

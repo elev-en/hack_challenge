@@ -39,12 +39,6 @@ class ProfileCollectionViewCell: UICollectionViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//
-//    }
-    
     func setupViews(){
         //TODO change profile image to actual profile image
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,11 +50,6 @@ class ProfileCollectionViewCell: UICollectionViewCell{
         profileName.textAlignment = .left
         profileName.font = UIFont.systemFont(ofSize: 20)
         profileName.translatesAutoresizingMaskIntoConstraints = false
-        
-//        gradYearLabel.font = UIFont.systemFont(ofSize: 10)
-//        gradYearLabel.numberOfLines = 0
-//        gradYearLabel.textColor = UIColor.purple
-//        gradYearLabel.translatesAutoresizingMaskIntoConstraints = false
         
         bioLabel.font = UIFont.systemFont(ofSize: 10)
         bioLabel.numberOfLines = 0
@@ -148,19 +137,8 @@ class ProfileCollectionViewCell: UICollectionViewCell{
  
 extension ProfileCollectionViewCell: UICollectionViewDelegateFlowLayout {
     
-    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
-        return CGSize(width: collectionView.frame.width*0.5, height: collectionView.frame.height*0.15)
-    }*/
-    
-    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return "String".size(withAttributes: nil)
-    }*/
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             let course = courses[indexPath.row]
-            //let itemSize = course.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-            //let courseNameSize = course.name.count
-        //return CGSize(width: itemSize, height: collectionView.frame.height*0.15)
         return CGSize(width: course.name.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 2, height: collectionView.frame.height*0.6)
  
     }
@@ -188,9 +166,7 @@ extension ProfileCollectionViewCell: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseReuseIdentifier, for: indexPath) as? CoursesCollectionViewCell{
             cell.configure(courseVar: courses[indexPath.row])
             cell.backgroundColor = UIColor.white
-            //cell.layer.borderColor = UIColor.black.cgColor
             cell.contentView.layer.borderColor = UIColor.clear.cgColor
-            //cell.layer.borderColor = UIColor.white.cgColor
             cell.layer.cornerRadius = 15
             return cell
         }

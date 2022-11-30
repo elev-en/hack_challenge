@@ -14,6 +14,7 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
    // filtered table view
 
    //let profilesTableView = UITableView()
+   let background = UIImageView()
    let profilesReuseIdentifier: String = "ProfilesReuseIdentifier"
    let searchController = UISearchController(searchResultsController: nil)
    var searchActive : Bool = false
@@ -32,14 +33,11 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        self.navigationItem.setHidesBackButton(true, animated: false)
 
        title = "search for profiles"
-       //view.backgroundColor = .purple
 
-       /*profilesTableView.translatesAutoresizingMaskIntoConstraints = false
-       profilesTableView.delegate = self
-       profilesTableView.dataSource = self
-       profilesTableView.tableHeaderView = searchController.searchBar
-       profilesTableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: profilesReuseIdentifier)
-       view.addSubview(profilesTableView)*/
+       background.contentMode = .scaleAspectFill
+       background.image = UIImage(named: "background")
+       background.translatesAutoresizingMaskIntoConstraints = false
+       view.addSubview(background)
        
        let profilelayout = UICollectionViewFlowLayout()
        profilelayout.minimumLineSpacing = spacing
@@ -47,25 +45,12 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        profilelayout.scrollDirection = .vertical
        
        profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: profilelayout)
-       profileCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+       profileCollectionView.backgroundColor = UIColor.clear.withAlphaComponent(0)
        profileCollectionView.translatesAutoresizingMaskIntoConstraints = false
        profileCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profilesReuseIdentifier)
-       
-       
-//        classesTableView.tableHeaderView = searchController.searchBar
-
        profileCollectionView.dataSource = self
        profileCollectionView.delegate = self
        view.addSubview(profileCollectionView)
-       
-//        self.navigationItem.searchController = searchController
-//        self.searchController.searchResultsUpdater = self
-//        self.searchController.delegate = self
-//        self.searchController.searchBar.delegate = self
-//        self.searchController.hidesNavigationBarDuringPresentation = false
-//        self.searchController.dimsBackgroundDuringPresentation = true
-//        //self.searchController.obscuresBackgroundDuringPresentation = false
-//        self.searchController.searchBar.barTintColor = UIColor.systemGray3
        
        self.searchController.searchResultsUpdater = self
        self.searchController.delegate = self
@@ -77,17 +62,6 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        searchController.searchBar.becomeFirstResponder()
        self.navigationItem.titleView = searchController.searchBar
        self.searchController.searchBar.barTintColor = UIColor.white
-
-       /*searchController.searchResultsUpdater = self
-       searchController.dimsBackgroundDuringPresentation = false
-       searchController.searchBar.tintColor = UIColor.white
-       searchController.searchBar.barTintColor = UIColor.darkGray*/
-
-
-       /*searchController.searchResultsUpdater = self
-       searchController.dimsBackgroundDuringPresentation = false
-       searchController.searchBar.tintColor = UIColor.white
-       searchController.searchBar.barTintColor = UIColor.systemGray3*/
        
        createData()
        
@@ -95,16 +69,15 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
    }
    
    func setupConstraints(){
-       /*NSLayoutConstraint.activate([
-           profilesTableView.topAnchor.constraint(equalTo: view.topAnchor),
-           profilesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-           profilesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-           profilesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-       ])*/
+       NSLayoutConstraint.activate([
+           background.topAnchor.constraint(equalTo: view.topAnchor),
+           background.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+           background.widthAnchor.constraint(equalTo: view.widthAnchor)
+       ])
    
        
        NSLayoutConstraint.activate([
-           profileCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+        profileCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.02),
            profileCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
            profileCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
            profileCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -187,7 +160,7 @@ extension ProfileSearchPushViewController: UISearchResultsUpdating {
 extension ProfileSearchPushViewController: UICollectionViewDelegateFlowLayout {
    
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
-       return CGSize(width: collectionView.frame.width*0.92, height: collectionView.frame.height*0.15)
+       return CGSize(width: collectionView.frame.width*0.92, height: view.frame.height*0.15)
    }
    
    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -236,68 +209,3 @@ extension ProfileSearchPushViewController: UICollectionViewDataSource {
    }
 
 }
-
-/*extension ProfileSearchPushViewController: UISearchResultsUpdating {
-  
-   private func filterProfiles(for searchText: String) {
-      filteredProfiles = allProfiles.filter { profiles in
-          return profiles.name.lowercased().contains(searchText.lowercased())
-      }
-          profilesTableView.reloadData()
-   }
-   
-   func updateSearchResults(for searchController: UISearchController)
-   {
-       filterProfiles(for: searchController.searchBar.text ?? "")
-   }
-}
-
-extension ProfileSearchPushViewController: UITableViewDelegate {
-   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let cell = profilesTableView.cellForRow(at: indexPath) as! ProfileTableViewCell
-       let profileVC = ProfilePushViewController(profile: allProfiles[indexPath.row], delegate: cell as? ChangeProfileInfoDelegate)
-       profileVC.title = "profile"
-       navigationController?.pushViewController(profileVC, animated: true)
-   }
-
-   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       let headerView = UIView()
-       headerView.backgroundColor = view.backgroundColor
-       return headerView
-   }
-}
-
-extension ProfileSearchPushViewController: UITableViewDataSource {
-
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       if searchController.isActive && searchController.searchBar.text != "" {
-           return filteredProfiles.count
-       }
-       return allProfiles.count
-   }
-
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: profilesReuseIdentifier, for: indexPath) as! ProfileTableViewCell
-//        let profileObject = filteredProfiles[indexPath.row]
-//        cell.configure(profile: profileObject)
-//        return cell
-//    }
-   
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: profilesReuseIdentifier, for: indexPath) as! ProfileTableViewCell
-       let profileObject = allProfiles[indexPath.row]
-       cell.configure(profile: profileObject)
-       return cell
-   }
-   
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: classesReuseIdentifier, for: indexPath) as! ClassesTableViewCell
-//        let classObject = filteredClasses[indexPath.row]
-//        cell.configure(course: classObject)
-//        return cell
-//    }
-
-   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-       return true
-   }
-}*/
