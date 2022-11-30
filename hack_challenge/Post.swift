@@ -8,6 +8,7 @@
 import Foundation
 
 struct Post: Codable {
+    let id: Int
     let poster: Profile
     let header: String
     let body: String
@@ -17,6 +18,7 @@ struct Post: Codable {
     let course: Course
     
     enum CodingKeys: String, CodingKey{
+        case id
         case poster
         case header
         case body

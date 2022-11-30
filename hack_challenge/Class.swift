@@ -18,13 +18,15 @@ import Foundation
 //}
 
 struct Course: Codable {
+    let id: Int
+    let code: String
     let name: String
 
 //    let profileImage: UIImage
     
     enum CodingKeys: String, CodingKey{
+        case id
+        case code
         case name
-        
-
     }
 }

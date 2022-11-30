@@ -115,7 +115,7 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
    
    
    func createData(){
-//        NetworkManager.getAllProfiles { profiles in
+//        NetworkManager.getAllUsers { profiles in
 //            self.allProfiles = profiles
 //            self.profilesTableView.reloadData()
 //            self.filter = Array(repeating: false, count: self.allProfiles.count)
