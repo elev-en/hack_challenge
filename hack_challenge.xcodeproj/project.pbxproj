@@ -23,6 +23,7 @@
 		5FB0D709292AEB3E00EC8018 /* CoursesSearchPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D708292AEB3E00EC8018 /* CoursesSearchPushViewController.swift */; };
 		5FB0D70B292AECC500EC8018 /* PostPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */; };
 		5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */; };
+		604534ED2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */; };
 		60BB230F293400810033CD1B /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */; };
 		60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB2310293401050033CD1B /* ProfileTableViewCell.swift */; };
 		60BB2313293415050033CD1B /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */; };
@@ -68,6 +69,7 @@
 		5FB0D708292AEB3E00EC8018 /* CoursesSearchPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesSearchPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePushViewController.swift; sourceTree = "<group>"; };
+		604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesForProflePushCollectionViewCell.swift; sourceTree = "<group>"; };
 		60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
 		60BB2310293401050033CD1B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */,
 				60D336F429347114009C6E73 /* FriendsCollectionViewCell.swift */,
 				60D3370029357842009C6E73 /* PostsCollectionViewCell.swift */,
+				604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */,
 			);
 			path = hack_challenge;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				EC5213662932FB900029A754 /* SetProfileInfoViewController.swift in Sources */,
 				5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */,
 				5FB0D709292AEB3E00EC8018 /* CoursesSearchPushViewController.swift in Sources */,
+				604534ED2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift in Sources */,
 				5FB0D6FD292AE69400EC8018 /* PersonalProfileViewController.swift in Sources */,
 				60D3370129357842009C6E73 /* PostsCollectionViewCell.swift in Sources */,
 				5FB0D70B292AECC500EC8018 /* PostPushViewController.swift in Sources */,
