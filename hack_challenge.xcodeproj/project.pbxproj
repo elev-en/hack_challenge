@@ -16,7 +16,6 @@
 		5FB0D6F9292AE0EE00EC8018 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D6F8292AE0EE00EC8018 /* ExploreViewController.swift */; };
 		5FB0D6FB292AE11F00EC8018 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D6FA292AE11F00EC8018 /* SearchViewController.swift */; };
 		5FB0D6FD292AE69400EC8018 /* PersonalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D6FC292AE69400EC8018 /* PersonalProfileViewController.swift */; };
-		5FB0D6FF292AE74300EC8018 /* CalenderPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D6FE292AE74300EC8018 /* CalenderPushViewController.swift */; };
 		5FB0D701292AE7B000EC8018 /* PersonalPostPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D700292AE7B000EC8018 /* PersonalPostPushViewController.swift */; };
 		5FB0D703292AEA1F00EC8018 /* EditProfilePushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D702292AEA1F00EC8018 /* EditProfilePushViewController.swift */; };
 		5FB0D705292AEA8D00EC8018 /* PostSearchPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D704292AEA8D00EC8018 /* PostSearchPushViewController.swift */; };
@@ -62,7 +61,6 @@
 		5FB0D6F8292AE0EE00EC8018 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		5FB0D6FA292AE11F00EC8018 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5FB0D6FC292AE69400EC8018 /* PersonalProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalProfileViewController.swift; sourceTree = "<group>"; };
-		5FB0D6FE292AE74300EC8018 /* CalenderPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D700292AE7B000EC8018 /* PersonalPostPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPostPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D702292AEA1F00EC8018 /* EditProfilePushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePushViewController.swift; sourceTree = "<group>"; };
 		5FB0D704292AEA8D00EC8018 /* PostSearchPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSearchPushViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 				5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */,
 				5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */,
 				5FB0D6FC292AE69400EC8018 /* PersonalProfileViewController.swift */,
-				5FB0D6FE292AE74300EC8018 /* CalenderPushViewController.swift */,
 				5FB0D700292AE7B000EC8018 /* PersonalPostPushViewController.swift */,
 				5FB0D702292AEA1F00EC8018 /* EditProfilePushViewController.swift */,
 				EC336EA429248F5D00520624 /* Assets.xcassets */,
@@ -359,7 +356,6 @@
 				5FB0D6FD292AE69400EC8018 /* PersonalProfileViewController.swift in Sources */,
 				60D3370129357842009C6E73 /* PostsCollectionViewCell.swift in Sources */,
 				5FB0D70B292AECC500EC8018 /* PostPushViewController.swift in Sources */,
-				5FB0D6FF292AE74300EC8018 /* CalenderPushViewController.swift in Sources */,
 				5FB0D707292AEAEC00EC8018 /* ProfileSearchPushViewController.swift in Sources */,
 				5FB0D6F52927CB3700EC8018 /* Post.swift in Sources */,
 				EC65B08D29302B3E00D04BA0 /* AddClassesViewController.swift in Sources */,
