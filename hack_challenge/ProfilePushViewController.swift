@@ -13,8 +13,10 @@ import UIKit
 class ProfilePushViewController: UIViewController {
     
     let headerLabel = UILabel()
+    var followButton = UIBarButtonItem()
     var profileImageView = UIImageView()
     let nameYearTextLabel = UILabel()
+    let coursesLabel = UILabel()
     let numFriendsLabel = UILabel()
     let numPostsLabel = UILabel()
     let enrolledInLabel = UILabel()
@@ -22,6 +24,7 @@ class ProfilePushViewController: UIViewController {
     var courses: [Course] = []
     var friends: [Profile] = []
     var posts: [Post] = []
+    var followed: Bool
     var lineView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 1.0))
  
     let FriendsReuseIdentifier: String = "FriendsReuseIdentifier"
@@ -31,23 +34,29 @@ class ProfilePushViewController: UIViewController {
     let PostsReuseIdentifier: String = "PostsReuseIdentifier"
     var postsCollectionView: UICollectionView!
     
+    let CoursesReuseIdentifier: String = "CoursesReuseIdentifier"
+    var coursesCollectionView: UICollectionView!
+    
     var profile: Profile!
-    weak var delegate: ChangeProfileInfoDelegate?
+    var selfProfile: Profile!
+    weak var delegate: SetProfileInfoDelegate?
     
 //    var post: Post!
 //    weak var postDelegate: ChangePostInfoDelegate?
  
-    init(profile: Profile, delegate: ChangeProfileInfoDelegate?) {
-        self.profile = profile
+    init(pushProfile: Profile, selfProfile: Profile, delegate: SetProfileInfoDelegate?) {
+        self.profile = pushProfile
+        self.selfProfile = selfProfile
         self.delegate = delegate
+        var followText = "follow  "
+        followed = false
+        if(selfProfile.friends.contains(pushProfile)){
+            followText = "unfollow  "
+            followed = true
+        }
+        self.followButton.title = followText
         super.init(nibName: nil, bundle: nil)
     }
-    
-//    init(post: Post, postDelegate: ChangePostInfoDelegate){
-//        self.post = post
-//        self.postDelegate = postDelegate
-//        super.init(nibName: nil, bundle: nil)
-//    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +74,14 @@ class ProfilePushViewController: UIViewController {
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerLabel)
         
+        //followButton.addTarget(self, action: #selector(follow), for: .touchUpInside)
+        followButton.target = self
+        followButton.action = #selector(follow)
+        //followButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        //followButton.translatesAutoresizingMaskIntoConstraints = false
+        self.navigationItem.rightBarButtonItem = followButton
+
+        
         // fix profile image to use profile image
         profileImageView.image = UIImage(named: profile.profileImage)
         profileImageView.contentMode = .scaleAspectFill
@@ -80,6 +97,28 @@ class ProfilePushViewController: UIViewController {
         view.addSubview(nameYearTextLabel)
         nameYearTextLabel.isUserInteractionEnabled = false
         nameYearTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        coursesLabel.text = "courses"
+        coursesLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        coursesLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
+        view.addSubview(coursesLabel)
+        coursesLabel.isUserInteractionEnabled = false
+        coursesLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let courseLayout = UICollectionViewFlowLayout()
+        courseLayout.minimumLineSpacing = spacing
+        courseLayout.minimumInteritemSpacing = spacing
+        courseLayout.scrollDirection = .horizontal
+        
+        courses = profile.courses
+        coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
+        coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+        coursesCollectionView.register(CoursesForProflePushCollectionViewCell.self, forCellWithReuseIdentifier: CoursesReuseIdentifier)
+        coursesCollectionView.dataSource = self
+        coursesCollectionView.delegate = self
+        coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+        view.addSubview(coursesCollectionView)
         
         if(profile.friends.count == 1){
             numFriendsLabel.text = "\(profile.friends.count) friend"
@@ -139,20 +178,7 @@ class ProfilePushViewController: UIViewController {
         bioTextField.isUserInteractionEnabled = false
         view.addSubview(bioTextField)
         bioTextField.translatesAutoresizingMaskIntoConstraints = false
-        
-//        lineView.layer.borderWidth = 1.0
-//        lineView.layer.borderColor = UIColor.black.cgColor
-//        self.view.addSubview(lineView)
- 
-        /* add courses collectionview?
-        enrolledInLabel.text = "currently enrolled in"
-        enrolledInLabel.font = .systemFont(ofSize: 15, weight: .bold)
-        enrolledInLabel.textColor = UIColor.systemGray2
-        enrolledInLabel.isUserInteractionEnabled = false
-        view.addSubview(enrolledInLabel)
-        enrolledInLabel.translatesAutoresizingMaskIntoConstraints = false
-         
-         */
+
         
         setUpConstraints()
         
@@ -167,7 +193,7 @@ class ProfilePushViewController: UIViewController {
             headerLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             headerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             headerLabel.topAnchor.constraint(equalTo: view.topAnchor),
-            headerLabel.heightAnchor.constraint(equalToConstant: 110)
+            headerLabel.heightAnchor.constraint(equalToConstant: 90)
         ])
         
         //TODO change to multiplier
@@ -190,9 +216,22 @@ class ProfilePushViewController: UIViewController {
             bioTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
+        NSLayoutConstraint.activate([
+            coursesLabel.topAnchor.constraint(equalTo: bioTextField.bottomAnchor, constant: view.bounds.height * 0.04),
+            coursesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
+        ])
         
         NSLayoutConstraint.activate([
-            numFriendsLabel.topAnchor.constraint(equalTo: bioTextField.bottomAnchor, constant: view.bounds.height * 0.055),
+            coursesCollectionView.topAnchor.constraint(equalTo: coursesLabel.bottomAnchor, constant: 5),
+            coursesCollectionView.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.05),
+            coursesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
+            coursesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
+ 
+        ])
+        
+        
+        NSLayoutConstraint.activate([
+            numFriendsLabel.topAnchor.constraint(equalTo: coursesCollectionView.bottomAnchor, constant: view.bounds.height * 0.04),
             numFriendsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
         
@@ -205,7 +244,7 @@ class ProfilePushViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            numPostsLabel.topAnchor.constraint(equalTo: friendsCollectionView.bottomAnchor, constant: view.bounds.height * 0.06),
+            numPostsLabel.topAnchor.constraint(equalTo: friendsCollectionView.bottomAnchor, constant: view.bounds.height * 0.04),
             numPostsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
         
@@ -214,7 +253,6 @@ class ProfilePushViewController: UIViewController {
             postsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.bounds.height*0.0002),
             postsCollectionView.leadingAnchor.constraint(equalTo: numPostsLabel.leadingAnchor),
             postsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
- 
         ])
         
         
@@ -225,6 +263,22 @@ class ProfilePushViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func follow(){
+        if(followed){
+            print("unfollowed")
+            let index = selfProfile.friends.firstIndex(of: profile) ?? -1
+            if(index != -1){
+                selfProfile.friends.remove(at: index)
+            }
+            followed = false
+        }
+        else{
+            selfProfile.friends.append(profile)
+            followed = true
+            followButton.title = "unfollow  "
+        }
+    }
  
 }
  
@@ -234,8 +288,12 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
         if(collectionView == friendsCollectionView){
             return CGSize(width: 150, height: friendsCollectionView.frame.height)
         }
+        else if(collectionView == coursesCollectionView){
+            let course = courses[indexPath.row]
+            return CGSize(width: course.name.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 20, height: coursesCollectionView.frame.height)
+        }
         else{
-            return CGSize(width: view.bounds.width*0.9, height: postsCollectionView.frame.height*0.4)
+            return CGSize(width: view.bounds.width*0.9, height: postsCollectionView.frame.height*0.45)
         }
  
     }
@@ -248,9 +306,14 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.cellForItem(at: indexPath) as? FriendsCollectionViewCell {
-                let profileVC = ProfilePushViewController(profile: friends[indexPath.row], delegate: cell as? ChangeProfileInfoDelegate)
+                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
                 profileVC.title = "profile"
                 navigationController?.pushViewController(profileVC, animated: true)
+            }
+        }
+        else if(collectionView == coursesCollectionView){
+            if let cell = collectionView.cellForItem(at: indexPath) as? CoursesForProflePushCollectionViewCell {
+                print("course tapped")
             }
         }
         else{
@@ -262,12 +325,17 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
             }
         }
     }
+    
+    
 }
  
 extension ProfilePushViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == friendsCollectionView){
             return friends.count
+        }
+        else if(collectionView == coursesCollectionView){
+            return courses.count
         }
         else{
             return posts.count
@@ -284,9 +352,19 @@ extension ProfilePushViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsReuseIdentifier, for: indexPath) as? FriendsCollectionViewCell{
                 cell.configure(profile: profile.friends[indexPath.row])
                 cell.backgroundColor = UIColor.white
-                //cell.layer.borderColor = UIColor.black.cgColor
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
-                //cell.layer.borderColor = UIColor.white.cgColor
+                cell.layer.cornerRadius = 20
+                return cell
+            }
+            else{
+                return UICollectionViewCell()
+            }
+        }
+        else if(collectionView == coursesCollectionView){
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoursesReuseIdentifier, for: indexPath) as? CoursesForProflePushCollectionViewCell{
+                cell.configure(courseVar: profile.courses[indexPath.row])
+                cell.backgroundColor = UIColor.white
+                cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20
                 return cell
             }
@@ -316,7 +394,7 @@ extension ProfilePushViewController: UICollectionViewDataSource {
 }
  
  
-protocol ChangeProfileInfoDelegate: AnyObject {
+protocol SetProfileInfoDelegate: AnyObject {
     func changeProfileInfo(profile: Profile)
 }
 

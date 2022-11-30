@@ -192,7 +192,7 @@ extension ProfileSearchPushViewController: UICollectionViewDelegateFlowLayout {
    
    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        if let cell = collectionView.cellForItem(at: indexPath) as? ProfileCollectionViewCell {
-           let profileVC = ProfilePushViewController(profile: allProfiles[indexPath.row], delegate: cell as? ChangeProfileInfoDelegate)
+           let profileVC = ProfilePushViewController(pushProfile: allProfiles[indexPath.row], selfProfile: allProfiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
            profileVC.title = "profile"
            navigationController?.pushViewController(profileVC, animated: true)
        }

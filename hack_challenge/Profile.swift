@@ -8,16 +8,16 @@
 import Foundation
 import UIKit
 
-struct Profile: Codable {
+struct Profile: Codable, Equatable {
     let username: String
     let password: String
-    let name: String
-    let courses: [Course]
-    let bio: String
-    let gradYear: Int
-    let friends: [Profile]
-    let posts: [Post]
-    let profileImage: String
+    var name: String
+    var courses: [Course]
+    var bio: String
+    var gradYear: Int
+    var friends: [Profile]
+    var posts: [Post]
+    var profileImage: String
     
     enum CodingKeys: String, CodingKey{
         case username
@@ -30,5 +30,12 @@ struct Profile: Codable {
         case posts
         case profileImage
     }
+    
+    static func == (lhs: Profile, rhs: Profile) -> Bool {
+        if lhs.name == rhs.name { return true }
+        return false
+    }
+    
+    
 }
 // we will need to add more code here but I'm not exactly sure what
