@@ -132,8 +132,6 @@ class ProfilePushViewController: UIViewController {
         numFriendsLabel.isUserInteractionEnabled = false
         numFriendsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        
         let friendsLayout = UICollectionViewFlowLayout()
         friendsLayout.minimumLineSpacing = spacing
         friendsLayout.minimumInteritemSpacing = spacing

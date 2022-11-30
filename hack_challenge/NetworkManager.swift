@@ -90,6 +90,8 @@ class NetworkManager {
         }
     }
     
+    
+    
     static func getAllProfiles(completion: @escaping ([Profile]) -> Void) {
         let endpoint = "\(host)profiles/"
         AF.request(endpoint, method: .get).validate().responseData { response in
