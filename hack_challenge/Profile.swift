@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 struct Profile: Codable, Equatable {
+    
+    let id: Int
     let username: String
     let password: String
     var name: String
@@ -20,6 +22,7 @@ struct Profile: Codable, Equatable {
     var profileImage: String
     
     enum CodingKeys: String, CodingKey{
+        case id
         case username
         case password
         case name

@@ -85,6 +85,7 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
 //            self.postsTableView.reloadData()
 //            self.filter = Array(repeating: false, count: self.allposts.count)
 //        }
+        /*
         let course1 = Course(name: "cs 2112")
         let course2 = Course(name: "phys 1110")
         let course3 = Course(name: "psych 1101")
@@ -107,7 +108,7 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
         
         self.allPosts = posts
         self.postCollectionView.reloadData()
-        self.filter = Array(repeating: false, count: self.allPosts.count)
+        self.filter = Array(repeating: false, count: self.allPosts.count)*/
 
     }
     

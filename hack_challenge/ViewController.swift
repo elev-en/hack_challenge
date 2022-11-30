@@ -22,7 +22,8 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(red: 0.75, green: 0.77, blue: 0.98, alpha: 1.00)
         
         appNameLabel.text = "CUStudy"
-        appNameLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        appNameLabel.textColor = .white
+        appNameLabel.font = UIFont(name: "Courier-Bold", size: 60)
         appNameLabel.adjustsFontForContentSizeCategory = true
         appNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(appNameLabel)
@@ -40,7 +41,9 @@ class ViewController: UIViewController {
         
         
         createAccountButton.setTitle("Create Account", for: .normal)
-        createAccountButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25)
+        createAccountButton.setTitleColor(UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00), for: .normal)
+        createAccountButton.titleLabel?.font = UIFont(name: "Courier", size: 20)
+        createAccountButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         createAccountButton.layer.borderColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
         createAccountButton.layer.borderWidth = 2
         createAccountButton.layer.cornerRadius = 5
@@ -50,6 +53,9 @@ class ViewController: UIViewController {
         view.addSubview(createAccountButton)
         
         logInButton.setTitle("Log In", for: .normal)
+        logInButton.setTitleColor(UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00), for: .normal)
+        logInButton.titleLabel?.font = UIFont(name: "Courier", size: 20)
+        logInButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         logInButton.layer.borderColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
         logInButton.layer.borderWidth = 2
         logInButton.layer.cornerRadius = 5
@@ -92,7 +98,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             studyAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            studyAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            studyAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -view.bounds.height*0.035),
             studyAnimation.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             studyAnimation.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor)
         ])

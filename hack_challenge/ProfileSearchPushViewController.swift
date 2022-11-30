@@ -88,11 +88,12 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
    
    
    func createData(){
-//        NetworkManager.getAllProfiles { profiles in
+//        NetworkManager.getAllUsers { profiles in
 //            self.allProfiles = profiles
 //            self.profilesTableView.reloadData()
 //            self.filter = Array(repeating: false, count: self.allProfiles.count)
 //        }
+       /*
        let course1 = Course(name: "cs 2112")
        let course2 = Course(name: "phys 1110")
        let course3 = Course(name: "psych 1101")
@@ -117,8 +118,8 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        
 
        
-       let profiles = [profile1, profile2, profile3, profile4, profile5, profile6]
-       
+       let profiles = [profile1, profile2, profile3, profile4, profile5, profile6]*/
+       let profiles = [Profile]()
        self.allProfiles = profiles
        self.profileCollectionView.reloadData()
        self.filter = Array(repeating: false, count: self.allProfiles.count)
@@ -207,5 +208,4 @@ extension ProfileSearchPushViewController: UICollectionViewDataSource {
            return UICollectionViewCell()
        }
    }
-
 }
