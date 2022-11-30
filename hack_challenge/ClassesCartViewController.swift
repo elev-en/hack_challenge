@@ -9,6 +9,7 @@ import UIKit
 
 class ClassesCartViewController: UIViewController {
 
+    let background = UIImageView()
     let doneButton = UIButton()
     let classesTableView = UITableView()
     let classReuseIdentifier = "ClassReuseIdentifier"
@@ -18,6 +19,11 @@ class ClassesCartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Your Classes"
+        
+        background.contentMode = .scaleAspectFill
+        background.image = UIImage(named: "background")
+        background.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(background)
 
         classesTableView.translatesAutoresizingMaskIntoConstraints = false
         classesTableView.delegate = self
@@ -37,6 +43,11 @@ class ClassesCartViewController: UIViewController {
     }
     
     func setupConstraints(){
+        NSLayoutConstraint.activate([
+            background.topAnchor.constraint(equalTo: view.topAnchor),
+            background.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            background.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
         
         NSLayoutConstraint.activate([
             doneButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),

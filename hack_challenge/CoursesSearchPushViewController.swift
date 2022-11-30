@@ -8,8 +8,8 @@
 import UIKit
 
 class CoursesSearchViewController: UIViewController {
-
-    let doneButton = UIButton()
+    
+    let background = UIImageView()
     let classesTableView = UITableView()
     let classReuseIdentifier = "ClassReuseIdentifier"
     
@@ -18,6 +18,11 @@ class CoursesSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Your Classes"
+        
+        background.contentMode = .scaleAspectFill
+        background.image = UIImage(named: "background")
+        background.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(background)
 
         classesTableView.translatesAutoresizingMaskIntoConstraints = false
         classesTableView.delegate = self
@@ -25,31 +30,21 @@ class CoursesSearchViewController: UIViewController {
         classesTableView.register(ClassesTableViewCell.self, forCellReuseIdentifier: classReuseIdentifier)
         view.addSubview(classesTableView)
         
-        doneButton.setTitle("Done Adding Classes", for: .normal)
-        doneButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        doneButton.layer.borderWidth = 2
-        doneButton.layer.cornerRadius = 5
-        doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.addTarget(self, action: #selector(pushMakeProfileViewController), for: .touchUpInside)
-        view.addSubview(doneButton)
-        
         setupConstraints()
     }
     
     func setupConstraints(){
-        
         NSLayoutConstraint.activate([
-            doneButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            doneButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            doneButton.widthAnchor.constraint(equalTo: view.widthAnchor),
-            doneButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+            background.topAnchor.constraint(equalTo: view.topAnchor),
+            background.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            background.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
         NSLayoutConstraint.activate([
             classesTableView.topAnchor.constraint(equalTo: view.topAnchor),
             classesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             classesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            classesTableView.bottomAnchor.constraint(equalTo: doneButton.topAnchor)
+            classesTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     

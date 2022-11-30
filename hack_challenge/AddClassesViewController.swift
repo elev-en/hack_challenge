@@ -8,6 +8,8 @@
 import UIKit
 
 class AddClassesViewController: UIViewController {
+    
+    let background = UIImageView()
 
     let classesTableView = UITableView()
     let classesReuseIdentifier = "ClassesReuseIdentifier"
@@ -26,6 +28,11 @@ class AddClassesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        background.contentMode = .scaleAspectFill
+        background.image = UIImage(named: "background")
+        background.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(background)
 
         classesTableView.translatesAutoresizingMaskIntoConstraints = false
         classesTableView.delegate = self
@@ -58,6 +65,12 @@ class AddClassesViewController: UIViewController {
     }
     
     func setupConstraints(){
+        NSLayoutConstraint.activate([
+            background.topAnchor.constraint(equalTo: view.topAnchor),
+            background.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            background.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+        
         NSLayoutConstraint.activate([
             classesTableView.topAnchor.constraint(equalTo: view.topAnchor),
             classesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

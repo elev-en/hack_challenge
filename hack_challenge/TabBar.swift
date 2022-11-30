@@ -13,6 +13,8 @@ class TabBar: UITabBarController {
         
         super.viewDidLoad()
         
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         UITabBar.appearance().barTintColor = .systemBackground
         tabBar.tintColor = .label
         setupVCs()
@@ -30,8 +32,6 @@ class TabBar: UITabBarController {
             let navController = UINavigationController(rootViewController: rootViewController)
             navController.tabBarItem.title = title
             navController.tabBarItem.image = image
-            //navController.navigationBar.prefersLargeTitles = true
-            //rootViewController.navigationItem.title = title
             return navController
     }
 }
