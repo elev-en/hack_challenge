@@ -17,7 +17,7 @@ struct Profile: Codable {
     let gradYear: Int
     let friends: [Profile]
     let posts: [Post]
-//    let profileImage: UIImage
+    let profileImage: String
     
     enum CodingKeys: String, CodingKey{
         case username
@@ -28,7 +28,7 @@ struct Profile: Codable {
         case gradYear
         case friends
         case posts
-//        case profileImage
+        case profileImage
     }
 }
 // we will need to add more code here but I'm not exactly sure what
