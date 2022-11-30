@@ -10,7 +10,7 @@ import Foundation
 
 class NetworkManager {
 
-    static let host = "34.150.155.25/api/"
+    static let host = "http://34.150.155.25/api/"
     
     static func createUser(username: String, password: String, completion: @escaping (Profile) -> Void) {
         let endpoint = "\(host)users/"
@@ -18,12 +18,13 @@ class NetworkManager {
             "username": username,
             "password": password
         ]
-        AF.request(endpoint, method: .post).validate().responseData { response in
+        AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
                 if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
                     completion(userResponse)
+                    print("created user")
                 } else {
                     print("Failed to decode createUser")
                 }
@@ -40,14 +41,14 @@ class NetworkManager {
             "bio": bio,
             "gradYear": gradYear
         ]
-        AF.request(endpoint, method: .post).validate().responseData { response in
+        AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
                 if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
                     completion(userResponse)
                 } else {
-                    print("Failed to decode getAllPosts")
+                    print("Failed to decode updateUser")
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -64,7 +65,7 @@ class NetworkManager {
                 if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
                     completion(userResponse)
                 } else {
-                    print("Failed to decode getAllPosts")
+                    print("Failed to decode getUser")
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -89,8 +90,6 @@ class NetworkManager {
         }
     }
     
-    
-    
     static func getAllProfiles(completion: @escaping ([Profile]) -> Void) {
         let endpoint = "\(host)profiles/"
         AF.request(endpoint, method: .get).validate().responseData { response in
@@ -100,7 +99,7 @@ class NetworkManager {
                 if let userResponse = try? jsonDecoder.decode([Profile].self, from: data) {
                     completion(userResponse)
                 } else {
-                    print("Failed to decode getAllrofiles")
+                    print("Failed to decode getAllProfiles")
                 }
             case .failure(let error):
                 print(error.localizedDescription)
