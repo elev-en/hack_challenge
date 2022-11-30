@@ -40,6 +40,8 @@ class SetProfileInfoViewController: UIViewController {
         nameTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         nameTextField.layer.cornerRadius = 5
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        nameTextField.autocorrectionType = .no
+        nameTextField.autocapitalizationType = .none
         view.addSubview(nameTextField)
         
         bioLabel.text = "Describe yourself using \none sentence"
@@ -56,6 +58,8 @@ class SetProfileInfoViewController: UIViewController {
         bioTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         bioTextField.layer.cornerRadius = 5
         bioTextField.translatesAutoresizingMaskIntoConstraints = false
+        bioTextField.autocorrectionType = .no
+        bioTextField.autocapitalizationType = .none
         view.addSubview(bioTextField)
         
         gradLabel.text = "What is your year of \n graduation?"
@@ -72,6 +76,11 @@ class SetProfileInfoViewController: UIViewController {
         gradTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         gradTextField.layer.cornerRadius = 5
         gradTextField.translatesAutoresizingMaskIntoConstraints = false
+        gradTextField.autocorrectionType = .no
+        gradTextField.autocapitalizationType = .none
+        gradTextField.autocorrectionType = .no
+        gradTextField.autocapitalizationType = .none
+        
         view.addSubview(gradTextField)
         
         nextButton.setTitle("NEXT", for: .normal)

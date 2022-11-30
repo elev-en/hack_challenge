@@ -32,7 +32,7 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        
        self.navigationItem.setHidesBackButton(true, animated: false)
 
-       title = "search for profiles"
+       title = ""
 
        background.contentMode = .scaleAspectFill
        background.image = UIImage(named: "background")
@@ -80,7 +80,7 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
         profileCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.02),
            profileCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
            profileCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-           profileCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        profileCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
        ])
        
        
@@ -166,7 +166,7 @@ extension ProfileSearchPushViewController: UICollectionViewDelegateFlowLayout {
    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        if let cell = collectionView.cellForItem(at: indexPath) as? ProfileCollectionViewCell {
            let profileVC = ProfilePushViewController(pushProfile: allProfiles[indexPath.row], selfProfile: allProfiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
-           profileVC.title = "profile"
+           profileVC.title = ""
            navigationController?.pushViewController(profileVC, animated: true)
        }
    }

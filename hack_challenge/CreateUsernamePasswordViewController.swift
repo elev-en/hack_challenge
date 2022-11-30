@@ -43,12 +43,16 @@ class CreateUsernamePasswordViewController: UIViewController {
         usernameTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
         usernameTextField.layer.cornerRadius = 5
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
+        usernameTextField.autocorrectionType = .no
+        usernameTextField.autocapitalizationType = .none
         view.addSubview(usernameTextField)
         
         passwordTextField.placeholder = "Password"
         passwordTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
         passwordTextField.layer.cornerRadius = 5
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.autocorrectionType = .no
+        passwordTextField.autocapitalizationType = .none
         view.addSubview(passwordTextField)
         
         confirmPasswordTextField.placeholder = "Confirm Password"
@@ -56,6 +60,8 @@ class CreateUsernamePasswordViewController: UIViewController {
         confirmPasswordTextField.layer.cornerRadius = 5
         confirmPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        confirmPasswordTextField.autocorrectionType = .no
+        confirmPasswordTextField.autocapitalizationType = .none
         view.addSubview(confirmPasswordTextField)
         
         signUpButton.setTitle("Create Account", for: .normal)
@@ -144,7 +150,7 @@ class CreateUsernamePasswordViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor),
+            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: view.bounds.height*0.005),
             confirmPasswordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
             confirmPasswordTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
         ])
