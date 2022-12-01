@@ -18,13 +18,23 @@ class AddClassesViewController: UIViewController {
     let addClassesButton = UIButton()
     let classCartButton = UIBarButtonItem()
     
-    var allClasses: [Course] = []
+    var getallClasses: [CourseResponse] = []
+    var allClasses:[Course] = []
     var filteredClasses: [Course] = []
     var selectedClasses: [Course] = []
     var classList: [Course] = []
     var filter: [Bool] = []
     
-    weak var delegate: sendClassListDelegate? = nil
+    weak var delegate: sendClassListDelegate?
+    
+    init(inputDelegate: sendClassListDelegate){
+        delegate = inputDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +49,14 @@ class AddClassesViewController: UIViewController {
         classesTableView.dataSource = self
         classesTableView.tableHeaderView = searchController.searchBar
         classesTableView.register(ClassesTableViewCell.self, forCellReuseIdentifier: classesReuseIdentifier)
+        classesTableView.rowHeight = 25
+        classesTableView.backgroundColor = UIColor.clear
         view.addSubview(classesTableView)
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = UIColor.darkGray
+        searchController.searchBar.barTintColor = UIColor.darkGray.withAlphaComponent(0.75)
         searchController.searchBar.autocorrectionType = .no
         searchController.searchBar.autocapitalizationType = .none
         
@@ -75,8 +87,8 @@ class AddClassesViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             classesTableView.topAnchor.constraint(equalTo: view.topAnchor),
-            classesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            classesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            classesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.02),
+            classesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.02),
             classesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
@@ -89,33 +101,34 @@ class AddClassesViewController: UIViewController {
     }
     
     @objc func addClasses(){
-//        if selectedClasses.count != 0 {
-//            for i in 0 ... selectedClasses.count {
-//                if !classList.contains(selectedClasses[i]) {
-//                    classList.append(selectedClasses[i])
-//                }
-//            }
-//            selectedClasses.removeAll()
-//            for i in 0 ... filter.count {
-//                filter[i] = false
-//            }
-//        } else {
-//            let alert = UIAlertController(title: "Error", message: "No classes were selected to be added into cart.", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-//                switch action.style{
-//                    case .default:
-//                    print("default")
-//
-//                    case .cancel:
-//                    print("cancel")
-//
-//                    case .destructive:
-//                    print("destructive")
-//
-//                }
-//            }))
-//            self.present(alert, animated: true, completion: nil)
-//        }
+        if selectedClasses.count != 0 {
+            for i in 0 ... selectedClasses.count-1 {
+                if !classList.contains(selectedClasses[i]) {
+                    classList.append(selectedClasses[i])
+                    print(classList)
+                }
+            }
+            selectedClasses.removeAll()
+            for i in 0 ... filter.count-1 {
+                filter[i] = false
+            }
+        } else {
+            let alert = UIAlertController(title: "Error", message: "No classes were selected to be added into cart.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+
+                    case .cancel:
+                    print("cancel")
+
+                    case .destructive:
+                    print("destructive")
+
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func createData(){
@@ -150,22 +163,23 @@ extension AddClassesViewController: UISearchResultsUpdating {
 
 extension AddClassesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = classesTableView.cellForRow(at: indexPath) as! ClassesTableViewCell
-//        for i in 0 ... allClasses.count {
-//            if cell.courseLabel.text?.lowercased() == allClasses[i].name.lowercased() {
-//                if(filter[i]){
-//                    filter[i] = false
-//                    cell.changeBackground(selected: filter[i])
-//                    if let index = selectedClasses.firstIndex(of: allClasses[i]) {
-//                        selectedClasses.remove(at: index)
-//                    }
-//                } else {
-//                    filter[i] = true
-//                    cell.changeBackground(selected: filter[i])
-//                    selectedClasses.append(allClasses[i])
-//                }
-//            }
-//        }
+        let cell = classesTableView.cellForRow(at: indexPath) as! ClassesTableViewCell
+        print("selected")
+        for i in 0 ... allClasses.count-1 {
+            if cell.courseLabel.text?.lowercased().substring(to: (cell.courseLabel.text?.index(of: ":"))!) == allClasses[i].code.lowercased() {
+                if(filter[i]){
+                    filter[i] = false
+                    cell.changeBackground(selected: filter[i])
+                    if let index = selectedClasses.firstIndex(of: allClasses[i]) {
+                        selectedClasses.remove(at: index)
+                    }
+                } else {
+                    filter[i] = true
+                    cell.changeBackground(selected: filter[i])
+                    selectedClasses.append(allClasses[i])
+                }
+            }
+        }
         
     }
 
@@ -187,7 +201,10 @@ extension AddClassesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: classesReuseIdentifier, for: indexPath) as! ClassesTableViewCell
-        let classObject = filteredClasses[indexPath.row]
+        if searchController.isActive && searchController.searchBar.text != "" {
+            let classObject = filteredClasses[indexPath.row]
+        }
+        let classObject = allClasses[indexPath.row]
         cell.configure(course: classObject)
         return cell
     }

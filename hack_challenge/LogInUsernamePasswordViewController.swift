@@ -9,6 +9,18 @@ import UIKit
 
 class LogInUsernamePasswordViewController: UIViewController {
 
+    weak var delegate: sendIdLoginDelegate?
+    var id: Int?
+    
+    init(inputDelegate: sendIdLoginDelegate){
+        self.delegate = inputDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     let background = UIImageView()
     let welcomeBackLabel = UILabel()
     let usernameTextField = UsernameTextField()
@@ -66,6 +78,7 @@ class LogInUsernamePasswordViewController: UIViewController {
     @objc func pushEnterClassesViewController() {
         NetworkManager.userLogin(username: usernameTextField.text!, password: passwordTextField.text!) { response in
             print(response)
+            self.delegate?.sendId(id: response.id)
             self.navigationController?.pushViewController(TabBar(), animated: true)
             NetworkManager.userRenewSession(){_ in}
         }
@@ -119,5 +132,9 @@ class LogInUsernamePasswordViewController: UIViewController {
             signInButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
         ])
     }
-
 }
+
+protocol sendIdLoginDelegate: UIViewController{
+    func sendId(id: Int)
+}
+

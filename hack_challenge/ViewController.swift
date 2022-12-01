@@ -8,8 +8,7 @@
 import UIKit
 import Lottie
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController{
     
     let appNameLabel = UILabel()
     var studyAnimation = LottieAnimationView()
@@ -68,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     @objc func pushCreateAccountViewController() {
-        navigationController?.pushViewController(CreateUsernamePasswordViewController(), animated: true)
+        navigationController?.pushViewController(CreateUsernamePasswordViewController(inputDelegate: SetProfileInfoViewController()), animated: true)
     }
     
     @objc func hovering(_ recognizer: UIHoverGestureRecognizer) {
@@ -83,8 +82,8 @@ class ViewController: UIViewController {
         }
     
     @objc func pushLogInViewController() {
-        //navigationController?.pushViewController(LogInUsernamePasswordViewController(), animated: true)
-        navigationController?.pushViewController(ProfileSearchPushViewController(), animated: true)
+        navigationController?.pushViewController(LogInUsernamePasswordViewController(inputDelegate: PersonalProfileViewController()), animated: true)
+        //navigationController?.pushViewController(ProfileSearchPushViewController(), animated: true)
         //navigationController?.pushViewController(PostSearchPushViewController(), animated: true)
 
     }
