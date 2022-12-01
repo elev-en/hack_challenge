@@ -62,6 +62,9 @@ class PostPushViewController: UIViewController {
         view.addSubview(postHeader)
         postHeader.isUserInteractionEnabled = false
         postHeader.translatesAutoresizingMaskIntoConstraints = false
+        postHeader.numberOfLines = 1;
+        //postHeader.minimumFontSize = 8;
+        postHeader.adjustsFontSizeToFitWidth = true
         
         postBody.text = "\(post.body)"
         postBody.font = .systemFont(ofSize: 14, weight: .regular)

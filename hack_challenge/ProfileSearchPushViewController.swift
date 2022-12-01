@@ -98,7 +98,7 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
             self.filter = Array(repeating: false, count: self.allProfiles.count)
         }
        
-       /*let course1 = Course(id: 1, code: "cs 2112", name: "cs 2112")
+       let course1 = Course(id: 1, code: "cs 2112", name: "cs 2112")
        let course2 = Course(id: 1, code: "phys 1110", name: "phys 1110")
        let course3 = Course(id: 1, code: "psych 1101", name: "psych 1101")
        let course4 = Course(id: 1, code: "econ 1110", name: "econ 1110")
@@ -122,8 +122,8 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        
 
        
-       let profiles = [profile1, profile2, profile3, profile4, profile5, profile6]*/
-       let profiles = [Profile]()
+       let profiles = [profile1, profile2, profile3, profile4, profile5, profile6]
+       //let profiles = [Profile]()
        self.allProfiles = profiles
        self.profileCollectionView.reloadData()
        self.filter = Array(repeating: false, count: self.allProfiles.count)
