@@ -7,13 +7,18 @@
 
 import UIKit
 
-class PersonalProfileViewController: UIViewController {
+class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, sendIdCreateDelegate {
+    
+    func sendId(id: Int) {
+        user_id = id
+    }
+    
 
     // view of your own profile
     // push controller to your calender
     // push controller to your posts
     
-    
+    var user_id: Int = 0
     let headerLabel = UILabel()
     var editButton = UIBarButtonItem()
     var profileImageView = UIImageView()
@@ -78,7 +83,7 @@ class PersonalProfileViewController: UIViewController {
 
         
         // fix profile image to use profile image
-        profileImageView.image = UIImage(named: profile!.profileImage)
+        //profileImageView.image = UIImage(named: profile!.profileImage)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)

@@ -16,7 +16,9 @@ class SetProfilePictureViewController: UIViewController, ChangeImageDelegate {
     let finishChangingPicButton = UIButton()
     
     func changeImage(outputImage: UIImage) {
+        print("changeImage called")
         changeProfilePicImageButton.setImage(outputImage, for: UIControl.State.normal)
+        
     }
     
     override func viewDidLoad() {

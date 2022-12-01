@@ -17,17 +17,22 @@ import Foundation
 //    let name: String
 //}
 
-struct Course: Codable {
+struct Course: Codable, Equatable {
     let id: Int
     let code: String
     let name: String
-    let users: [Profile]
+    let users: [User]
     
     enum CodingKeys: String, CodingKey{
         case id
         case code
         case name
         case users
+    }
+    
+    static func == (lhs: Course, rhs: Course) -> Bool {
+        if lhs.code == rhs.code { return true }
+        return false
     }
 }
 

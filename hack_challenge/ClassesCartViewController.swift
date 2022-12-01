@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClassesCartViewController: UIViewController {
+class ClassesCartViewController: UIViewController{
 
     let background = UIImageView()
     let doneButton = UIButton()
@@ -102,11 +102,14 @@ extension ClassesCartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+    
 }
 
 extension ClassesCartViewController: sendClassListDelegate {
     func sendClassList(list: [Course]) {
-        classList = list
+        classList.append(contentsOf: list)
+        print(classList)
     }
 }
     

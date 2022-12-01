@@ -33,10 +33,13 @@ class ClassesTableViewCell: UITableViewCell {
     }
     
     func setupViews(){
+        contentView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         courseLabel.textAlignment = .left
         courseLabel.font = UIFont.systemFont(ofSize: 15)
+        courseLabel.textColor = .black
         courseLabel.lineBreakMode = .byWordWrapping
         courseLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(courseLabel)
     }
     
     func setupConstraints(){
@@ -52,7 +55,7 @@ class ClassesTableViewCell: UITableViewCell {
     }
 
     func configure(course: Course){
-        courseLabel.text = course.name
+        courseLabel.text = course.code + ": " + course.name
     }
     
     func changeBackground(selected: Bool){
@@ -62,4 +65,6 @@ class ClassesTableViewCell: UITableViewCell {
             contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         }
     }
+    
+    
 }
