@@ -131,8 +131,8 @@ class PostsCollectionViewCell: UICollectionViewCell {
     
     func configure(post: Post){
         var name = post.poster.name
-        let index = name!.firstIndex(of: " ")!
-        let firstName = String(name![..<index])
+        let index = name.firstIndex(of: " ")!
+        let firstName = String(name[..<index])
         
         profileName.text = firstName
         timeStamp.text = "wed, dec 1st, 5:00 pm"

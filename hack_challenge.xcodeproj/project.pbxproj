@@ -24,6 +24,8 @@
 		5FB0D70B292AECC500EC8018 /* PostPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */; };
 		5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */; };
 		604534ED2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */; };
+		6052C97529393112006C7F61 /* CommentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6052C97429393112006C7F61 /* CommentTextField.swift */; };
+		6052C977293947AF006C7F61 /* AddCommentPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6052C976293947AF006C7F61 /* AddCommentPushViewController.swift */; };
 		60BB230F293400810033CD1B /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */; };
 		60BB2311293401050033CD1B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB2310293401050033CD1B /* ProfileTableViewCell.swift */; };
 		60BB2313293415050033CD1B /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */; };
@@ -73,6 +75,8 @@
 		5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePushViewController.swift; sourceTree = "<group>"; };
 		604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesForProflePushCollectionViewCell.swift; sourceTree = "<group>"; };
+		6052C97429393112006C7F61 /* CommentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextField.swift; sourceTree = "<group>"; };
+		6052C976293947AF006C7F61 /* AddCommentPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentPushViewController.swift; sourceTree = "<group>"; };
 		60BB230E293400810033CD1B /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
 		60BB2310293401050033CD1B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		60BB2312293415050033CD1B /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				60D336F429347114009C6E73 /* FriendsCollectionViewCell.swift */,
 				60D3370029357842009C6E73 /* PostsCollectionViewCell.swift */,
 				604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */,
+				6052C97429393112006C7F61 /* CommentTextField.swift */,
+				6052C976293947AF006C7F61 /* AddCommentPushViewController.swift */,
 			);
 			path = hack_challenge;
 			sourceTree = "<group>";
@@ -361,8 +367,10 @@
 				5FB0D701292AE7B000EC8018 /* PersonalPostPushViewController.swift in Sources */,
 				60BB230F293400810033CD1B /* CourseCollectionViewCell.swift in Sources */,
 				EC336E9E29248F5B00520624 /* SceneDelegate.swift in Sources */,
+				6052C977293947AF006C7F61 /* AddCommentPushViewController.swift in Sources */,
 				EC65B084292EB78700D04BA0 /* PasswordTextField.swift in Sources */,
 				EC65B086292EBB8300D04BA0 /* UsernameTextField.swift in Sources */,
+				6052C97529393112006C7F61 /* CommentTextField.swift in Sources */,
 				5FB0D6F9292AE0EE00EC8018 /* ExploreViewController.swift in Sources */,
 				5FB0D703292AEA1F00EC8018 /* EditProfilePushViewController.swift in Sources */,
 				EC5213662932FB900029A754 /* SetProfileInfoViewController.swift in Sources */,
