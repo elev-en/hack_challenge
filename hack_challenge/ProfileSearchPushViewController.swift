@@ -98,7 +98,7 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
             self.filter = Array(repeating: false, count: self.allProfiles.count)
         }
        
-       let course1 = Course(id: 1, code: "cs 2112", name: "cs 2112", users: [])
+       /*let course1 = Course(id: 1, code: "cs 2112", name: "cs 2112", users: [])
        let course2 = Course(id: 1, code: "phys 1110", name: "phys 1110", users: [])
        let course3 = Course(id: 1, code: "psych 1101", name: "psych 1101", users: [])
        let course4 = Course(id: 1, code: "econ 1110", name: "econ 1110", users: [])
@@ -112,9 +112,9 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
 
        let post1 = Post(id: 1, poster: profile1, header: "review together before prelim?", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "mann library, 2nd floor", comments: [comment1, comment2], course: course3)
        let post2 = Post(id: 1, poster: profile1, header: "work on problem set!", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "olin library, basement", comments: [], course: course2)
-       let post3 = Post(id: 1, poster: profile1, header: "study for finals", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "hu shih lounge", comments: [], course: course3)
+       let post3 = Post(id: 1, poster: profile1, header: "study for finals", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "hu shih lounge", comments: [], course: course3)*/
        
-       let profile2 = Profile(id: 1, username: "user", name: "bill nye", bio: "science rocks!",gradYear: 2023, posts: [post1, post2, post3] ,comments: [], courses: [course1, course2, course3, course4], friends: [profile1], session_token: "", session_expiration: "", update_token: "")
+       //let profile2 = Profile(id: 1, username: "user", name: "bill nye", bio: "science rocks!",gradYear: 2023, posts: [post1, post2, post3] ,comments: [], courses: [course1, course2, course3, course4], friends: [profile1], session_token: "", session_expiration: "", update_token: "")
 /*
        let profile3 = Profile(id: 1, username: "user", password: "pw", name: "ur mom", bio: "i hate cornhell!",gradYear: 2025, posts: [post1, post2, post3] ,comments: [], courses: [course1, course2, course3, course4], friends: [profile1, profile2], session_token: "", session_expiration: "", update_token: "", profileImage: "frog")
 
@@ -128,8 +128,8 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        
 
        
-       let profiles = [profile1, profile2]
-       //let profiles = [Profile]()
+       //let profiles = [profile1, profile2]
+       let profiles = [Profile]()
        self.allProfiles = profiles
        self.profileCollectionView.reloadData()
        self.filter = Array(repeating: false, count: self.allProfiles.count)
@@ -142,7 +142,7 @@ extension ProfileSearchPushViewController: UISearchResultsUpdating {
   
    private func filterProfiles(for searchText: String) {
       filteredProfiles = allProfiles.filter { profiles in
-          return profiles.name.lowercased().contains(searchText.lowercased())
+          return profiles.name!.lowercased().contains(searchText.lowercased())
       }
           profileCollectionView.reloadData()
    }

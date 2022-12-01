@@ -87,7 +87,10 @@ class ProfilePushViewController: UIViewController {
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         profileImageView.contentMode = .scaleAspectFit
  
-        nameYearTextLabel.text = "\(profile.name), \(profile.gradYear)"
+        let name = "\(profile.name ?? "")"
+        let year = "\(profile.gradYear ?? 2026)"
+
+        nameYearTextLabel.text = "\(name), \(year)"
         nameYearTextLabel.font = .systemFont(ofSize: 20, weight: .bold)
         nameYearTextLabel.textColor = UIColor.black
         view.addSubview(nameYearTextLabel)
@@ -166,7 +169,8 @@ class ProfilePushViewController: UIViewController {
         view.addSubview(postsCollectionView)
         
  
-        bioTextField.text = "\(profile.bio)"
+        let bio = "\(profile.bio ?? "")"
+        bioTextField.text = "\(bio)"
         bioTextField.font = .systemFont(ofSize: 14, weight: .regular)
         bioTextField.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         bioTextField.isUserInteractionEnabled = false
