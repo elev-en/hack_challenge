@@ -9,19 +9,23 @@ import UIKit
 
 class PostPushViewController: UIViewController {
     
-    let profImage = UIImageView()
-    let profName = UILabel()
-    let postBody = UITextView()
-    let commentsLabel = UILabel()
-    let postHeader = UILabel()
+    let profileImageView = UIImageView()
+    let profileName = UILabel()
+    let titleLabel = UILabel()
+    let postBody = CommentTextField()
+    let courseTextField = UITextField()
     let timeStamp = UILabel()
+    let location = UILabel()
+    let commentsLabel = UILabel()
+    var addComment = UIBarButtonItem()
+
     
     var content: [Comment] = []
 
-
+        
     let CommentsReuseIdentifier: String = "CommentsReuseIdentifier"
     var comments: UICollectionView!
-    let spacing: CGFloat = 10
+    let spacing: CGFloat = 5
     
     var post: Post!
     weak var delegate: ChangePostInfoDelegate?
@@ -40,40 +44,80 @@ class PostPushViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+
+        profileImageView.image = UIImage(named: post.poster.profileImage)
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileImageView)
+        profileImageView.layer.masksToBounds = true
+        profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
+        profileImageView.contentMode = .scaleAspectFit
         
-        profImage.image = UIImage(named: "smiley face")
-        profImage.contentMode = .scaleAspectFill
-        profImage.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(profImage)
-        profImage.layer.masksToBounds = true
-        profImage.layer.cornerRadius = profImage.bounds.width / 2
-        profImage.contentMode = .scaleAspectFit
         
-        profName.text = "\(post.poster.name)"
-        profName.font = .systemFont(ofSize: 15, weight: .bold)
-        profName.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
-        view.addSubview(profName)
-        profName.isUserInteractionEnabled = false
-        profName.translatesAutoresizingMaskIntoConstraints = false
+        var name = post.poster.name
+        let index = name.firstIndex(of: " ")!
+        let firstName = String(name[..<index])
         
-        postHeader.text = "\(post.header)"
-        postHeader.font = .systemFont(ofSize: 20, weight: .bold)
-        postHeader.textColor = UIColor.black
-        view.addSubview(postHeader)
-        postHeader.isUserInteractionEnabled = false
-        postHeader.translatesAutoresizingMaskIntoConstraints = false
-        postHeader.numberOfLines = 1;
-        //postHeader.minimumFontSize = 8;
-        postHeader.adjustsFontSizeToFitWidth = true
+        profileName.text = firstName
+        profileName.textAlignment = .left
+        profileName.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        profileName.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
+        profileName.isUserInteractionEnabled = false
+
+        profileName.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileName)
+ 
+        titleLabel.text = "\(post.header)"
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.textColor = UIColor.black
+        titleLabel.isUserInteractionEnabled = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.numberOfLines = 1;
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
+ 
+        courseTextField.text = post.course.name
+        courseTextField.textAlignment = .center
+        courseTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        courseTextField.translatesAutoresizingMaskIntoConstraints = false
+        courseTextField.layer.masksToBounds = true
+        courseTextField.layer.cornerRadius = 8.0
+        courseTextField.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        courseTextField.leftView = paddingView
+        courseTextField.leftViewMode = .always
+        courseTextField.rightView = paddingView
+        courseTextField.rightViewMode = .always
+        courseTextField.isUserInteractionEnabled = false
+        view.addSubview(courseTextField)
+ 
+        timeStamp.text = "wed, dec 1st, 5:00 pm"
+        //timeStamp.text = post.timeStamp
+        timeStamp.textAlignment = .left
+        timeStamp.font = UIFont.systemFont(ofSize: 10, weight: .bold)
+        timeStamp.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(timeStamp)
         
-        postBody.text = "\(post.body)"
-        postBody.font = .systemFont(ofSize: 14, weight: .regular)
-        postBody.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
+        location.text = post.location
+        location.textAlignment = .left
+        location.font = UIFont.systemFont(ofSize: 10)
+        location.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(location)
+        
+        postBody.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
         postBody.isUserInteractionEnabled = false
+        postBody.backgroundColor = UIColor.white
+        postBody.text = "\(post.body)"
+        postBody.font = .systemFont(ofSize: 12, weight: .regular)
+        postBody.textColor = UIColor.black
+        postBody.layer.borderWidth = 1
+        postBody.layer.cornerRadius = 8
         view.addSubview(postBody)
         postBody.translatesAutoresizingMaskIntoConstraints = false
         
-        commentsLabel.text = "Comments (\(post.comments.count)):"
+        commentsLabel.text = "comments (\(post.comments.count)):"
         commentsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         commentsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         view.addSubview(commentsLabel)
@@ -87,57 +131,72 @@ class PostPushViewController: UIViewController {
         
         content = post.comments
         comments = UICollectionView(frame: .zero, collectionViewLayout: commentsLayout)
+        //comments.backgroundColor = UIColor.white
+        comments.backgroundColor = UIColor.clear.withAlphaComponent(0)
         comments.translatesAutoresizingMaskIntoConstraints = false
-        comments.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
-        comments.register(PostsCollectionViewCell.self, forCellWithReuseIdentifier: CommentsReuseIdentifier)
+        comments.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: CommentsReuseIdentifier)
         comments.dataSource = self
         comments.delegate = self
-        comments.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(comments)
         
-        setUpConstraints()
-
-        // Do any additional setup after loading the view.
+        addComment.image = UIImage(systemName: "plus.message")
+        addComment.target = self
+        addComment.action = #selector(pushAddComment)
+        navigationItem.rightBarButtonItem = addComment
+        
+        setupConstraints()
     }
-   
-    func setUpConstraints(){
-        
-        let verticalPadding: CGFloat = 2
-        let sidePadding: CGFloat = 20
-        
-        let profileImageDim: CGFloat = 80
-        
-
-       
-        //TODO change to multiplier
-        NSLayoutConstraint.activate([
-            profImage.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: verticalPadding),
-            profImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: sidePadding),
-            profImage.heightAnchor.constraint(equalToConstant: profileImageDim),
-            profImage.widthAnchor.constraint(equalToConstant: profileImageDim),
-            
-        ])
-        
-        NSLayoutConstraint.activate([
-            profName.topAnchor.constraint(equalTo: profImage.topAnchor),
-            profName.heightAnchor.constraint(equalToConstant: 20),
-            profName.leadingAnchor.constraint(equalTo: profImage.trailingAnchor, constant: sidePadding)
     
+    
+    func setupConstraints(){
+        let verticalPadding: CGFloat = 2
+        let sidePadding: CGFloat = 20.0
+        let profileImageDim: CGFloat = 80
+
+ 
+        NSLayoutConstraint.activate([
+            profileImageView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: verticalPadding),
+            profileImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: sidePadding),
+            profileImageView.heightAnchor.constraint(equalToConstant: profileImageDim),
+            profileImageView.widthAnchor.constraint(equalToConstant: profileImageDim),
         ])
         
         NSLayoutConstraint.activate([
-            postHeader.topAnchor.constraint(equalTo: profName.bottomAnchor, constant: view.bounds.height * 0.0045),
-            postHeader.heightAnchor.constraint(equalToConstant: 20),
-            postHeader.leadingAnchor.constraint(equalTo: profImage.trailingAnchor, constant: sidePadding)
+            profileName.topAnchor.constraint(equalTo: profileImageView.bottomAnchor),
+            profileName.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor),
         ])
         
         NSLayoutConstraint.activate([
-            postBody.topAnchor.constraint(equalTo: postHeader.bottomAnchor, constant: view.bounds.height * 0.01),
+            titleLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: view.bounds.width*0.04),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
+        ])
+        
+        NSLayoutConstraint.activate([
+            courseTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: view.bounds.height*0.007),
+            courseTextField.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: view.bounds.width*0.04)
+ 
+        ])
+        
+        NSLayoutConstraint.activate([
+            timeStamp.topAnchor.constraint(equalTo: courseTextField.bottomAnchor, constant: view.bounds.height*0.007),
+            timeStamp.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: view.bounds.width*0.04),
+            timeStamp.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
+        ])
+        
+        NSLayoutConstraint.activate([
+            location.topAnchor.constraint(equalTo: timeStamp.bottomAnchor, constant: view.bounds.height*0.003),
+            location.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: view.bounds.width*0.04),
+            location.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
+ 
+        ])
+        
+        NSLayoutConstraint.activate([
+            postBody.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: view.bounds.height * 0.02),
             postBody.heightAnchor.constraint(equalToConstant: 100),
-            postBody.leadingAnchor.constraint(equalTo: profImage.trailingAnchor, constant: sidePadding),
+            postBody.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
             postBody.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -sidePadding)
         ])
-        
         
         NSLayoutConstraint.activate([
             commentsLabel.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.06),
@@ -153,6 +212,17 @@ class PostPushViewController: UIViewController {
         ])
         
         
+        
+        
+        
+    
+    }
+    
+    @objc func pushAddComment(){
+        let commentVC = AddCommentPushViewController()
+        commentVC.title = ""
+        navigationController?.pushViewController(commentVC, animated: true)
+        
     }
     
 
@@ -160,12 +230,13 @@ class PostPushViewController: UIViewController {
 extension PostPushViewController: UICollectionViewDelegateFlowLayout {
  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width*0.9, height: comments.frame.height*0.4)
+        return CGSize(width: view.bounds.width*0.9, height: view.bounds.height*0.13)
         }
  
  
     func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
+        headerView.backgroundColor = view.backgroundColor
         return headerView
     }
     
