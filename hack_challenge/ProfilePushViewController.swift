@@ -63,7 +63,6 @@ class ProfilePushViewController: UIViewController {
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         
  
-        title = "\(profile.name)"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
  
@@ -195,7 +194,7 @@ class ProfilePushViewController: UIViewController {
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: view.bounds.height * 0.02),
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileImageView.heightAnchor.constraint(equalToConstant: 200)
+            profileImageView.heightAnchor.constraint(equalToConstant: view.bounds.height*0.2)
             
         ])
         
@@ -261,7 +260,6 @@ class ProfilePushViewController: UIViewController {
     
     @objc func follow(){
         if(followed){
-            print("unfollowed")
             let index = selfProfile.friends.firstIndex(of: profile) ?? -1
             if(index != -1){
                 selfProfile.friends.remove(at: index)
@@ -303,14 +301,14 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.cellForItem(at: indexPath) as? FriendsCollectionViewCell {
                 let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
-                profileVC.title = "profile"
+                profileVC.title = ""
                 navigationController?.pushViewController(profileVC, animated: true)
             }
         }
         else{
             if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
                 let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
-                postVC.title = "post"
+                postVC.title = ""
                 navigationController?.pushViewController(postVC, animated: true)
             }
         }

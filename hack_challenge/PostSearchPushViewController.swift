@@ -54,10 +54,12 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = true
         self.searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.becomeFirstResponder()
+        self.searchController.searchBar.sizeToFit()
+        self.searchController.searchBar.becomeFirstResponder()
         self.navigationItem.titleView = searchController.searchBar
         self.searchController.searchBar.barTintColor = UIColor.white
+        self.searchController.searchBar.autocorrectionType = .no
+        self.searchController.searchBar.autocapitalizationType = .none
 
         
         createData()
@@ -66,8 +68,6 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
     }
     
     func setupConstraints(){
-    
-        
         NSLayoutConstraint.activate([
             postCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             postCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -153,7 +153,7 @@ extension PostSearchPushViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
             let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
-            postVC.title = "post"
+            postVC.title = ""
             navigationController?.pushViewController(postVC, animated: true)
         }
     }
