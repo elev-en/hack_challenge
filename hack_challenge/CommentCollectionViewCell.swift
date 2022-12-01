@@ -89,12 +89,13 @@ class CommentCollectionViewCell: UICollectionViewCell{
     }
     
     func configure(comment: Comment){
-        var name = comment.commenter.name
+        var name = "\(comment.commenter.name ?? "")"
         let index = name.firstIndex(of: " ")!
         let firstName = String(name[..<index])
         
         profileName.text = firstName
-        profileImageView.image = UIImage(named: comment.commenter.profileImage)
+        profileImageView.image = UIImage(named: "smiley face")
+        //profileImageView.image = UIImage(named: comment.commenter.profileImage)
         text.text = comment.body
     }
     

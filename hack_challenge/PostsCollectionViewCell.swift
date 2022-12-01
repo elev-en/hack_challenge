@@ -130,7 +130,7 @@ class PostsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(post: Post){
-        var name = post.poster.name
+        var name = "\(post.poster.name ?? "")"
         let index = name.firstIndex(of: " ")!
         let firstName = String(name[..<index])
         

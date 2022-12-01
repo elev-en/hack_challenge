@@ -45,7 +45,8 @@ class PostPushViewController: UIViewController {
         
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
 
-        profileImageView.image = UIImage(named: post.poster.profileImage)
+        //profileImageView.image = UIImage(named: post.poster.profileImage)
+        profileImageView.image = UIImage(named: "frog")
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
@@ -54,7 +55,7 @@ class PostPushViewController: UIViewController {
         profileImageView.contentMode = .scaleAspectFit
         
         
-        var name = post.poster.name
+        var name = "\(post.poster.name ?? "")"
         let index = name.firstIndex(of: " ")!
         let firstName = String(name[..<index])
         
