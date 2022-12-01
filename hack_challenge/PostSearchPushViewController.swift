@@ -54,10 +54,12 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = true
         self.searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.becomeFirstResponder()
+        self.searchController.searchBar.sizeToFit()
+        self.searchController.searchBar.becomeFirstResponder()
         self.navigationItem.titleView = searchController.searchBar
         self.searchController.searchBar.barTintColor = UIColor.white
+        self.searchController.searchBar.autocorrectionType = .no
+        self.searchController.searchBar.autocapitalizationType = .none
 
         
         createData()
@@ -66,8 +68,6 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
     }
     
     func setupConstraints(){
-    
-        
         NSLayoutConstraint.activate([
             postCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             postCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

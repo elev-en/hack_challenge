@@ -45,6 +45,8 @@ class AddClassesViewController: UIViewController {
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.barTintColor = UIColor.darkGray
+        searchController.searchBar.autocorrectionType = .no
+        searchController.searchBar.autocapitalizationType = .none
         
         classCartButton.image = UIImage(systemName: "cart")
         classCartButton.target = self

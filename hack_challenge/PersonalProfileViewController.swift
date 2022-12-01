@@ -46,7 +46,7 @@ class PersonalProfileViewController: UIViewController {
         
         title = ""
         
-        let course1 = Course(name: "cs 2112")
+        /*let course1 = Course(name: "cs 2112")
         let course2 = Course(name: "phys 1110")
         let course3 = Course(name: "psych 1101")
         let course4 = Course(name: "econ 1110")
@@ -58,7 +58,7 @@ class PersonalProfileViewController: UIViewController {
         let post3 = Post(poster: profile1, header: "study for finals", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "hu shih lounge", comments: [], course: course3)
         
         
-        self.profile = Profile(username: "user", password: "pw", name: "bill nye", courses: [course1, course2, course3, course4], bio: "science rocks!", gradYear: 2023, friends: [profile1], posts: [post1, post2, post3], profileImage: "bucket hat")
+        self.profile = Profile(username: "user", password: "pw", name: "bill nye", courses: [course1, course2, course3, course4], bio: "science rocks!", gradYear: 2023, friends: [profile1], posts: [post1, post2, post3], profileImage: "bucket hat")*/
         
  
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)]
