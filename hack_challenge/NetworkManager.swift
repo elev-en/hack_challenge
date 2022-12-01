@@ -22,7 +22,8 @@ class NetworkManager {
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
+                print(data)
+                if let userResponse = try? jsonDecoder.decode((Profile).self, from: data) {
                     completion(userResponse)
                     print("created user")
                 } else {
@@ -45,7 +46,7 @@ class NetworkManager {
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
+                if let userResponse = try? jsonDecoder.decode((Profile).self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode updateUser")
@@ -62,7 +63,7 @@ class NetworkManager {
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
+                if let userResponse = try? jsonDecoder.decode((Profile).self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode getUser")
@@ -90,8 +91,8 @@ class NetworkManager {
         }
     }
     
-    static func userLogin(id: Int, username: String, password: String, completion: @escaping (Profile) -> Void) {
-        let endpoint = "\(host)users/\(id)/"
+    static func userLogin(username: String, password: String, completion: @escaping (Profile) -> Void) {
+        let endpoint = "\(host)users/login/"
         let params: Parameters = [
             "username": username,
             "password": password
@@ -100,7 +101,7 @@ class NetworkManager {
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
+                if let userResponse = try? jsonDecoder.decode((Profile).self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode userLogin")
@@ -245,13 +246,13 @@ class NetworkManager {
         }
     }
     
-    static func getAllClasses(completion: @escaping ([Course]) -> Void) {
+    static func getAllClasses(completion: @escaping (CourseResponse) -> Void) {
         let endpoint = "\(host)courses/"
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode([Course].self, from: data) {
+                if let userResponse = try? jsonDecoder.decode((CourseResponse).self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode getAllClasses")

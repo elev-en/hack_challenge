@@ -9,6 +9,19 @@ import UIKit
 
 class CreateUsernamePasswordViewController: UIViewController {
     
+    /*weak var delegate: sendIdDelegate?
+    var id: Int?
+    
+    init(inputDelegate: sendIdDelegate, id: Int){
+        delegate = inputDelegate
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }*/
+    
     let background = UIImageView()
     let welcomeLabel = UILabel()
     let usernameTextField = UsernameTextField()
@@ -88,12 +101,13 @@ class CreateUsernamePasswordViewController: UIViewController {
                     
                     case .destructive:
                     print("destructive")
-                    
                 }
             }))
             self.present(alert, animated: true, completion: nil)
         } else if(passwordTextField.text == confirmPasswordTextField.text){
-            NetworkManager.createUser(username: usernameTextField.text!, password: passwordTextField.text!) {_ in }
+            NetworkManager.createUser(username: usernameTextField.text!, password: passwordTextField.text!) {user in
+               // self.delegate?.sendId(id: user.id)
+            }
             navigationController?.pushViewController(EnterClassesViewController(), animated: true)
         } else {
             let alert = UIAlertController(title: "Error", message: "Passwords do not match. Please make sure the passwords entered are the same.", preferredStyle: .alert)
@@ -141,13 +155,6 @@ class CreateUsernamePasswordViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: view.bounds.height*0.02),
-            passwordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
-            passwordTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
-        ])
-        
-        NSLayoutConstraint.activate([
             confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: view.bounds.height*0.005),
             confirmPasswordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
@@ -162,4 +169,8 @@ class CreateUsernamePasswordViewController: UIViewController {
         ])
     }
 
+}
+
+protocol sendIdDelegate: UIViewController{
+    func sendId(id: Int)
 }

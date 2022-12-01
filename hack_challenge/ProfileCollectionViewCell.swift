@@ -123,7 +123,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
     
     func configure(profile: Profile){
         profileName.text = "\(profile.name)"
-        profileImageView.image = UIImage(named: profile.profileImage)
+        //profileImageView.image = UIImage(named: profile.profileImage)
         bioLabel.text = profile.bio
         // profileImageView.image = profile.profileImage
         courses = profile.courses

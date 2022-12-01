@@ -21,12 +21,16 @@ struct Course: Codable {
     let id: Int
     let code: String
     let name: String
-
-//    let profileImage: UIImage
+    let users: [Profile]
     
     enum CodingKeys: String, CodingKey{
         case id
         case code
         case name
+        case users
     }
+}
+
+struct CourseResponse: Codable {
+    let courses: [Course]
 }

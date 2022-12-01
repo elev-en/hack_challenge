@@ -30,6 +30,8 @@
 		60D336F529347114009C6E73 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D336F429347114009C6E73 /* FriendsCollectionViewCell.swift */; };
 		60D3370129357842009C6E73 /* PostsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D3370029357842009C6E73 /* PostsCollectionViewCell.swift */; };
 		EC0A554D2937DF2400E638B2 /* ConfirmPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A554C2937DF2400E638B2 /* ConfirmPasswordTextField.swift */; };
+		EC0A554F2937EDF900E638B2 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A554E2937EDF900E638B2 /* UserResponse.swift */; };
+		EC0A55532937F63300E638B2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC0A55522937F63300E638B2 /* Launch Screen.storyboard */; };
 		EC336E9C29248F5B00520624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9B29248F5B00520624 /* AppDelegate.swift */; };
 		EC336E9E29248F5B00520624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9D29248F5B00520624 /* SceneDelegate.swift */; };
 		EC336EA029248F5B00520624 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC336E9F29248F5B00520624 /* ViewController.swift */; };
@@ -79,6 +81,8 @@
 		754C4AF2060ED296A409E9B9 /* Pods-hack_challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hack_challenge.debug.xcconfig"; path = "Target Support Files/Pods-hack_challenge/Pods-hack_challenge.debug.xcconfig"; sourceTree = "<group>"; };
 		7EED149C9A87723D975C21FD /* Pods-hack_challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hack_challenge.release.xcconfig"; path = "Target Support Files/Pods-hack_challenge/Pods-hack_challenge.release.xcconfig"; sourceTree = "<group>"; };
 		EC0A554C2937DF2400E638B2 /* ConfirmPasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordTextField.swift; sourceTree = "<group>"; };
+		EC0A554E2937EDF900E638B2 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		EC0A55522937F63300E638B2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EC336E9829248F5B00520624 /* hack_challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hack_challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC336E9B29248F5B00520624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC336E9D29248F5B00520624 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,9 +166,11 @@
 				5FB0D6F62927CC6200EC8018 /* Comment.swift */,
 				EC336E9D29248F5B00520624 /* SceneDelegate.swift */,
 				EC336E9F29248F5B00520624 /* ViewController.swift */,
+				EC0A55522937F63300E638B2 /* Launch Screen.storyboard */,
 				EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */,
 				EC65B088292F017C00D04BA0 /* EnterClassesViewController.swift */,
 				EC5213612932CF670029A754 /* MakeProfileViewController.swift */,
+				EC0A554E2937EDF900E638B2 /* UserResponse.swift */,
 				EC5213632932D0890029A754 /* SetProfilePictureViewController.swift */,
 				ECFFEF462936FA5F00CAF926 /* TabBar.swift */,
 				EC65B08C29302B3E00D04BA0 /* AddClassesViewController.swift */,
@@ -272,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC0A55532937F63300E638B2 /* Launch Screen.storyboard in Resources */,
 				EC336EA829248F5D00520624 /* LaunchScreen.storyboard in Resources */,
 				EC336EA529248F5D00520624 /* Assets.xcassets in Resources */,
 			);
@@ -340,6 +347,7 @@
 				5F7D9978293557C100427B81 /* PostCollectionViewCell.swift in Sources */,
 				EC65B089292F017C00D04BA0 /* EnterClassesViewController.swift in Sources */,
 				EC65B07C292C598600D04BA0 /* CreateUsernamePasswordViewController.swift in Sources */,
+				EC0A554F2937EDF900E638B2 /* UserResponse.swift in Sources */,
 				5FB0D6F72927CC6200EC8018 /* Comment.swift in Sources */,
 				EC5213622932CF670029A754 /* MakeProfileViewController.swift in Sources */,
 				5FB0D6FB292AE11F00EC8018 /* SearchViewController.swift in Sources */,
@@ -510,7 +518,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hack_challenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -538,7 +546,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hack_challenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

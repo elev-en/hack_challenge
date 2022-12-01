@@ -79,7 +79,7 @@ class ProfilePushViewController: UIViewController {
 
         
         // fix profile image to use profile image
-        profileImageView.image = UIImage(named: profile.profileImage)
+        //profileImageView.image = UIImage(named: profile.profileImage)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)

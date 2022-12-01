@@ -7,8 +7,13 @@
 
 import UIKit
 
-class SetProfileInfoViewController: UIViewController {
+class SetProfileInfoViewController: UIViewController, sendIdDelegate {
     
+    func sendId(id: Int) {
+        user_Id = id
+    }
+    
+    var user_Id: Int = 25
     let background = UIImageView()
     let nameLabel = UILabel()
     let nameTextField = UITextField()
@@ -164,6 +169,9 @@ class SetProfileInfoViewController: UIViewController {
         let gradYear = Int(gradTextField.text ?? "") ?? 0
         let digits = getDigits(num: gradYear)
         if bioTextField.text != "" && digits == 4 {
+            NetworkManager.updateUser(id: user_Id, name: nameTextField.text!, bio: bioTextField.text!, gradYear: gradYear) {response in
+                print(response)
+            }
             navigationController?.pushViewController(SetProfilePictureViewController(), animated: true)
         } else if bioTextField.text == "" && digits != 4 {
             let alert = UIAlertController(title: "Error", message: "Please write a short bio and enter your year of graduation in the right format.", preferredStyle: .alert)

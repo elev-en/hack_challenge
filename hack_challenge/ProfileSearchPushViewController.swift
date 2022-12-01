@@ -136,7 +136,7 @@ extension ProfileSearchPushViewController: UISearchResultsUpdating {
   
    private func filterProfiles(for searchText: String) {
       filteredProfiles = allProfiles.filter { profiles in
-          return profiles.name.lowercased().contains(searchText.lowercased())
+          return profiles.name!.lowercased().contains(searchText.lowercased())
       }
           profileCollectionView.reloadData()
    }

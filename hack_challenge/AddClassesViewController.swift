@@ -120,7 +120,7 @@ class AddClassesViewController: UIViewController {
     
     func createData(){
         NetworkManager.getAllClasses { classes in
-            self.allClasses = classes
+            self.allClasses = classes.courses
             self.classesTableView.reloadData()
             self.filter = Array(repeating: false, count: self.allClasses.count)
         }

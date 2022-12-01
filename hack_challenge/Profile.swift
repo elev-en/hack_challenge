@@ -12,26 +12,34 @@ struct Profile: Codable, Equatable {
     
     let id: Int
     let username: String
-    let password: String
-    var name: String
-    var courses: [Course]
-    var bio: String
-    var gradYear: Int
-    var friends: [Profile]
+    //let password: String
+    var name: String?
+    var bio: String?
+    var gradYear: Int?
     var posts: [Post]
-    var profileImage: String
+    var comments: [Comment]
+    var courses: [Course]
+    var friends: [Profile]
+    var session_token: String
+    var session_expiration: String
+    var update_token: String
+    //var profileImage: String
     
     enum CodingKeys: String, CodingKey{
         case id
         case username
-        case password
+        //case password
         case name
-        case courses
         case bio
         case gradYear
-        case friends
         case posts
-        case profileImage
+        case comments
+        case courses
+        case friends
+        case session_token
+        case session_expiration
+        case update_token
+        //case profileImage
     }
     
     static func == (lhs: Profile, rhs: Profile) -> Bool {

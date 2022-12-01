@@ -6,8 +6,6 @@
 	<array>
 		<string>Alteron-OV9no.otf</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
