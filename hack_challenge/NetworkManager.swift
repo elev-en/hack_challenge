@@ -74,13 +74,13 @@ class NetworkManager {
         }
     }
     
-    static func getAllUsers(completion: @escaping ([Profile]) -> Void) {
+    static func getAllUsers(completion: @escaping (ProfileResponse) -> Void) {
         let endpoint = "\(host)users/"
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode([Profile].self, from: data) {
+                if let userResponse = try? jsonDecoder.decode((ProfileResponse).self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode getAllUsers")

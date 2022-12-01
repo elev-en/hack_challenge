@@ -78,4 +78,8 @@ struct User: Codable, Equatable{
     }
 }
 
+struct ProfileResponse: Codable{
+    var users: [Profile]
+}
+
 
