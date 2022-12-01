@@ -130,10 +130,10 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     func configure(post: Post){
         var name = post.poster.name
-        let index = name.firstIndex(of: " ")!
-        let firstName = String(name[..<index])
+        let index = name!.firstIndex(of: " ")!
+        let firstName = String(name![..<index])
         
-        profileImageView.image = UIImage(named: post.poster.profileImage)
+        //profileImageView.image = UIImage(named: post.poster.profileImage)
         profileName.text = firstName
         timeStamp.text = "wed, dec 1st, 5:00 pm"
         // profileImageView.image = post.poster.profileImage

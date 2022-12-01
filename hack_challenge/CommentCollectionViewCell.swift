@@ -98,7 +98,7 @@ class CommentCollectionViewCell: UICollectionViewCell{
     
     func configure(comment: Comment){
         profileName.text = "\(comment.commenter.name)"
-        profileImageView.image = UIImage(named: comment.commenter.profileImage)
+        //profileImageView.image = UIImage(named: comment.commenter.profileImage)
         text.text = comment.body
     }
     

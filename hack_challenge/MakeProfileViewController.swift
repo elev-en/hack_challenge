@@ -78,7 +78,7 @@ class MakeProfileViewController: UIViewController {
         NSLayoutConstraint.activate([
             makeProfileButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             makeProfileButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            makeProfileButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            makeProfileButton.widthAnchor.constraint(equalTo: view.widthAnchor),
             makeProfileButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
         ])
     }
