@@ -314,8 +314,11 @@ class NewPostViewController: UIViewController {
     
     @objc func sharePost(){
         //networking to create new post
-        NetworkManager.createPostForUser(id: user_id, header: postTextField.text!, body: postBodyTextView.text!, location: locationTextField.text!, meetup_time: dateTextField.text!) {_ in}
-        self.dismiss(animated: true)
+        NetworkManager.getUser(id: user_id){user in
+            NetworkManager.createPostForUser(id: self.user_id, header: self.postTextField.text!, body: self.postBodyTextView.text!, location: self.locationTextField.text!, meetup_time: self.dateTextField.text!, session_token: user.session_token!) {_ in}
+            self.dismiss(animated: true)
+        }
+       
     }
     
 

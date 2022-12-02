@@ -9,14 +9,13 @@ import Foundation
 
 struct Comment: Codable {
     
-    let post_id: Int
-    let user_id: Int
     let body: String
-    //let timeStamp: still need to figure out how to do time stamps
+    let user_id: Int
+    let post_id: Int
+    
     enum CodingKeys: String, CodingKey{
-        case post_id
-        case user_id
         case body
-        //case timeStamp
+        case user_id
+        case post_id
     }
 }

@@ -16,6 +16,7 @@ class PersonalProfileViewController: UIViewController{
     
     let user_id: Int
     let headerLabel = UILabel()
+    var logoutButton = UIBarButtonItem()
     var editButton = UIBarButtonItem()
     var profileImageView = UIImageView()
     let nameYearTextLabel = UILabel()
@@ -65,29 +66,8 @@ class PersonalProfileViewController: UIViewController{
                 self.friends_profiles.append(user)
             }
         }
-        /*self.profile = Profile(id: 0, username: "default", name: "default", bio: "default", grad_year: 0000, picture_id: "default", number: "0000000000", posts: [], comments: [], courses: [], posts_attending: [], friends: [], session_token: "none", session_expiration: "none", update_token: "none")
-        */
-        /*NetworkManager.getUser(id: user_id) {user in
-            self.profile = user
-            print("got user")
-        }*/
         
         title = ""
-        
-        /*let course1 = Course(name: "cs 2112")
-        let course2 = Course(name: "phys 1110")
-        let course3 = Course(name: "psych 1101")
-        let course4 = Course(name: "econ 1110")
-        
-        let profile1 = Profile(username: "user", password: "pw", name: "martha pollack", courses: [course1, course2, course3, course4], bio: "i love cornhell!", gradYear: 2026, friends: [], posts: [], profileImage: "aesthetic")
-        
-        let post1 = Post(poster: profile1, header: "review together before prelim?", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "mann library, 2nd floor", comments: [], course: course3)
-        let post2 = Post(poster: profile1, header: "work on problem set!", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "olin library, basement", comments: [], course: course2)
-        let post3 = Post(poster: profile1, header: "study for finals", body: "i hate math", timeStamp: "wed, dec 1st, 5:00 pm", location: "hu shih lounge", comments: [], course: course3)
-        
-        
-        self.profile = Profile(username: "user", password: "pw", name: "bill nye", courses: [course1, course2, course3, course4], bio: "science rocks!", gradYear: 2023, friends: [profile1], posts: [post1, post2, post3], profileImage: "bucket hat")*/
-        
  
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
@@ -99,10 +79,15 @@ class PersonalProfileViewController: UIViewController{
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerLabel)
         
-        editButton.title = "edit   "
+        editButton.title = "   edit"
         editButton.target = self
         editButton.action = #selector(edit)
-        self.navigationItem.rightBarButtonItem = editButton
+        self.navigationItem.leftBarButtonItem = editButton
+        
+        logoutButton.title = "logout   "
+        logoutButton.target = self
+        logoutButton.action = #selector(logout_button)
+        self.navigationItem.rightBarButtonItem = logoutButton
 
         
         // fix profile image to use profile image
@@ -275,17 +260,21 @@ class PersonalProfileViewController: UIViewController{
             postsCollectionView.leadingAnchor.constraint(equalTo: numPostsLabel.leadingAnchor),
             postsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
         ])
-        
-        
-        
     }
- 
-
+    
+    func logout() {
+        UserDefaults.standard.set(nil, forKey: "userID")
+    }
     
     @objc func edit(){
         // push edit profile view controller
         navigationController?.pushViewController(EditProfilePushViewController(id: user_id), animated: true)
+    }
     
+    @objc func logout_button(){
+        // push edit profile view controller
+        navigationController?.pushViewController(LogInUsernamePasswordViewController(), animated: true)
+        logout()
     }
  
 }

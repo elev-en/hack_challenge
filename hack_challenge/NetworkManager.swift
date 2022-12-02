@@ -10,7 +10,10 @@ import Foundation
 
 class NetworkManager {
 
+    
+    
     static let host = "http://34.150.155.25/api/"
+    
     
     static func createUser(username: String, password: String, completion: @escaping (Profile) -> Void) {
         let endpoint = "\(host)users/"
@@ -40,7 +43,7 @@ class NetworkManager {
         let params: Parameters = [
             "name": name,
             "bio": bio,
-            "gradd_year": grad_year,
+            "grad_year": grad_year,
             "number": number
         ]
         AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
@@ -204,7 +207,7 @@ class NetworkManager {
         }
     }
     
-    static func createPostForUser(id: Int, header: String, body: String, location: String, meetup_time: String, completion: @escaping (Profile) -> Void) {
+    static func createPostForUser(id: Int, header: String, body: String, location: String, meetup_time: String, session_token: String, completion: @escaping (Post) -> Void) {
         let endpoint = "\(host)users/\(id)/add/post/"
         let params: Parameters = [
             "header": header,
@@ -212,11 +215,17 @@ class NetworkManager {
             "location": location,
             "meetup_time": meetup_time
         ]
-        AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
+        var headers: HTTPHeaders {
+            let header: HTTPHeaders = [
+                "Authorization": "Bearer \(session_token)"
+            ]
+            return header
+        }
+        AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode(Profile.self, from: data) {
+                if let userResponse = try? jsonDecoder.decode((Post).self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode createPostForUser")
@@ -351,6 +360,29 @@ class NetworkManager {
                     completion(userResponse)
                 } else {
                     print("Failed to decode getAllCommnetsForPost")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func userAttendPost(session_token: String, completion: @escaping (ProfileResponse) -> Void) {
+        let endpoint = "\(host)posts/"
+        var headers: HTTPHeaders {
+            let header: HTTPHeaders = [
+                "Authorization": "Bearer \(session_token)"
+            ]
+            return header
+        }
+        AF.request(endpoint, method: .get, headers: headers).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let userResponse = try? jsonDecoder.decode((ProfileResponse).self, from: data) {
+                    completion(userResponse)
+                } else {
+                    print("Failed to decode getAllPosts")
                 }
             case .failure(let error):
                 print(error.localizedDescription)

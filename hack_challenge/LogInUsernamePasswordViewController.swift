@@ -9,7 +9,6 @@ import UIKit
 
 class LogInUsernamePasswordViewController: UIViewController {
 
-    
     let background = UIImageView()
     let welcomeBackLabel = UILabel()
     let usernameTextField = UsernameTextField()
