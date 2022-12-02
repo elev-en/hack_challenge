@@ -80,10 +80,16 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
     
     
     func createData(){
-//        NetworkManager.getAllposts { posts in
-//            self.allposts = posts
-//            self.postsTableView.reloadData()
-//            self.filter = Array(repeating: false, count: self.allposts.count)
+//        NetworkManager.getAllClasses { posts in
+//            self.allPosts = posts.posts
+//            self.postCollectionView.reloadData()
+//            self.filter = Array(repeating: false, count: self.allPosts.count)
+//        }
+        
+//        NetworkManager.getAllUsers { profiles in
+//            self.allProfiles = profiles.users
+//            self.profileCollectionView.reloadData()
+//            self.filter = Array(repeating: false, count: self.allProfiles.count)
 //        }
         /*
         let course1 = Course(name: "cs 2112")

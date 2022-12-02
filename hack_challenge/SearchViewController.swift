@@ -19,7 +19,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")

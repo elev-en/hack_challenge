@@ -28,3 +28,11 @@ struct Post: Codable {
         case course
     }
 }
+
+//struct CourseResponse: Codable{
+//    var posts: [Post]
+//    
+//    enum CodingKeys: String, CodingKey{
+//        case posts
+//    }
+//}

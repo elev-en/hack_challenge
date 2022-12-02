@@ -22,7 +22,7 @@ class ProfilePushViewController: UIViewController {
     let enrolledInLabel = UILabel()
     let bioTextField = UITextField()
     var courses: [Course] = []
-    var friends: [Friend] = []
+    var friends: [Profile] = []
     var friends_profiles: [Profile] = []
     var friends_username: [String] = []
     var posts: [Post] = []
@@ -39,7 +39,7 @@ class ProfilePushViewController: UIViewController {
     let CoursesReuseIdentifier: String = "CoursesReuseIdentifier"
     var coursesCollectionView: UICollectionView!
     
-    var profile: Friend!
+    var profile: Profile!
     var friend_profile: Profile!
     var selfProfile: Profile!
     weak var delegate: SetProfileInfoDelegate?
@@ -47,7 +47,7 @@ class ProfilePushViewController: UIViewController {
 //    var post: Post!
 //    weak var postDelegate: ChangePostInfoDelegate?
  
-    init(pushProfile: Friend, selfProfile: Profile, delegate: SetProfileInfoDelegate?) {
+    init(pushProfile: Profile, selfProfile: Profile, delegate: SetProfileInfoDelegate?) {
         self.profile = pushProfile
         self.selfProfile = selfProfile
         self.delegate = delegate
@@ -128,7 +128,9 @@ class ProfilePushViewController: UIViewController {
         courseLayout.minimumInteritemSpacing = spacing
         courseLayout.scrollDirection = .horizontal
         
-        courses = friend_profile.courses
+        //TODO FIX OPTIONALS
+        courses = friend_profile.courses ?? []
+        //courses = []
         coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
         coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -138,11 +140,13 @@ class ProfilePushViewController: UIViewController {
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(coursesCollectionView)
         
-        if(friend_profile.friends.count == 1){
-            numFriendsLabel.text = "\(friend_profile.friends.count) friend"
+        //friends = friend_profile.friends
+        friends=[]
+        if(friends.count == 1){
+            numFriendsLabel.text = "\(friends.count) friend"
         }
         else{
-            numFriendsLabel.text = "\(friend_profile.friends.count) friends"
+            numFriendsLabel.text = "\(friends.count) friends"
         }
         numFriendsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         numFriendsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
@@ -155,7 +159,6 @@ class ProfilePushViewController: UIViewController {
         friendsLayout.minimumInteritemSpacing = spacing
         friendsLayout.scrollDirection = .horizontal
         
-        friends = friend_profile.friends
         friendsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: friendsLayout)
         friendsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -177,7 +180,8 @@ class ProfilePushViewController: UIViewController {
         postsLayout.minimumInteritemSpacing = spacing
         postsLayout.scrollDirection = .vertical
         
-        posts = profile.posts
+        //posts = profile.posts
+        posts = []
         postsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: postsLayout)
         postsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         postsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)

@@ -129,10 +129,10 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
 
        
        //let profiles = [profile1, profile2]
-       let profiles = [Profile]()
-       self.allProfiles = profiles
-       self.profileCollectionView.reloadData()
-       self.filter = Array(repeating: false, count: self.allProfiles.count)
+//       let profiles = [Profile]()
+//       self.allProfiles = profiles
+//       self.profileCollectionView.reloadData()
+//       self.filter = Array(repeating: false, count: self.allProfiles.count)
 
    }
    
@@ -174,13 +174,13 @@ extension ProfileSearchPushViewController: UICollectionViewDelegateFlowLayout {
        return CGSize(width: collectionView.frame.width*0.92, height: view.frame.height*0.15)
    }
    
-        /*func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        if let cell = collectionView.cellForItem(at: indexPath) as? ProfileCollectionViewCell {
            let profileVC = ProfilePushViewController(pushProfile: allProfiles[indexPath.row], selfProfile: allProfiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
            profileVC.title = ""
            navigationController?.pushViewController(profileVC, animated: true)
        }
-   }*/
+   }
    
 
    func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
