@@ -42,7 +42,8 @@ class SetProfileInfoViewController: UIViewController{
         
         nameLabel.text = "Enter your name"
         nameLabel.numberOfLines = 2
-        nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        nameLabel.textColor = UIColor(red: 0.32, green: 0.28, blue: 0.49, alpha: 1)
+        nameLabel.font = UIFont(name: "Avenir-Light", size: 20)
         nameLabel.textAlignment = .left
         nameLabel.adjustsFontForContentSizeCategory = true
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +61,8 @@ class SetProfileInfoViewController: UIViewController{
         
         bioLabel.text = "Describe yourself using \none sentence"
         bioLabel.numberOfLines = 2
-        bioLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        bioLabel.textColor = UIColor(red: 0.32, green: 0.28, blue: 0.49, alpha: 1)
+        bioLabel.font = UIFont(name: "Avenir-Light", size: 20)
         bioLabel.textAlignment = .left
         bioLabel.adjustsFontForContentSizeCategory = true
         bioLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +80,8 @@ class SetProfileInfoViewController: UIViewController{
         
         gradLabel.text = "What is your year of \n graduation?"
         gradLabel.numberOfLines = 2
-        gradLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        gradLabel.textColor = UIColor(red: 0.32, green: 0.28, blue: 0.49, alpha: 1)
+        gradLabel.font = UIFont(name: "Avenir-Light", size: 20)
         gradLabel.textAlignment = .left
         gradLabel.adjustsFontForContentSizeCategory = true
         gradLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -98,7 +101,8 @@ class SetProfileInfoViewController: UIViewController{
         
         numberLabel.text = "Please enter your phone \nnumber"
         numberLabel.numberOfLines = 2
-        numberLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        numberLabel.font = UIFont(name: "Avenir-Light", size: 20)
+        numberLabel.textColor = UIColor(red: 0.32, green: 0.28, blue: 0.49, alpha: 1)
         numberLabel.textAlignment = .left
         numberLabel.adjustsFontForContentSizeCategory = true
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -118,8 +122,10 @@ class SetProfileInfoViewController: UIViewController{
         
         nextButton.setTitle("NEXT", for: .normal)
         nextButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        nextButton.layer.borderWidth = 2
+        nextButton.layer.borderWidth = 0
+        nextButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 15)
         nextButton.layer.cornerRadius = 5
+        nextButton.layer.backgroundColor = UIColor(red: 0.43, green: 0.39, blue: 0.68, alpha: 1.00).cgColor
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.addTarget(self, action: #selector(pushSetProfilePicViewController), for: .touchUpInside)
         view.addSubview(nextButton)
@@ -150,7 +156,7 @@ class SetProfileInfoViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             bioLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bioLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: view.bounds.height*0.1),
+            bioLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: view.bounds.height*0.05),
             bioLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         ])
         
@@ -163,7 +169,7 @@ class SetProfileInfoViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             gradLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            gradLabel.topAnchor.constraint(equalTo: bioTextField.bottomAnchor, constant: view.bounds.height*0.1),
+            gradLabel.topAnchor.constraint(equalTo: bioTextField.bottomAnchor, constant: view.bounds.height*0.05),
             gradLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         ])
         
@@ -176,7 +182,7 @@ class SetProfileInfoViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             numberLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            numberLabel.topAnchor.constraint(equalTo: gradTextField.bottomAnchor, constant: view.bounds.height*0.1),
+            numberLabel.topAnchor.constraint(equalTo: gradTextField.bottomAnchor, constant: view.bounds.height*0.05),
             numberLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         ])
         

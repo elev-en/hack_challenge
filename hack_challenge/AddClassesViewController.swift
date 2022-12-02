@@ -55,8 +55,9 @@ class AddClassesViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = UIColor.darkGray.withAlphaComponent(0.75)
+        //searchController.searchBar.barTintColor = UIColor.darkGray.withAlphaComponent(0.75)
         searchController.searchBar.autocorrectionType = .no
+        searchController.searchBar.layer.cornerRadius = 5
         searchController.searchBar.autocapitalizationType = .none
         
         classCartButton.image = UIImage(systemName: "cart")
@@ -66,7 +67,7 @@ class AddClassesViewController: UIViewController {
         
         addClassesButton.setTitle("Add Classes", for: .normal)
         addClassesButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        addClassesButton.layer.borderWidth = 2
+        addClassesButton.layer.borderWidth = 0
         addClassesButton.layer.cornerRadius = 5
         addClassesButton.translatesAutoresizingMaskIntoConstraints = false
         addClassesButton.addTarget(self, action: #selector(addClasses), for: .touchUpInside)
