@@ -22,7 +22,7 @@ class ViewController: UIViewController{
         
         appNameLabel.text = "CUStudy"
         appNameLabel.textColor = .white
-        appNameLabel.font = UIFont(name: "Courier-Bold", size: 60)
+        appNameLabel.font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 60)
         appNameLabel.adjustsFontForContentSizeCategory = true
         appNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(appNameLabel)
@@ -41,23 +41,18 @@ class ViewController: UIViewController{
         
         createAccountButton.setTitle("Create Account", for: .normal)
         createAccountButton.setTitleColor(UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00), for: .normal)
-        createAccountButton.titleLabel?.font = UIFont(name: "Courier", size: 20)
+        createAccountButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 20)
         createAccountButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
-        createAccountButton.layer.borderColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        createAccountButton.layer.borderWidth = 2
-        createAccountButton.layer.cornerRadius = 5
+        createAccountButton.layer.cornerRadius = 22
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
         createAccountButton.addTarget(self, action: #selector(pushCreateAccountViewController), for: .touchUpInside)
         createAccountButton.addGestureRecognizer(hover)
         view.addSubview(createAccountButton)
         
         logInButton.setTitle("Log In", for: .normal)
-        logInButton.setTitleColor(UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00), for: .normal)
-        logInButton.titleLabel?.font = UIFont(name: "Courier", size: 20)
-        logInButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
-        logInButton.layer.borderColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        logInButton.layer.borderWidth = 2
-        logInButton.layer.cornerRadius = 5
+        logInButton.setTitleColor(UIColor(red: 0.51, green: 0.18, blue: 0.84, alpha: 1.00), for: .normal)
+        logInButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 20)
+        logInButton.layer.cornerRadius = 22
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         logInButton.addTarget(self, action: #selector(pushLogInViewController), for: .touchUpInside)
         view.addSubview(logInButton)
@@ -113,7 +108,7 @@ class ViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logInButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: view.bounds.height*0.05),
+            logInButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: view.bounds.height*0.01),
             logInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             logInButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
         ])

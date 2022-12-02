@@ -37,7 +37,8 @@ class MakeProfileViewController: UIViewController {
         
         makeProfileLabel.text = "Make your profile \nsparkle!"
         makeProfileLabel.numberOfLines = 2
-        makeProfileLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        makeProfileLabel.font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 37)
+        makeProfileLabel.textColor = UIColor(red: 0.32, green: 0.28, blue: 0.49, alpha: 1)
         makeProfileLabel.textAlignment = .left
         makeProfileLabel.adjustsFontForContentSizeCategory = true
         makeProfileLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -52,9 +53,10 @@ class MakeProfileViewController: UIViewController {
         view.addSubview(lightbulbAnimation)
         lightbulbAnimation.play()
         
-        makeProfileButton.setTitle("Make Profile", for: .normal)
-        makeProfileButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        makeProfileButton.layer.borderWidth = 2
+        makeProfileButton.setTitle("MAKE PROFILE", for: .normal)
+        makeProfileButton.layer.backgroundColor = UIColor(red: 0.43, green: 0.39, blue: 0.68, alpha: 1.00).cgColor
+        makeProfileButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 15)
+        makeProfileButton.layer.borderWidth = 0
         makeProfileButton.layer.cornerRadius = 5
         makeProfileButton.translatesAutoresizingMaskIntoConstraints = false
         makeProfileButton.addTarget(self, action: #selector(pushSetProfileInfoViewController), for: .touchUpInside)

@@ -43,7 +43,7 @@ class ClassesCartViewController: UIViewController{
         
         doneButton.setTitle("Done Adding Classes", for: .normal)
         doneButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        doneButton.layer.borderWidth = 2
+        doneButton.layer.borderWidth = 0
         doneButton.layer.cornerRadius = 5
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.addTarget(self, action: #selector(pushMakeProfileViewController), for: .touchUpInside)

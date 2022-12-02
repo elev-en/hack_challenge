@@ -37,8 +37,9 @@ class EnterClassesViewController: UIViewController {
         
         enterClassesLabel.text = "Tell the world \nabout your classes"
         enterClassesLabel.numberOfLines = 2
-        enterClassesLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        enterClassesLabel.font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 37)
         enterClassesLabel.textAlignment = .left
+        enterClassesLabel.textColor = UIColor(red: 0.32, green: 0.28, blue: 0.49, alpha: 1)
         enterClassesLabel.adjustsFontForContentSizeCategory = true
         enterClassesLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(enterClassesLabel)
@@ -52,9 +53,10 @@ class EnterClassesViewController: UIViewController {
         view.addSubview(bookAnimation)
         bookAnimation.play()
         
-        enterClassInfoButton.setTitle("Enter Class Info", for: .normal)
-        enterClassInfoButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        enterClassInfoButton.layer.borderWidth = 2
+        enterClassInfoButton.setTitle("ENTER CLASS INFO", for: .normal)
+        enterClassInfoButton.layer.backgroundColor = UIColor(red: 0.43, green: 0.39, blue: 0.68, alpha: 1.00).cgColor
+        enterClassInfoButton.layer.borderWidth = 0
+        enterClassInfoButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 15)
         enterClassInfoButton.layer.cornerRadius = 5
         enterClassInfoButton.translatesAutoresizingMaskIntoConstraints = false
         enterClassInfoButton.addTarget(self, action: #selector(pushAddClassesViewController), for: .touchUpInside)
