@@ -75,6 +75,11 @@ class ClassesCartViewController: UIViewController{
     }
     
     @objc func pushMakeProfileViewController(){
+        for course in classList {
+            NetworkManager.addCourseToUser(id: user_id, course_id: course.id){_ in
+                
+            }
+        }
         navigationController?.pushViewController(MakeProfileViewController(id: user_id), animated: true)
     }
 }

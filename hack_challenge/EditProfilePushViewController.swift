@@ -39,7 +39,7 @@ class EditProfilePushViewController: UIViewController {
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         profileImageView.contentMode = .scaleAspectFit
-        profileImageView.addTarget(self, action: #selector(pushSetProfilePictureViewController()), for: .touchUpInside)
+        profileImageView.addTarget(self, action: #selector(pushSetProfilePictureViewController), for: .touchUpInside)
         
         nameLabel.text = "Enter your name"
         nameLabel.numberOfLines = 2
@@ -178,7 +178,7 @@ class EditProfilePushViewController: UIViewController {
     }
     
     @objc func pushSetProfilePictureViewController(){
-        navigationController?.pushViewController(SetProfilePictureViewController, animated: true)
+        navigationController?.pushViewController(SetProfilePictureViewController(id: user_id), animated: true)
     }
     
     @objc func save(){

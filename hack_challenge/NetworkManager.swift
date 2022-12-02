@@ -147,7 +147,7 @@ class NetworkManager {
         }
     }
     
-    static func addCourseToUser(id: Int, course_id: String, completion: @escaping (Profile) -> Void) {
+    static func addCourseToUser(id: Int, course_id: Int, completion: @escaping (Profile) -> Void) {
         let endpoint = "\(host)users/\(id)/add/course/"
         let params: Parameters = [
             "course_id": course_id
