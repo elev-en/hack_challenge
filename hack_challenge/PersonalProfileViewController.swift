@@ -29,7 +29,7 @@ class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, send
     let enrolledInLabel = UILabel()
     let bioTextField = UITextField()
     var courses: [Course] = []
-    var friends: [Friend] = []
+    var friends: [Profile] = []
     var friends_profiles: [Profile] = []
     var posts: [Post] = []
     var lineView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 1.0))
