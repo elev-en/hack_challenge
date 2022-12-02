@@ -53,9 +53,11 @@ class ProfilePushViewController: UIViewController {
         self.delegate = delegate
         var followText = "follow  "
         followed = false
+        
         for friend in self.selfProfile.friends {
-            friends_username.append(friend.username)
-        }
+                friends_username.append(friend.username)
+            }
+        
         if(friends_username.contains(pushProfile.username)){
             followText = "unfollow  "
             followed = true

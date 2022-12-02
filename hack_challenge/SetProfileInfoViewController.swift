@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SetProfileInfoViewController: UIViewController, sendIdCreateDelegate {
+class SetProfileInfoViewController: UIViewController, sendIdCreateDelegate{
     
     
     
@@ -21,10 +21,11 @@ class SetProfileInfoViewController: UIViewController, sendIdCreateDelegate {
     let gradTextField = UITextField()
     let nextButton = UIButton()
     
+    //var delegate: sendIdCreateDelegate
+    
     func sendId(id: Int) {
         print("sendId called")
         user_Id = id
-        
     }
 
     override func viewDidLoad() {

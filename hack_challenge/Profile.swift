@@ -47,6 +47,10 @@ struct Profile: Codable, Equatable {
     
 }
 
+struct FriendsList: Codable{
+    var friends: [Friend]
+}
+
 struct Friend: Codable, Equatable {
     
     let id: Int
