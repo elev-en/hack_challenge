@@ -45,6 +45,11 @@ class PersonalProfileViewController: UIViewController{
     init(id: Int){
         self.user_id = id
         super.init(nibName: nil, bundle: nil)
+        
+        NetworkManager.getUser(id: user_id) {user in
+            self.profile = user
+            print("got user")
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -60,12 +65,12 @@ class PersonalProfileViewController: UIViewController{
                 self.friends_profiles.append(user)
             }
         }
-        self.profile = Profile(id: 0, username: "default", name: "default", bio: "default", grad_year: 0000, picture_id: "default", number: "0000000000", posts: [], comments: [], courses: [], posts_attending: [], friends: [], session_token: "none", session_expiration: "none", update_token: "none")
-        
-        NetworkManager.getUser(id: user_id) {user in
+        /*self.profile = Profile(id: 0, username: "default", name: "default", bio: "default", grad_year: 0000, picture_id: "default", number: "0000000000", posts: [], comments: [], courses: [], posts_attending: [], friends: [], session_token: "none", session_expiration: "none", update_token: "none")
+        */
+        /*NetworkManager.getUser(id: user_id) {user in
             self.profile = user
             print("got user")
-        }
+        }*/
         
         title = ""
         
@@ -101,7 +106,7 @@ class PersonalProfileViewController: UIViewController{
 
         
         // fix profile image to use profile image
-        //profileImageView.image = UIImage(named: profile!.profileImage)
+        profileImageView.image = UIImage(named: profile!.picture_id!)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
@@ -279,6 +284,7 @@ class PersonalProfileViewController: UIViewController{
     
     @objc func edit(){
         // push edit profile view controller
+        
     
     }
  
@@ -308,7 +314,7 @@ extension PersonalProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.cellForItem(at: indexPath) as? FriendsCollectionViewCell {
-                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends_profiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
+                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends_profiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate, id: self.user_id)
                 profileVC.title = ""
                 navigationController?.pushViewController(profileVC, animated: true)
             }

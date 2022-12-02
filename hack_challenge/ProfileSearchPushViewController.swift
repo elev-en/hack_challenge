@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileSearchPushViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate {
    
-   
+    let user_id: Int
    // searches all profiles
    // filtered table view
    //let profilesTableView = UITableView()
@@ -25,7 +25,15 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
    var profileCollectionView: UICollectionView!
    let spacing: CGFloat = 10
        
-   
+    init(id: Int){
+        self.user_id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
    override func viewDidLoad() {
        super.viewDidLoad()
        
@@ -193,7 +201,7 @@ extension ProfileSearchPushViewController: UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        if let cell = collectionView.cellForItem(at: indexPath) as? ProfileCollectionViewCell {
-           let profileVC = ProfilePushViewController(pushProfile: allProfiles[indexPath.row], selfProfile: allProfiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
+           let profileVC = ProfilePushViewController(pushProfile: allProfiles[indexPath.row], selfProfile: allProfiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate, id: self.user_id)
            profileVC.title = ""
            navigationController?.pushViewController(profileVC, animated: true)
        }

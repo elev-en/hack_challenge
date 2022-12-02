@@ -58,10 +58,15 @@ class PostPushViewController: UIViewController {
         
         NetworkManager.getUser(id: post.user_id){poster in
             let name = "\(poster.name ?? "")"
-            let index = name.firstIndex(of: " ")!
-            let firstName = String(name[..<index])
-            
-            self.profileName.text = firstName
+            if name != nil {
+                if let index = name.firstIndex(of: " ") {
+                    let firstName = String(name[..<index])
+                    
+                    self.profileName.text = firstName
+                } else {
+                    self.profileName.text = name
+                }
+            }
         }
         profileName.textAlignment = .left
         profileName.font = UIFont.systemFont(ofSize: 14, weight: .bold)

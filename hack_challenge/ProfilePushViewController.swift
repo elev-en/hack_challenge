@@ -12,6 +12,7 @@ import UIKit
  
 class ProfilePushViewController: UIViewController {
     
+    let user_id: Int
     let headerLabel = UILabel()
     var followButton = UIBarButtonItem()
     var profileImageView = UIImageView()
@@ -49,7 +50,8 @@ class ProfilePushViewController: UIViewController {
 //    var post: Post!
 //    weak var postDelegate: ChangePostInfoDelegate?
  
-    init(pushProfile: Profile, selfProfile: Profile, delegate: SetProfileInfoDelegate?) {
+    init(pushProfile: Profile, selfProfile: Profile, delegate: SetProfileInfoDelegate?, id: Int) {
+        self.user_id = id
         self.profile = pushProfile
         self.selfProfile = selfProfile
         self.delegate = delegate
@@ -105,7 +107,7 @@ class ProfilePushViewController: UIViewController {
 
         
         // fix profile image to use profile image
-        //profileImageView.image = UIImage(named: profile.profileImage)
+        profileImageView.image = UIImage(named: profile.picture_id!)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
@@ -147,8 +149,12 @@ class ProfilePushViewController: UIViewController {
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(coursesCollectionView)
         
-        //friends = friend_profile.friends
-        friends=[]
+        if(friend_profile.friends != nil){
+            friends = friend_profile.friends!
+        } else {
+            friends=[]
+        }
+        
         if(friends.count == 1){
             numFriendsLabel.text = "\(friends.count) friend"
         }
@@ -298,11 +304,13 @@ class ProfilePushViewController: UIViewController {
             if(index != -1){
                 selfProfile.friends!.remove(at: index)
             }
+            NetworkManager.unfriend(user_id: user_id, friend_id: profile.id) {_ in}
             followed = false
             followButton.title = "follow  "
         }
         else{
             selfProfile.friends!.append(profile)
+            NetworkManager.friend(user_id: user_id, friend_id: profile.id) {_ in}
             followed = true
             followButton.title = "unfollow  "
         }
@@ -334,7 +342,7 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.cellForItem(at: indexPath) as? FriendsCollectionViewCell {
-                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends_profiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
+                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends_profiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate, id: self.user_id)
                 profileVC.title = ""
                 navigationController?.pushViewController(profileVC, animated: true)
             }
@@ -419,7 +427,3 @@ extension ProfilePushViewController: UICollectionViewDataSource {
 protocol SetProfileInfoDelegate: AnyObject {
     func changeProfileInfo(profile: Profile)
 }
-
-//protocol ChangePostInfoDelegate: AnyObject {
-//    func changePostInfo(post: Post)
-//}

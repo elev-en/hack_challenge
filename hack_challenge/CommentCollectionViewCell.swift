@@ -91,10 +91,15 @@ class CommentCollectionViewCell: UICollectionViewCell{
     func configure(comment: Comment){
         NetworkManager.getUser(id: comment.user_id){commenter in
             var name = "\(commenter.name ?? "")"
-            let index = name.firstIndex(of: " ")!
-            let firstName = String(name[..<index])
-            
-            self.profileName.text = firstName
+            if name != nil {
+                if let index = name.firstIndex(of: " ") {
+                    let firstName = String(name[..<index])
+                    
+                    self.profileName.text = firstName
+                } else {
+                    self.profileName.text = name
+                }
+            }
         }
         
         //profileName.text = firstName
