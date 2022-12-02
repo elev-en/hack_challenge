@@ -10,11 +10,12 @@ import UIKit
 class PostsCollectionViewCell: UICollectionViewCell {
     
     let profileImageView = UIImageView()
-    let profileName = UILabel()
+    var profileName = UILabel()
     let titleLabel = UILabel()
     let courseTextField = UITextField()
     let timeStamp = UILabel()
     let location = UILabel()
+    let dateFormatter = DateFormatter()
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +41,7 @@ class PostsCollectionViewCell: UICollectionViewCell {
 //    }
     
     func setupViews(){
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         //TODO change profile image to actual profile image
         profileImageView.image = UIImage(named: "among us")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,15 +132,22 @@ class PostsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(post: Post){
-        var name = "\(post.poster.name ?? "")"
-        let index = name.firstIndex(of: " ")!
-        let firstName = String(name[..<index])
-        
-        profileName.text = firstName
+        NetworkManager.getUser(id: post.user_id){poster in
+            var name = "\(poster.name ?? "")"
+            if name != nil {
+                if let index = name.firstIndex(of: " ") {
+                    let firstName = String(name[..<index])
+                    
+                    self.profileName.text = firstName
+                } else {
+                    self.profileName.text = name
+                }
+            }
+        }
         timeStamp.text = "wed, dec 1st, 5:00 pm"
         // profileImageView.image = post.poster.profileImage
         titleLabel.text = post.header
-        courseTextField.text = post.course.name
+        //courseTextField.text = post.course.name
         location.text = post.location
     }
     

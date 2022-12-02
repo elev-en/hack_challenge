@@ -60,6 +60,12 @@ class PersonalProfileViewController: UIViewController{
                 self.friends_profiles.append(user)
             }
         }
+        self.profile = Profile(id: 0, username: "default", name: "default", bio: "default", grad_year: 0000, picture_id: "default", number: "0000000000", posts: [], comments: [], courses: [], posts_attending: [], friends: [], session_token: "none", session_expiration: "none", update_token: "none")
+        
+        NetworkManager.getUser(id: user_id) {user in
+            self.profile = user
+            print("got user")
+        }
         
         title = ""
         

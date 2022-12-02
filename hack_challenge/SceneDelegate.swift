@@ -22,10 +22,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         /*NetworkManager.userRenewSession() {profile in
             if profile != nil {
                 window.rootViewController = UINavigationController(rootViewController: TabBar(id: profile.id))
-            }*/
+            }
             window.rootViewController = UINavigationController(rootViewController: ViewController())
             
-        //}
+        }*/
+        if isUserLoggedIN() {
+            let id_str = loggedUserId()
+            let id_num = (id_str as NSString).integerValue
+            window.rootViewController = UINavigationController(rootViewController: TabBar(id: id_num))
+        } else {
+            window.rootViewController = UINavigationController(rootViewController: ViewController())
+        }
         
         window.makeKeyAndVisible()
         
@@ -58,7 +65,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
+    func isUserLoggedIN() -> Bool {
+        if (UserDefaults.standard.object(forKey: "userID") != nil) {
+            let str = UserDefaults.standard.object(forKey: "userID") as! String
+            return str.count > 0 ? true : false
+        }
+        return false
+    }
+    
+    func loggedUserId() -> String {
+        let str = UserDefaults.standard.object(forKey: "userID") as? String
+        return str == nil ? "" : str!
+    }
+    
+    
 
 }
 

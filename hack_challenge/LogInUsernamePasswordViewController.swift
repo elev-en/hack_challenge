@@ -9,17 +9,6 @@ import UIKit
 
 class LogInUsernamePasswordViewController: UIViewController {
 
-    weak var delegate: sendIdLoginDelegate?
-    var id: Int?
-    
-    init(inputDelegate: sendIdLoginDelegate){
-        self.delegate = inputDelegate
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     let background = UIImageView()
     let welcomeBackLabel = UILabel()
@@ -78,8 +67,9 @@ class LogInUsernamePasswordViewController: UIViewController {
     @objc func pushEnterClassesViewController() {
         NetworkManager.userLogin(username: usernameTextField.text!, password: passwordTextField.text!) { response in
             print(response)
-            self.delegate?.sendId(id: response.id)
-            self.navigationController?.pushViewController(TabBar(id: 1), animated: true)
+            self.navigationController?.pushViewController(TabBar(id: response.id), animated: true)
+            self.setCurrentLoginID("\(response.id)")
+            print()
             NetworkManager.userRenewSession(){_ in}
         }
             /*let alert = UIAlertController(title: "Error", message: "Incorrect username or password", preferredStyle: .alert)
@@ -131,6 +121,9 @@ class LogInUsernamePasswordViewController: UIViewController {
             signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             signInButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
         ])
+    }
+    func setCurrentLoginID(_ struserid: String) {
+        UserDefaults.standard.set(struserid, forKey:"userID")
     }
 }
 

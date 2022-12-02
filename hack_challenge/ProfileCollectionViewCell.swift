@@ -128,7 +128,7 @@ class ProfileCollectionViewCell: UICollectionViewCell{
         bioLabel.text = profile.bio
         // profileImageView.image = profile.profileImage
         courses = profile.courses!
-        profileImageView.image = UIImage(named: profile.picture_id)
+        profileImageView.image = UIImage(named: profile.picture_id!)
     }
     
     

@@ -9,29 +9,32 @@ import Foundation
 
 struct Post: Codable {
     let id: Int
-    let poster: Profile
     let header: String
     let body: String
-    let timeStamp: String
+    let timestamp: String
     let location: String
+    let meetupTime: String
+    let user_id: Int
     let comments: [Comment]
-    let course: Course
+    let post_attendees: [Profile]?
+    //let course: Course
     
     enum CodingKeys: String, CodingKey{
         case id
-        case poster
         case header
         case body
         case location
-        case timeStamp
+        case timestamp
+        case meetupTime
+        case user_id
         case comments
-        case course
+        case post_attendees
+        //case course
     }
 }
 
 struct PostResponse: Codable{
     var posts: [Post]
-    
     enum CodingKeys: String, CodingKey{
         case posts
     }

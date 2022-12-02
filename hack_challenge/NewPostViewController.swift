@@ -17,6 +17,7 @@ class NewPostViewController: UIViewController {
     let locationTextField = UITextField()
     let box = UILabel()
     let dateTitleTextField = UITextField()
+    let datePicker = UIDatePicker()
     let dateTextField = UITextField()
     let courseTitleTextField = UITextField()
     let courseTextField = UITextField()
@@ -132,6 +133,9 @@ class NewPostViewController: UIViewController {
         view.addSubview(dateTitleTextField)
         dateTitleTextField.translatesAutoresizingMaskIntoConstraints = false
         
+        datePicker.preferredDatePickerStyle = UIDatePickerStyle.compact
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(datePicker)
         
         let date = NSAttributedString(string: "ex: wed, dec 5, 1:00 pm", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         dateTextField.attributedPlaceholder = date
@@ -245,16 +249,26 @@ class NewPostViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            datePicker.topAnchor.constraint(equalTo: dateTitleTextField
+                .bottomAnchor, constant: 10),
+            datePicker.heightAnchor.constraint(equalToConstant: 50),
+            datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            //datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            ]
+        )
+        
+        /*
+        NSLayoutConstraint.activate([
             dateTextField.topAnchor.constraint(equalTo: dateTitleTextField
                 .bottomAnchor, constant: 10),
             dateTextField.heightAnchor.constraint(equalToConstant: 50),
             dateTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             dateTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             ]
-        )
+        )*/
         
         NSLayoutConstraint.activate([
-            courseTitleTextField.topAnchor.constraint(equalTo: dateTextField
+            courseTitleTextField.topAnchor.constraint(equalTo: datePicker
                 .bottomAnchor, constant: 20),
             courseTitleTextField.heightAnchor.constraint(equalToConstant: 20),
             courseTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),

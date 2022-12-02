@@ -14,9 +14,10 @@ struct Profile: Codable, Equatable {
     var name: String?
     var bio: String?
     var grad_year: Int?
-    var picture_id: String
+    var picture_id: String?
+    var number: String?
     var posts: [Post]?
-    var comments: [Comment]
+    var comments: [Comment]?
     var courses: [Course]?
     var posts_attending: [Post]?
     var friends: [Profile]?
@@ -32,6 +33,7 @@ struct Profile: Codable, Equatable {
         case bio
         case grad_year
         case picture_id
+        case number
         case posts
         case comments
         case courses

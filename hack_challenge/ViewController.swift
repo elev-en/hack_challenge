@@ -85,7 +85,7 @@ class ViewController: UIViewController{
         //navigationController?.pushViewController(LogInUsernamePasswordViewController(inputDelegate: PersonalProfileViewController()), animated: true)
         //navigationController?.pushViewController(ProfileSearchPushViewController(), animated: true)
         //navigationController?.pushViewController(PostSearchPushViewController(), animated: true)
-        navigationController?.pushViewController(ExploreViewController(id:1), animated: true)
+        navigationController?.pushViewController(LogInUsernamePasswordViewController(), animated: true)
 
 
     }

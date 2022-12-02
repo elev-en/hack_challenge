@@ -126,6 +126,21 @@ class NetworkManager {
                 if let userResponse = try? jsonDecoder.decode((Profile).self, from: data) {
                     completion(userResponse)
                 } else {
+                    let alert = UIAlertController(title: "Error", message: "Incorrect username or password", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                        switch action.style{
+                            case .default:
+                            print("default")
+                            
+                            case .cancel:
+                            print("cancel")
+                            
+                            case .destructive:
+                            print("destructive")
+                            
+                        }
+                    }))
+                    //self.present(alert, animated: true, completion: nil)
                     print("Failed to decode userLogin")
                 }
             case .failure(let error):

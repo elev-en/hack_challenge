@@ -14,7 +14,8 @@ class PostPushViewController: UIViewController {
     let titleLabel = UILabel()
     let postBody = CommentTextField()
     let courseTextField = UITextField()
-    let timeStamp = UILabel()
+    let meetupTime = UILabel()
+    let timeStamp = ""
     let location = UILabel()
     let commentsLabel = UILabel()
     var addComment = UIBarButtonItem()
@@ -55,11 +56,13 @@ class PostPushViewController: UIViewController {
         profileImageView.contentMode = .scaleAspectFit
         
         
-        var name = "\(post.poster.name ?? "")"
-        let index = name.firstIndex(of: " ")!
-        let firstName = String(name[..<index])
-        
-        profileName.text = firstName
+        NetworkManager.getUser(id: post.user_id){poster in
+            let name = "\(poster.name ?? "")"
+            let index = name.firstIndex(of: " ")!
+            let firstName = String(name[..<index])
+            
+            self.profileName.text = firstName
+        }
         profileName.textAlignment = .left
         profileName.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         profileName.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
@@ -79,7 +82,7 @@ class PostPushViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
  
-        courseTextField.text = post.course.name
+        //courseTextField.text = post.course.name
         courseTextField.textAlignment = .center
         courseTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         courseTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -94,12 +97,13 @@ class PostPushViewController: UIViewController {
         courseTextField.isUserInteractionEnabled = false
         view.addSubview(courseTextField)
  
-        timeStamp.text = "wed, dec 1st, 5:00 pm"
+
+        meetupTime.text = "wed, dec 1st, 5:00 pm"
         //timeStamp.text = post.timeStamp
-        timeStamp.textAlignment = .left
-        timeStamp.font = UIFont.systemFont(ofSize: 10, weight: .bold)
-        timeStamp.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(timeStamp)
+        meetupTime.textAlignment = .left
+        meetupTime.font = UIFont.systemFont(ofSize: 10, weight: .bold)
+        meetupTime.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(meetupTime)
         
         location.text = post.location
         location.textAlignment = .left
@@ -180,13 +184,13 @@ class PostPushViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            timeStamp.topAnchor.constraint(equalTo: courseTextField.bottomAnchor, constant: view.bounds.height*0.007),
-            timeStamp.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: view.bounds.width*0.04),
-            timeStamp.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
+            meetupTime.topAnchor.constraint(equalTo: courseTextField.bottomAnchor, constant: view.bounds.height*0.007),
+            meetupTime.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: view.bounds.width*0.04),
+            meetupTime.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
         ])
         
         NSLayoutConstraint.activate([
-            location.topAnchor.constraint(equalTo: timeStamp.bottomAnchor, constant: view.bounds.height*0.003),
+            location.topAnchor.constraint(equalTo: meetupTime.bottomAnchor, constant: view.bounds.height*0.003),
             location.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: view.bounds.width*0.04),
             location.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
  
@@ -211,11 +215,6 @@ class PostPushViewController: UIViewController {
             comments.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
             
         ])
-        
-        
-        
-        
-        
     
     }
     

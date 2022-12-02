@@ -123,24 +123,35 @@ class PostCollectionViewCell: UICollectionViewCell {
             location.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sidePadding)
  
         ])
-        
-        
     
     }
     
     func configure(post: Post){
-        var name = "\(post.poster.name ?? "")"
-        let index = name.firstIndex(of: " ")!
-        let firstName = String(name[..<index])
-        
-        //profileImageView.image = UIImage(named: post.poster.profileImage)
-        profileName.text = firstName
-        timeStamp.text = "wed, dec 1st, 5:00 pm"
+        NetworkManager.getUser(id: post.user_id){poster in
+            let name = "\(poster.name ?? "")"
+            let index = name.firstIndex(of: " ")!
+            let firstName = String(name[..<index])
+            
+            self.profileName.text = firstName
+        }
+        let now = NSDate()
+        timeStamp.text = getCurrentTimeStampWOMiliseconds(dateToConvert: now)
+        print(timeStamp.text)
         // profileImageView.image = post.poster.profileImage
         titleLabel.text = post.header
-        courseTextField.text = post.course.name
+        //courseTextField.text = post.course.name
         location.text = post.location
         
+    }
+    
+    func getCurrentTimeStampWOMiliseconds(dateToConvert: NSDate) -> String {
+        let objDateformat: DateFormatter = DateFormatter()
+        objDateformat.dateFormat = "yyyy-MM-dd"
+        let strTime: String = objDateformat.string(from: dateToConvert as Date)
+        let objUTCDate: NSDate = objDateformat.date(from: strTime)! as NSDate
+        let milliseconds: Int64 = Int64(objUTCDate.timeIntervalSince1970)
+        let strTimeStamp: String = "\(milliseconds)"
+        return strTimeStamp
     }
     
     

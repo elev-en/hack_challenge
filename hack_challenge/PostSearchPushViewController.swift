@@ -80,6 +80,11 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
     
     
     func createData(){
+        NetworkManager.getAllPosts { posts in
+                    self.allPosts = posts.posts
+                    self.postCollectionView.reloadData()
+                    self.filter = Array(repeating: false, count: self.allPosts.count)
+                }
 //        NetworkManager.getAllClasses { posts in
 //            self.allPosts = posts.posts
 //            self.postCollectionView.reloadData()
