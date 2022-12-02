@@ -18,7 +18,7 @@ class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, send
     // push controller to your calender
     // push controller to your posts
     
-    var user_id: Int = 0
+    var user_id: Int = 1
     let headerLabel = UILabel()
     var editButton = UIBarButtonItem()
     var profileImageView = UIImageView()
@@ -29,7 +29,8 @@ class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, send
     let enrolledInLabel = UILabel()
     let bioTextField = UITextField()
     var courses: [Course] = []
-    var friends: [Profile] = []
+    var friends: [Friend] = []
+    var friends_profiles: [Profile] = []
     var posts: [Post] = []
     var lineView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 1.0))
  
@@ -48,6 +49,12 @@ class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, send
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+        
+        for friend in friends {
+            NetworkManager.getUser(id: friend.id) {user in
+                self.friends_profiles.append(user)
+            }
+        }
         
         title = ""
         
@@ -290,7 +297,7 @@ extension PersonalProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.cellForItem(at: indexPath) as? FriendsCollectionViewCell {
-                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
+                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends_profiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
                 profileVC.title = ""
                 navigationController?.pushViewController(profileVC, animated: true)
             }
@@ -328,7 +335,7 @@ extension PersonalProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsReuseIdentifier, for: indexPath) as? FriendsCollectionViewCell{
-                cell.configure(profile: profile!.friends[indexPath.row])
+                cell.configure(friend: profile!.friends[indexPath.row])
                 cell.backgroundColor = UIColor.white
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20

@@ -22,7 +22,9 @@ class ProfilePushViewController: UIViewController {
     let enrolledInLabel = UILabel()
     let bioTextField = UITextField()
     var courses: [Course] = []
-    var friends: [Profile] = []
+    var friends: [Friend] = []
+    var friends_profiles: [Profile] = []
+    var friends_username: [String] = []
     var posts: [Post] = []
     var followed: Bool
     var lineView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 1.0))
@@ -37,20 +39,24 @@ class ProfilePushViewController: UIViewController {
     let CoursesReuseIdentifier: String = "CoursesReuseIdentifier"
     var coursesCollectionView: UICollectionView!
     
-    var profile: Profile!
+    var profile: Friend!
+    var friend_profile: Profile!
     var selfProfile: Profile!
     weak var delegate: SetProfileInfoDelegate?
     
 //    var post: Post!
 //    weak var postDelegate: ChangePostInfoDelegate?
  
-    init(pushProfile: Profile, selfProfile: Profile, delegate: SetProfileInfoDelegate?) {
+    init(pushProfile: Friend, selfProfile: Profile, delegate: SetProfileInfoDelegate?) {
         self.profile = pushProfile
         self.selfProfile = selfProfile
         self.delegate = delegate
         var followText = "follow  "
         followed = false
-        if(selfProfile.friends.contains(pushProfile)){
+        for friend in self.selfProfile.friends {
+            friends_username.append(friend.username)
+        }
+        if(friends_username.contains(pushProfile.username)){
             followText = "unfollow  "
             followed = true
         }
@@ -60,6 +66,17 @@ class ProfilePushViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkManager.getUser(id: profile.id) { [self]user in
+            self.friend_profile = user
+        }
+        
+        for friend in friends {
+            NetworkManager.getUser(id: friend.id) { [self]user in
+                self.friends_profiles.append(user)
+            }
+        }
+        
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         
  
@@ -109,7 +126,7 @@ class ProfilePushViewController: UIViewController {
         courseLayout.minimumInteritemSpacing = spacing
         courseLayout.scrollDirection = .horizontal
         
-        courses = profile.courses
+        courses = friend_profile.courses
         coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
         coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -119,11 +136,11 @@ class ProfilePushViewController: UIViewController {
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(coursesCollectionView)
         
-        if(profile.friends.count == 1){
-            numFriendsLabel.text = "\(profile.friends.count) friend"
+        if(friend_profile.friends.count == 1){
+            numFriendsLabel.text = "\(friend_profile.friends.count) friend"
         }
         else{
-            numFriendsLabel.text = "\(profile.friends.count) friends"
+            numFriendsLabel.text = "\(friend_profile.friends.count) friends"
         }
         numFriendsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         numFriendsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
@@ -136,7 +153,7 @@ class ProfilePushViewController: UIViewController {
         friendsLayout.minimumInteritemSpacing = spacing
         friendsLayout.scrollDirection = .horizontal
         
-        friends = profile.friends
+        friends = friend_profile.friends
         friendsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: friendsLayout)
         friendsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -304,7 +321,7 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.cellForItem(at: indexPath) as? FriendsCollectionViewCell {
-                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
+                let profileVC = ProfilePushViewController(pushProfile: friends[indexPath.row], selfProfile: friends_profiles[indexPath.row], delegate: cell as? SetProfileInfoDelegate)
                 profileVC.title = ""
                 navigationController?.pushViewController(profileVC, animated: true)
             }
@@ -342,7 +359,7 @@ extension ProfilePushViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsReuseIdentifier, for: indexPath) as? FriendsCollectionViewCell{
-                cell.configure(profile: profile.friends[indexPath.row])
+                cell.configure(friend: friend_profile.friends[indexPath.row])
                 cell.backgroundColor = UIColor.white
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20
@@ -354,7 +371,7 @@ extension ProfilePushViewController: UICollectionViewDataSource {
         }
         else if(collectionView == coursesCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoursesReuseIdentifier, for: indexPath) as? CoursesForProflePushCollectionViewCell{
-                cell.configure(courseVar: profile.courses[indexPath.row])
+                cell.configure(courseVar: friend_profile.courses[indexPath.row])
                 cell.backgroundColor = UIColor.white
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20

@@ -165,8 +165,9 @@ extension AddClassesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = classesTableView.cellForRow(at: indexPath) as! ClassesTableViewCell
         print("selected")
+        let range = ..<(cell.courseLabel.text?.firstIndex(of: ":"))!
         for i in 0 ... allClasses.count-1 {
-            if cell.courseLabel.text?.lowercased().substring(to: (cell.courseLabel.text?.index(of: ":"))!) == allClasses[i].code.lowercased() {
+            if (cell.courseLabel.text?.lowercased()[range])! == allClasses[i].code.lowercased() {
                 if(filter[i]){
                     filter[i] = false
                     cell.changeBackground(selected: filter[i])
