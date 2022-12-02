@@ -108,8 +108,9 @@ class CreateUsernamePasswordViewController: UIViewController {
                 print(user.id)
                 self.delegate?.sendId(id: user.id)
                 print("id sent")
+                self.navigationController?.pushViewController(EnterClassesViewController(id: user.id), animated: true)
             }
-            navigationController?.pushViewController(EnterClassesViewController(), animated: true)
+            
         } else {
             let alert = UIAlertController(title: "Error", message: "Passwords do not match. Please make sure the passwords entered are the same.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in

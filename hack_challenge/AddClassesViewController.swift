@@ -11,6 +11,7 @@ class AddClassesViewController: UIViewController {
     
     let background = UIImageView()
 
+    var user_id: Int
     let classesTableView = UITableView()
     let classesReuseIdentifier = "ClassesReuseIdentifier"
     let searchController = UISearchController(searchResultsController: nil)
@@ -25,10 +26,8 @@ class AddClassesViewController: UIViewController {
     var classList: [Course] = []
     var filter: [Bool] = []
     
-    weak var delegate: sendClassListDelegate?
-    
-    init(inputDelegate: sendClassListDelegate){
-        delegate = inputDelegate
+    init(id: Int){
+        self.user_id = id
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -140,8 +139,7 @@ class AddClassesViewController: UIViewController {
     }
     
     @objc func pushClassesCartView(){
-        self.delegate?.sendClassList(list: classList)
-        navigationController?.pushViewController(ClassesCartViewController(), animated: true)
+        navigationController?.pushViewController(ClassesCartViewController(id: user_id, classList: classList), animated: true)
     }
     
 }

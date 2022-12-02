@@ -7,20 +7,24 @@
 
 import UIKit
 
-class ClassesCartViewController: UIViewController, sendClassListDelegate{
-    func sendClassList(list: [Course]) {
-        //
-    }
+class ClassesCartViewController: UIViewController{
     
-
+    let user_id: Int
+    var classList: [Course]
     let background = UIImageView()
     let doneButton = UIButton()
     let classesTableView = UITableView()
     let classReuseIdentifier = "ClassReuseIdentifier"
     
-    weak var delegate: sendClassListDelegate?
+    init(id: Int, classList: [Course]){
+        self.user_id = id
+        self.classList = classList
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    var classList: [Course] = []
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +76,6 @@ class ClassesCartViewController: UIViewController, sendClassListDelegate{
     
     @objc func pushMakeProfileViewController(){
         navigationController?.pushViewController(MakeProfileViewController(), animated: true)
-
     }
 }
 
