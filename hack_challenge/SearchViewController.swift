@@ -12,10 +12,20 @@ class SearchViewController: UIViewController {
     // four buttons that controll what will be searched for: profiles, courses, posts
     // we should probably have three push controllers for each search feature
     let background = UIImageView()
+    let user_id: Int
     let searchByLabel = UILabel()
     let profileButton = UIButton()
     let postButton = UIButton()
     let courseButton = UIButton()
+    
+    init(id: Int){
+        self.user_id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

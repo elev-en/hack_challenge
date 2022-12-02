@@ -65,7 +65,7 @@ class EnterClassesViewController: UIViewController {
     }
     
     @objc func pushAddClassesViewController() {
-        navigationController?.pushViewController(AddClassesViewController(inputDelegate: ClassesCartViewController(id: user_id, classList: classList)), animated: true)
+        navigationController?.pushViewController(AddClassesViewController(id: user_id), animated: true)
     }
     
     func setupConstraints(){

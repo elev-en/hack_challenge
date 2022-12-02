@@ -10,6 +10,7 @@ import UIKit
 class SetProfilePictureViewController: UIViewController, ChangeImageDelegate {
 
     let background = UIImageView()
+    let user_id: Int
     let defaultImage = UIImage(named: "default")
     let changeProfilePicImageButton = UIButton()
     let changeProfilePicTextButton = UIButton()
@@ -19,6 +20,15 @@ class SetProfilePictureViewController: UIViewController, ChangeImageDelegate {
         print("changeImage called")
         changeProfilePicImageButton.setImage(outputImage, for: UIControl.State.normal)
         
+    }
+    
+    init(id: Int){
+        self.user_id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {

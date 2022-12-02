@@ -11,9 +11,19 @@ import Lottie
 class MakeProfileViewController: UIViewController {
 
     let background = UIImageView()
+    let user_id: Int
     var lightbulbAnimation = LottieAnimationView()
     let makeProfileLabel = UILabel()
     let makeProfileButton = UIButton()
+    
+    init(id: Int){
+        self.user_id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

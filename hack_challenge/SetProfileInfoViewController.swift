@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SetProfileInfoViewController: UIViewController, sendIdCreateDelegate{
+class SetProfileInfoViewController: UIViewController{
     
     
     
-    var user_Id: Int = 25
+    var user_id: Int
     let background = UIImageView()
     let nameLabel = UILabel()
     let nameTextField = UITextField()
@@ -21,13 +21,15 @@ class SetProfileInfoViewController: UIViewController, sendIdCreateDelegate{
     let gradTextField = UITextField()
     let nextButton = UIButton()
     
-    //var delegate: sendIdCreateDelegate
-    
-    func sendId(id: Int) {
-        print("sendId called")
-        user_Id = id
+    init(id: Int){
+        self.user_id = id
+        super.init(nibName: nil, bundle: nil)
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -174,7 +176,7 @@ class SetProfileInfoViewController: UIViewController, sendIdCreateDelegate{
         let gradYear = Int(gradTextField.text ?? "") ?? 0
         let digits = getDigits(num: gradYear)
         if bioTextField.text != "" && digits == 4 {
-            NetworkManager.updateUser(id: user_Id, name: nameTextField.text!, bio: bioTextField.text!, gradYear: gradYear) {response in
+            NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, gradYear: gradYear) {response in
                 print(response)
             }
             navigationController?.pushViewController(SetProfilePictureViewController(), animated: true)

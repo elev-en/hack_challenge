@@ -7,18 +7,14 @@
 
 import UIKit
 
-class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, sendIdCreateDelegate {
-    
-    func sendId(id: Int) {
-        user_id = id
-    }
+class PersonalProfileViewController: UIViewController{
     
 
     // view of your own profile
     // push controller to your calender
     // push controller to your posts
     
-    var user_id: Int = 1
+    let user_id: Int
     let headerLabel = UILabel()
     var editButton = UIBarButtonItem()
     var profileImageView = UIImageView()
@@ -45,6 +41,11 @@ class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, send
     var coursesCollectionView: UICollectionView!
     
     var profile: Profile?
+    
+    init(id: Int){
+        self.user_id = id
+        super.init(nibName: nil, bundle: nil)
+    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
