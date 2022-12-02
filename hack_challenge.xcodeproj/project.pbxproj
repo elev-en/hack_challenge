@@ -23,6 +23,7 @@
 		5FB0D709292AEB3E00EC8018 /* CoursesSearchPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D708292AEB3E00EC8018 /* CoursesSearchPushViewController.swift */; };
 		5FB0D70B292AECC500EC8018 /* PostPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */; };
 		5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */; };
+		5FD7D9F729398D7600917984 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7D9F629398D7600917984 /* NewPostViewController.swift */; };
 		604534ED2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */; };
 		6052C97529393112006C7F61 /* CommentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6052C97429393112006C7F61 /* CommentTextField.swift */; };
 		6052C977293947AF006C7F61 /* AddCommentPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6052C976293947AF006C7F61 /* AddCommentPushViewController.swift */; };
@@ -74,6 +75,7 @@
 		5FB0D708292AEB3E00EC8018 /* CoursesSearchPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesSearchPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D70A292AECC500EC8018 /* PostPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPushViewController.swift; sourceTree = "<group>"; };
 		5FB0D70C292AED2000EC8018 /* ProfilePushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePushViewController.swift; sourceTree = "<group>"; };
+		5FD7D9F629398D7600917984 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		604534EC2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesForProflePushCollectionViewCell.swift; sourceTree = "<group>"; };
 		6052C97429393112006C7F61 /* CommentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTextField.swift; sourceTree = "<group>"; };
 		6052C976293947AF006C7F61 /* AddCommentPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentPushViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				EC65B08A292F0A7F00D04BA0 /* NetworkManager.swift */,
 				EC65B08E293084D800D04BA0 /* Class.swift */,
 				5FB0D6F8292AE0EE00EC8018 /* ExploreViewController.swift */,
+				5FD7D9F629398D7600917984 /* NewPostViewController.swift */,
 				5FB0D6FA292AE11F00EC8018 /* SearchViewController.swift */,
 				5FB0D704292AEA8D00EC8018 /* PostSearchPushViewController.swift */,
 				5FB0D706292AEAEC00EC8018 /* ProfileSearchPushViewController.swift */,
@@ -353,6 +356,7 @@
 				5F7D9978293557C100427B81 /* PostCollectionViewCell.swift in Sources */,
 				EC65B089292F017C00D04BA0 /* EnterClassesViewController.swift in Sources */,
 				EC65B07C292C598600D04BA0 /* CreateUsernamePasswordViewController.swift in Sources */,
+				5FD7D9F729398D7600917984 /* NewPostViewController.swift in Sources */,
 				EC0A554F2937EDF900E638B2 /* UserResponse.swift in Sources */,
 				5FB0D6F72927CC6200EC8018 /* Comment.swift in Sources */,
 				EC5213622932CF670029A754 /* MakeProfileViewController.swift in Sources */,
