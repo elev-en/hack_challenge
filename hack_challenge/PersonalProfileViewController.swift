@@ -310,7 +310,7 @@ extension PersonalProfileViewController: UICollectionViewDelegateFlowLayout {
         }
         else{
             if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
-                let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
+                let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, id: user_id)
                 postVC.title = ""
                 navigationController?.pushViewController(postVC, animated: true)
             }

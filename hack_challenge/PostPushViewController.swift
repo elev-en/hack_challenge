@@ -9,6 +9,7 @@ import UIKit
 
 class PostPushViewController: UIViewController {
     
+    let user_id: Int
     let profileImageView = UIImageView()
     let profileName = UILabel()
     let titleLabel = UILabel()
@@ -31,9 +32,10 @@ class PostPushViewController: UIViewController {
     var post: Post!
     weak var delegate: ChangePostInfoDelegate?
  
-    init(post: Post, delegate: ChangePostInfoDelegate?) {
+    init(post: Post, delegate: ChangePostInfoDelegate?, id: Int) {
         self.post = post
         self.delegate = delegate
+        self.user_id = id
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -224,7 +226,7 @@ class PostPushViewController: UIViewController {
     }
     
     @objc func pushAddComment(){
-        let commentVC = AddCommentPushViewController()
+        let commentVC = AddCommentPushViewController(user_id: user_id, post_id: post.id)
         commentVC.title = ""
         navigationController?.pushViewController(commentVC, animated: true)
         

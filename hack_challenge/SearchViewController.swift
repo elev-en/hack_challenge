@@ -81,7 +81,7 @@ class SearchViewController: UIViewController {
     }
     
     @objc func pushPostSearchViewController(){
-        navigationController?.pushViewController(PostSearchPushViewController(), animated: true)
+        navigationController?.pushViewController(PostSearchPushViewController(id: user_id), animated: true)
     }
     
     @objc func pushCoursesSearchViewController(){

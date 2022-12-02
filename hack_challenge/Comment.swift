@@ -19,3 +19,7 @@ struct Comment: Codable {
         case post_id
     }
 }
+
+struct CommentResponse: Codable {
+    let comments: [Comment]
+}

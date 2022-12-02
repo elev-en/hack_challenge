@@ -9,10 +9,17 @@ import UIKit
 
 class PostSearchPushViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate {
     
-    
+    let user_id: Int
     // searches all posts
     // filtered table view
-
+    init(id: Int){
+        self.user_id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let postsReuseIdentifier: String = "PostsReuseIdentifier"
     let searchController = UISearchController(searchResultsController: nil)
@@ -163,7 +170,7 @@ extension PostSearchPushViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
-            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate)
+            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, id: user_id)
             postVC.title = ""
             navigationController?.pushViewController(postVC, animated: true)
         }
