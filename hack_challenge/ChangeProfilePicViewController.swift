@@ -11,10 +11,12 @@ class ChangeProfilePicViewController: UIViewController {
 
     weak var delegate: ChangeImageDelegate?
     weak var image: UIImage?
+    var imageName: String
     
-    init(inputDelegate: ChangeImageDelegate, inputImage: UIImage){
+    init(inputDelegate: ChangeImageDelegate, profImage: ProfileImage){
         delegate = inputDelegate
-        image = inputImage
+        image = profImage.image
+        imageName = profImage.imageName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,21 +27,21 @@ class ChangeProfilePicViewController: UIViewController {
     let currentProfile = UIImageView()
     let background = UIImageView()
     var profilepicsCollectionView: UICollectionView!
-    var profilePics: Array<UIImage?> = []
+    var profilePics: [ProfileImage] = []
     let profilePicReuseIdentifier = "ProfilePicReuseIdentifier"
     var picSpacing: CGFloat = 10
     let saveButton = UIButton()
     
-    let fairy = UIImage(named: "fairy")
-    let angel = UIImage(named: "angel")
-    let aesthetic = UIImage(named: "aesthetic")
-    let buckethat = UIImage(named: "bucket hat")
-    let butterfly = UIImage(named: "butterfly")
-    let sprout = UIImage(named: "sprout")
-    let devil = UIImage(named: "devil")
-    let amongus = UIImage(named: "among us")
-    let smiley = UIImage(named: "smiley face")
-    let frog = UIImage(named: "frog")
+    let fairy = ProfileImage(imageName: "fairy", image: UIImage(named: "fairy")!)
+    let angel = ProfileImage(imageName: "angel", image: UIImage(named: "angel")!)
+    let aesthetic = ProfileImage(imageName: "aesthetic", image: UIImage(named: "aesthetic")!)
+    let buckethat = ProfileImage(imageName: "bucket hat", image: UIImage(named: "bucket hat")!)
+    let butterfly = ProfileImage(imageName: "butterfly", image: UIImage(named: "butterfly")!)
+    let sprout = ProfileImage(imageName: "sprout", image: UIImage(named: "sprout")!)
+    let devil = ProfileImage(imageName: "devil", image: UIImage(named: "devil")!)
+    let amongus = ProfileImage(imageName: "among us", image: UIImage(named: "among us")!)
+    let smiley = ProfileImage(imageName: "smiley face", image: UIImage(named: "smiley face")!)
+    let frog = ProfileImage(imageName: "frog", image: UIImage(named: "frog")!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +86,8 @@ class ChangeProfilePicViewController: UIViewController {
     }
     
     @objc func changeFieldsAndDismiss(){
-        delegate?.changeImage(outputImage: currentProfile.image!)
+        
+        delegate?.changeImage(outputImage: currentProfile.image!, imageName: imageName)
         dismiss(animated:true, completion: nil)
     }
     
@@ -113,7 +116,7 @@ class ChangeProfilePicViewController: UIViewController {
 }
 
 protocol ChangeImageDelegate: UIViewController{
-    func changeImage(outputImage: UIImage)
+    func changeImage(outputImage: UIImage, imageName: String)
 }
 
 extension ChangeProfilePicViewController: UICollectionViewDataSource {
@@ -127,7 +130,7 @@ extension ChangeProfilePicViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             if let cell = profilepicsCollectionView.dequeueReusableCell(withReuseIdentifier: profilePicReuseIdentifier, for: indexPath) as? ProfilePicCollectionViewCell {
-                cell.configure(profilePic: profilePics[indexPath.row]!)
+                cell.configure(profilePic: profilePics[indexPath.row])
                 return cell
             }
             else {
@@ -148,6 +151,10 @@ extension ChangeProfilePicViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let cell = collectionView.cellForItem(at: indexPath) as! ProfilePicCollectionViewCell
         currentProfile.image = cell.profileImageView.image
-        
+        for pic in profilePics {
+            if pic.image == currentProfile.image {
+                imageName = pic.imageName
+            }
+        }
     }
 }

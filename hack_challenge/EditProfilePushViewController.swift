@@ -17,6 +17,8 @@ class EditProfilePushViewController: UIViewController {
     let bioTextField = UITextField()
     let gradLabel = UILabel()
     let gradTextField = UITextField()
+    let numberLabel = UILabel()
+    let numberTextField = UITextField()
     let nextButton = UIButton()
     
     init(id: Int){
@@ -95,8 +97,27 @@ class EditProfilePushViewController: UIViewController {
         gradTextField.autocapitalizationType = .none
         gradTextField.autocorrectionType = .no
         gradTextField.autocapitalizationType = .none
-        
         view.addSubview(gradTextField)
+        
+        numberLabel.text = "Please enter your phone \nnumber"
+        numberLabel.numberOfLines = 2
+        numberLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        numberLabel.textAlignment = .left
+        numberLabel.adjustsFontForContentSizeCategory = true
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(numberLabel)
+        
+        numberTextField.placeholder = "##########"
+        numberTextField.font = .systemFont(ofSize: 20)
+        numberTextField.textAlignment = .center
+        numberTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        numberTextField.layer.cornerRadius = 5
+        numberTextField.translatesAutoresizingMaskIntoConstraints = false
+        numberTextField.autocorrectionType = .no
+        numberTextField.autocapitalizationType = .none
+        numberTextField.autocorrectionType = .no
+        numberTextField.autocapitalizationType = .none
+        view.addSubview(numberTextField)
         
         nextButton.setTitle("NEXT", for: .normal)
         nextButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
@@ -159,6 +180,19 @@ class EditProfilePushViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            numberLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            numberLabel.topAnchor.constraint(equalTo: gradTextField.bottomAnchor, constant: view.bounds.height*0.1),
+            numberLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
+        ])
+        
+        NSLayoutConstraint.activate([
+            numberTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            numberTextField.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: view.bounds.height*0.03),
+            numberTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            numberTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
+        ])
+        
+        NSLayoutConstraint.activate([
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             nextButton.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -185,7 +219,7 @@ class EditProfilePushViewController: UIViewController {
         let gradYear = Int(gradTextField.text ?? "") ?? 0
         let digits = getDigits(num: gradYear)
         if bioTextField.text != "" && digits == 4 {
-            NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, gradYear: gradYear) {response in
+            NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, grad_year: gradYear, number: numberTextField.text!) {response in
                 print(response)
             }
             self.dismiss(animated: true)

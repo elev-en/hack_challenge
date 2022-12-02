@@ -96,12 +96,12 @@ class ExploreViewController: UIViewController {
     
     
     func createData(){
-//        NetworkManager.getAllposts { posts in
-//            self.allposts = posts
-//            self.postsTableView.reloadData()
-//            self.filter = Array(repeating: false, count: self.allposts.count)
-//        }
-        let course1 = Course(id: 12, code: "CS 1110", name: "CS 1110", users: [])
+        NetworkManager.getAllPosts { posts in
+            self.allPosts = posts.posts
+            self.postCollectionView.reloadData()
+            self.filter = Array(repeating: false, count: self.allPosts.count)
+        }
+        /*let course1 = Course(id: 12, code: "CS 1110", name: "CS 1110", users: [])
     
         
         let profile1 = Profile(id: 2, username: "Sam Smith", posts: [], comments: [], courses: [], friends: [], session_token: "idk", session_expiration: "idk", update_token: "idk")
@@ -112,15 +112,15 @@ class ExploreViewController: UIViewController {
         
         
         
-        let posts = [post1, post2, post3]
+        let posts = [post1, post2, post3]*/
         
-        self.allPosts = posts
-        self.postCollectionView.reloadData()
-        self.filter = Array(repeating: false, count: self.allPosts.count)
+        //self.allPosts = posts
+        //self.postCollectionView.reloadData()
+        //self.filter = Array(repeating: false, count: self.allPosts.count)
 
     }
     @objc func presentNewPostViewController() {
-        navigationController?.present(NewPostViewController(), animated: true)
+        navigationController?.present(NewPostViewController(id: user_id), animated: true)
     }
     
 }

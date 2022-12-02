@@ -125,9 +125,9 @@ class ProfileTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     func configure(profile: Profile){
         profileName.text = "\(profile.name)"
         bioLabel.text = profile.bio
-        // profileImageView.image = profile.profileImage
-        // gradYearLabel.text = "\(profile.gradYear)"
-        courses = profile.courses
+        profileImageView.image = UIImage(named: profile.picture_id)
+        gradYearLabel.text = "\(profile.grad_year)"
+        courses = profile.courses!
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

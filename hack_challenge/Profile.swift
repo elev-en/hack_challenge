@@ -14,13 +14,15 @@ struct Profile: Codable, Equatable {
     var name: String?
     var bio: String?
     var grad_year: Int?
-    var posts: [Post]
+    var picture_id: String
+    var posts: [Post]?
     var comments: [Comment]
-    var courses: [Course]
-    var friends: [Profile]
-    var session_token: String
-    var session_expiration: String
-    var update_token: String
+    var courses: [Course]?
+    var posts_attending: [Post]?
+    var friends: [Profile]?
+    var session_token: String?
+    var session_expiration: String?
+    var update_token: String?
     //var profileImage: String
 
     enum CodingKeys: String, CodingKey{
@@ -29,9 +31,11 @@ struct Profile: Codable, Equatable {
         case name
         case bio
         case grad_year
+        case picture_id
         case posts
         case comments
         case courses
+        case posts_attending
         case friends
         case session_token
         case session_expiration

@@ -54,6 +54,7 @@
 		EC65B08F293084D800D04BA0 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B08E293084D800D04BA0 /* Class.swift */; };
 		EC65B09129310BF200D04BA0 /* ClassesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B09029310BF200D04BA0 /* ClassesTableViewCell.swift */; };
 		ECA3F3DE2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA3F3DD2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift */; };
+		ECF1E1C12939DD9300D5CBBF /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1E1C02939DD9300D5CBBF /* ProfileImage.swift */; };
 		ECFFEF452936F9D100CAF926 /* ProfilePicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFEF442936F9D100CAF926 /* ProfilePicCollectionViewCell.swift */; };
 		ECFFEF472936FA5F00CAF926 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFEF462936FA5F00CAF926 /* TabBar.swift */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,7 @@
 		EC65B08E293084D800D04BA0 /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		EC65B09029310BF200D04BA0 /* ClassesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesTableViewCell.swift; sourceTree = "<group>"; };
 		ECA3F3DD2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfilePicViewController.swift; sourceTree = "<group>"; };
+		ECF1E1C02939DD9300D5CBBF /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		ECFFEF442936F9D100CAF926 /* ProfilePicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicCollectionViewCell.swift; sourceTree = "<group>"; };
 		ECFFEF462936FA5F00CAF926 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +175,7 @@
 				EC336E9D29248F5B00520624 /* SceneDelegate.swift */,
 				EC336E9F29248F5B00520624 /* ViewController.swift */,
 				EC0A55522937F63300E638B2 /* Launch Screen.storyboard */,
+				ECF1E1C02939DD9300D5CBBF /* ProfileImage.swift */,
 				EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */,
 				EC65B088292F017C00D04BA0 /* EnterClassesViewController.swift */,
 				EC5213612932CF670029A754 /* MakeProfileViewController.swift */,
@@ -383,6 +386,7 @@
 				604534ED2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift in Sources */,
 				5FB0D6FD292AE69400EC8018 /* PersonalProfileViewController.swift in Sources */,
 				60D3370129357842009C6E73 /* PostsCollectionViewCell.swift in Sources */,
+				ECF1E1C12939DD9300D5CBBF /* ProfileImage.swift in Sources */,
 				5FB0D70B292AECC500EC8018 /* PostPushViewController.swift in Sources */,
 				5FB0D707292AEAEC00EC8018 /* ProfileSearchPushViewController.swift in Sources */,
 				5FB0D6F52927CB3700EC8018 /* Post.swift in Sources */,

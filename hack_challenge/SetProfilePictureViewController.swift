@@ -11,19 +11,21 @@ class SetProfilePictureViewController: UIViewController, ChangeImageDelegate {
 
     let background = UIImageView()
     let user_id: Int
+    var imageName: String
     let defaultImage = UIImage(named: "default")
+    let currentProfileImage: ProfileImage = ProfileImage(imageName: "default", image: UIImage(named: "default")!)
     let changeProfilePicImageButton = UIButton()
     let changeProfilePicTextButton = UIButton()
     let finishChangingPicButton = UIButton()
     
-    func changeImage(outputImage: UIImage) {
-        print("changeImage called")
+    func changeImage(outputImage: UIImage, imageName: String) {
+        self.imageName = imageName
         changeProfilePicImageButton.setImage(outputImage, for: UIControl.State.normal)
-        
     }
     
     init(id: Int){
         self.user_id = id
+        self.imageName = "default"
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -89,11 +91,13 @@ class SetProfilePictureViewController: UIViewController, ChangeImageDelegate {
     }
     
     @objc func pushPersonalProfileViewController(){
+        print(imageName)
+        NetworkManager.updatePicture(id: user_id, picture_id: imageName) {_ in}
         navigationController?.pushViewController(TabBar(id: user_id), animated: true)
     }
     
     @objc func presentChangeProfilePicViewController(){
-        present(ChangeProfilePicViewController(inputDelegate: self, inputImage: (changeProfilePicImageButton.currentImage ??  UIImage(named: "default"))!), animated: true, completion: nil)
+        present(ChangeProfilePicViewController(inputDelegate: self, profImage: currentProfileImage), animated: true)
     }
 
 }

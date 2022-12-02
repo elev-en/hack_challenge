@@ -44,6 +44,8 @@ class ProfilePushViewController: UIViewController {
     var selfProfile: Profile!
     weak var delegate: SetProfileInfoDelegate?
     
+    
+    
 //    var post: Post!
 //    weak var postDelegate: ChangePostInfoDelegate?
  
@@ -54,7 +56,7 @@ class ProfilePushViewController: UIViewController {
         var followText = "follow  "
         followed = false
         
-        for friend in self.selfProfile.friends {
+        for friend in self.selfProfile.friends! {
                 friends_username.append(friend.username)
             }
         
@@ -68,6 +70,11 @@ class ProfilePushViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let default_friend = Profile(id: 0, username: "default", picture_id: "default", comments: [])
+        var default_friends_profiles: [Profile] = []
+        friend_profile = default_friend
+        //friend_profiles = default_friends_profiles
         
         NetworkManager.getUser(id: profile.id) { [self]user in
             self.friend_profile = user
@@ -168,7 +175,7 @@ class ProfilePushViewController: UIViewController {
         friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(friendsCollectionView)
         
-        numPostsLabel.text = "\(profile.posts.count) posts"
+        numPostsLabel.text = "\(profile.posts!.count) posts"
         numPostsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         numPostsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         view.addSubview(numPostsLabel)
@@ -287,15 +294,15 @@ class ProfilePushViewController: UIViewController {
     
     @objc func follow(){
         if(followed){
-            let index = selfProfile.friends.firstIndex(of: profile) ?? -1
+            let index = selfProfile.friends!.firstIndex(of: profile) ?? -1
             if(index != -1){
-                selfProfile.friends.remove(at: index)
+                selfProfile.friends!.remove(at: index)
             }
             followed = false
             followButton.title = "follow  "
         }
         else{
-            selfProfile.friends.append(profile)
+            selfProfile.friends!.append(profile)
             followed = true
             followButton.title = "unfollow  "
         }
@@ -365,7 +372,7 @@ extension ProfilePushViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsReuseIdentifier, for: indexPath) as? FriendsCollectionViewCell{
-                cell.configure(friend: friend_profile.friends[indexPath.row])
+                cell.configure(friend: friend_profile.friends![indexPath.row])
                 cell.backgroundColor = UIColor.white
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20
@@ -377,7 +384,7 @@ extension ProfilePushViewController: UICollectionViewDataSource {
         }
         else if(collectionView == coursesCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoursesReuseIdentifier, for: indexPath) as? CoursesForProflePushCollectionViewCell{
-                cell.configure(courseVar: friend_profile.courses[indexPath.row])
+                cell.configure(courseVar: friend_profile.courses![indexPath.row])
                 cell.backgroundColor = UIColor.white
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20
@@ -389,7 +396,7 @@ extension ProfilePushViewController: UICollectionViewDataSource {
         }
         else if(collectionView == postsCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostsReuseIdentifier, for: indexPath) as? PostsCollectionViewCell{
-                cell.configure(post: profile.posts[indexPath.row])
+                cell.configure(post: profile.posts![indexPath.row])
                 cell.backgroundColor = UIColor.white
                 //cell.layer.borderColor = UIColor.black.cgColor
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor

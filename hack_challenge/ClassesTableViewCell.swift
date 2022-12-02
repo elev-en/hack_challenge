@@ -55,7 +55,7 @@ class ClassesTableViewCell: UITableViewCell {
     }
 
     func configure(course: Course){
-        courseLabel.text = course.code + ": " + course.name
+        courseLabel.text = course.name + ": " + course.code
     }
     
     func changeBackground(selected: Bool){

@@ -88,10 +88,11 @@ class ProfileCollectionViewCell: UICollectionViewCell{
         
  
         NSLayoutConstraint.activate([
-            profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
+            //profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalPadding),
             profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sidePadding),
             profileImageView.heightAnchor.constraint(equalToConstant: profileImageDim),
             profileImageView.widthAnchor.constraint(equalToConstant: profileImageDim),
+            profileImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -127,7 +128,8 @@ class ProfileCollectionViewCell: UICollectionViewCell{
         //profileImageView.image = UIImage(named: profile.profileImage)
         bioLabel.text = profile.bio
         // profileImageView.image = profile.profileImage
-        courses = profile.courses
+        courses = profile.courses!
+        profileImageView.image = UIImage(named: profile.picture_id)
     }
     
     

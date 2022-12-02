@@ -19,6 +19,8 @@ class SetProfileInfoViewController: UIViewController{
     let bioTextField = UITextField()
     let gradLabel = UILabel()
     let gradTextField = UITextField()
+    let numberLabel = UILabel()
+    let numberTextField = UITextField()
     let nextButton = UIButton()
     
     init(id: Int){
@@ -92,8 +94,27 @@ class SetProfileInfoViewController: UIViewController{
         gradTextField.autocapitalizationType = .none
         gradTextField.autocorrectionType = .no
         gradTextField.autocapitalizationType = .none
-        
         view.addSubview(gradTextField)
+        
+        numberLabel.text = "Please enter your phone \nnumber"
+        numberLabel.numberOfLines = 2
+        numberLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        numberLabel.textAlignment = .left
+        numberLabel.adjustsFontForContentSizeCategory = true
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(numberLabel)
+        
+        numberTextField.placeholder = "##########"
+        numberTextField.font = .systemFont(ofSize: 20)
+        numberTextField.textAlignment = .center
+        numberTextField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        numberTextField.layer.cornerRadius = 5
+        numberTextField.translatesAutoresizingMaskIntoConstraints = false
+        numberTextField.autocorrectionType = .no
+        numberTextField.autocapitalizationType = .none
+        numberTextField.autocorrectionType = .no
+        numberTextField.autocapitalizationType = .none
+        view.addSubview(numberTextField)
         
         nextButton.setTitle("NEXT", for: .normal)
         nextButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
@@ -116,13 +137,13 @@ class SetProfileInfoViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.1),
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height*0.03),
             nameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         ])
         
         NSLayoutConstraint.activate([
             nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: view.bounds.height*0.05),
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: view.bounds.height*0.03),
             nameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
             nameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
         ])
@@ -135,7 +156,7 @@ class SetProfileInfoViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             bioTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bioTextField.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: view.bounds.height*0.05),
+            bioTextField.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: view.bounds.height*0.03),
             bioTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
             bioTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
         ])
@@ -148,9 +169,22 @@ class SetProfileInfoViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             gradTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            gradTextField.topAnchor.constraint(equalTo: gradLabel.bottomAnchor, constant: view.bounds.height*0.05),
+            gradTextField.topAnchor.constraint(equalTo: gradLabel.bottomAnchor, constant: view.bounds.height*0.03),
             gradTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
             gradTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
+        ])
+        
+        NSLayoutConstraint.activate([
+            numberLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            numberLabel.topAnchor.constraint(equalTo: gradTextField.bottomAnchor, constant: view.bounds.height*0.1),
+            numberLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
+        ])
+        
+        NSLayoutConstraint.activate([
+            numberTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            numberTextField.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: view.bounds.height*0.03),
+            numberTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            numberTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
         ])
         
         NSLayoutConstraint.activate([
@@ -175,45 +209,13 @@ class SetProfileInfoViewController: UIViewController{
     @objc func pushSetProfilePicViewController(){
         let gradYear = Int(gradTextField.text ?? "") ?? 0
         let digits = getDigits(num: gradYear)
-        if bioTextField.text != "" && digits == 4 {
-            NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, gradYear: gradYear) {response in
+        if bioTextField.text != "" && digits == 4 && numberTextField.text != "" {
+            NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, grad_year: gradYear, number: numberTextField.text!) {response in
                 print(response)
             }
             navigationController?.pushViewController(SetProfilePictureViewController(id: user_id), animated: true)
-        } else if bioTextField.text == "" && digits != 4 {
-            let alert = UIAlertController(title: "Error", message: "Please write a short bio and enter your year of graduation in the right format.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                switch action.style{
-                    case .default:
-                    print("default")
-                    
-                    case .cancel:
-                    print("cancel")
-                    
-                    case .destructive:
-                    print("destructive")
-                    
-                }
-            }))
-            self.present(alert, animated: true, completion: nil)
-        } else if bioTextField.text == "" && digits == 4 {
-            let alert = UIAlertController(title: "Error", message: "Please write a short bio.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                switch action.style{
-                    case .default:
-                    print("default")
-                    
-                    case .cancel:
-                    print("cancel")
-                    
-                    case .destructive:
-                    print("destructive")
-                    
-                }
-            }))
-            self.present(alert, animated: true, completion: nil)
-        } else if bioTextField.text != "" && digits != 4 {
-            let alert = UIAlertController(title: "Error", message: "Please enter year of graduation in the correct format.", preferredStyle: .alert)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Please check that all fields are filled and correctly formatted.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
                     case .default:

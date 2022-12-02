@@ -122,7 +122,7 @@ class PersonalProfileViewController: UIViewController{
         courseLayout.minimumInteritemSpacing = spacing
         courseLayout.scrollDirection = .horizontal
         
-        courses = profile!.courses
+        courses = profile!.courses!
         coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
         coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -132,11 +132,11 @@ class PersonalProfileViewController: UIViewController{
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(coursesCollectionView)
         
-        if(profile!.friends.count == 1){
-            numFriendsLabel.text = "\(profile!.friends.count) friend"
+        if(profile!.friends!.count == 1){
+            numFriendsLabel.text = "\(profile!.friends!.count) friend"
         }
         else{
-            numFriendsLabel.text = "\(profile!.friends.count) friends"
+            numFriendsLabel.text = "\(profile!.friends!.count) friends"
         }
         numFriendsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         numFriendsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
@@ -149,7 +149,7 @@ class PersonalProfileViewController: UIViewController{
         friendsLayout.minimumInteritemSpacing = spacing
         friendsLayout.scrollDirection = .horizontal
         
-        friends = profile!.friends
+        friends = profile!.friends!
         friendsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: friendsLayout)
         friendsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -159,7 +159,7 @@ class PersonalProfileViewController: UIViewController{
         friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(friendsCollectionView)
         
-        numPostsLabel.text = "\(profile!.posts.count) posts"
+        numPostsLabel.text = "\(profile!.posts!.count) posts"
         numPostsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         numPostsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         view.addSubview(numPostsLabel)
@@ -171,7 +171,7 @@ class PersonalProfileViewController: UIViewController{
         postsLayout.minimumInteritemSpacing = spacing
         postsLayout.scrollDirection = .vertical
         
-        posts = profile!.posts
+        posts = profile!.posts!
         postsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: postsLayout)
         postsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         postsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -340,7 +340,7 @@ extension PersonalProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         if(collectionView == friendsCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendsReuseIdentifier, for: indexPath) as? FriendsCollectionViewCell{
-                cell.configure(friend: profile!.friends[indexPath.row])
+                cell.configure(friend: profile!.friends![indexPath.row])
                 cell.backgroundColor = UIColor.white
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20
@@ -352,7 +352,7 @@ extension PersonalProfileViewController: UICollectionViewDataSource {
         }
         else if(collectionView == coursesCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoursesReuseIdentifier, for: indexPath) as? CoursesForProflePushCollectionViewCell{
-                cell.configure(courseVar: profile!.courses[indexPath.row])
+                cell.configure(courseVar: profile!.courses![indexPath.row])
                 cell.backgroundColor = UIColor.white
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.cornerRadius = 20
@@ -364,7 +364,7 @@ extension PersonalProfileViewController: UICollectionViewDataSource {
         }
         else if(collectionView == postsCollectionView){
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostsReuseIdentifier, for: indexPath) as? PostsCollectionViewCell{
-                cell.configure(post: profile!.posts[indexPath.row])
+                cell.configure(post: profile!.posts![indexPath.row])
                 cell.backgroundColor = UIColor.white
                 //cell.layer.borderColor = UIColor.black.cgColor
                 cell.contentView.layer.borderColor = UIColor.clear.cgColor

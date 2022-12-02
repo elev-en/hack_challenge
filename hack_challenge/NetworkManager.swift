@@ -35,12 +35,13 @@ class NetworkManager {
         }
     }
     
-    static func updateUser(id: Int, name: String, bio: String, gradYear: Int, completion: @escaping (Profile) -> Void) {
+    static func updateUser(id: Int, name: String, bio: String, grad_year: Int, number: String, completion: @escaping (Profile) -> Void) {
         let endpoint = "\(host)users/\(id)/"
         let params: Parameters = [
             "name": name,
             "bio": bio,
-            "gradYear": gradYear
+            "gradd_year": grad_year,
+            "number": number
         ]
         AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
@@ -56,6 +57,27 @@ class NetworkManager {
             }
         }
     }
+    
+    static func updatePicture(id: Int, picture_id: String, completion: @escaping (Profile) -> Void) {
+        let endpoint = "\(host)users/\(id)/picture/"
+        let params: Parameters = [
+            "picture_id": picture_id
+        ]
+        AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let userResponse = try? jsonDecoder.decode((Profile).self, from: data) {
+                    completion(userResponse)
+                } else {
+                    print("Failed to decode updateUser")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     
     static func getUser(id: Int, completion: @escaping (Profile) -> Void) {
         let endpoint = "\(host)users/\(id)/"
@@ -167,13 +189,13 @@ class NetworkManager {
         }
     }
     
-    static func createPostForUser(id: Int, header: String, body: String, location: String, meetup_Time: String, completion: @escaping (Profile) -> Void) {
+    static func createPostForUser(id: Int, header: String, body: String, location: String, meetup_time: String, completion: @escaping (Profile) -> Void) {
         let endpoint = "\(host)users/\(id)/add/post/"
         let params: Parameters = [
             "header": header,
             "body": body,
             "location": location,
-            "meetup_Time": meetup_Time
+            "meetup_time": meetup_time
         ]
         AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
@@ -266,13 +288,13 @@ class NetworkManager {
     
     //------------POSTS--------------//
     
-    static func getAllPosts(completion: @escaping ([Post]) -> Void) {
+    static func getAllPosts(completion: @escaping (PostResponse) -> Void) {
         let endpoint = "\(host)posts/"
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode([Post].self, from: data) {
+                if let userResponse = try? jsonDecoder.decode((PostResponse).self, from: data) {
                     completion(userResponse)
                 } else {
                     print("Failed to decode getAllPosts")

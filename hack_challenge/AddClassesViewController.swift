@@ -164,8 +164,9 @@ extension AddClassesViewController: UITableViewDelegate {
         let cell = classesTableView.cellForRow(at: indexPath) as! ClassesTableViewCell
         print("selected")
         let range = ..<(cell.courseLabel.text?.firstIndex(of: ":"))!
+        print(cell.courseLabel.text?[range])
         for i in 0 ... allClasses.count-1 {
-            if (cell.courseLabel.text?.lowercased()[range])! == allClasses[i].code.lowercased() {
+            if (cell.courseLabel.text?[range])! == allClasses[i].name {
                 if(filter[i]){
                     filter[i] = false
                     cell.changeBackground(selected: filter[i])
@@ -187,6 +188,10 @@ extension AddClassesViewController: UITableViewDelegate {
         headerView.backgroundColor = view.backgroundColor
         return headerView
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;//Choose your custom row height
+    }
 }
 
 extension AddClassesViewController: UITableViewDataSource {
@@ -205,6 +210,7 @@ extension AddClassesViewController: UITableViewDataSource {
         }
         let classObject = allClasses[indexPath.row]
         cell.configure(course: classObject)
+        //cell.changeBackground(selected: false)
         return cell
     }
 

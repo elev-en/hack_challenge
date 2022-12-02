@@ -30,8 +30,8 @@ class ProfilePicCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(profilePic: UIImage) {
-        profileImageView.image = profilePic
+    func configure(profilePic: ProfileImage) {
+        profileImageView.image = profilePic.image
         print(profilePic)
     }
     
