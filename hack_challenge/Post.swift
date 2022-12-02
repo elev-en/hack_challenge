@@ -29,10 +29,10 @@ struct Post: Codable {
     }
 }
 
-//struct CourseResponse: Codable{
-//    var posts: [Post]
-//    
-//    enum CodingKeys: String, CodingKey{
-//        case posts
-//    }
-//}
+struct PostResponse: Codable{
+    var posts: [Post]
+    
+    enum CodingKeys: String, CodingKey{
+        case posts
+    }
+}
