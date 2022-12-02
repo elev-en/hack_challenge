@@ -19,15 +19,11 @@ class NewPostViewController: UIViewController {
     let dateTitleTextField = UITextField()
     let dateTextField = UITextField()
     let courseTitleTextField = UITextField()
+    let courseTextField = UITextField()
     let postBodyTextField = UITextField()
     let postBodyTextView = UITextView()
     let post = UIButton()
     
-    var courses: [Course] = []
-    var courseSelected: Course?
-    let CourseReuseIdentifier: String = "CourseReuseIdentifier"
-    var coursesCollectionView: UICollectionView!
-    let spacing: CGFloat = 10
     
     init(id: Int){
         self.user_id = id
@@ -153,28 +149,29 @@ class NewPostViewController: UIViewController {
         dateTextField.autocorrectionType = .no
         dateTextField.autocapitalizationType = .none
         
-        courseTitleTextField.text = "SELECT COURSE"
+        courseTitleTextField.text = "COURSE"
         courseTitleTextField.isUserInteractionEnabled = false
         courseTitleTextField.font = .systemFont(ofSize: 15, weight: .bold)
         courseTitleTextField.textColor = UIColor.black
         view.addSubview(courseTitleTextField)
         courseTitleTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        let courseLayout = UICollectionViewFlowLayout()
-        courseLayout.minimumLineSpacing = spacing
-        courseLayout.minimumInteritemSpacing = spacing
-        courseLayout.scrollDirection = .horizontal
-        
-        coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
-        coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        coursesCollectionView.backgroundColor = UIColor.white
-        coursesCollectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: CourseReuseIdentifier)
-        coursesCollectionView.dataSource = self
-        coursesCollectionView.delegate = self
-        view.addSubview(coursesCollectionView)
-
-        
+        let course = NSAttributedString(string: "cs 2110", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        courseTextField.attributedPlaceholder = course
+        courseTextField.font = .systemFont(ofSize: 15, weight: .light)
+        courseTextField.textColor = UIColor.black
+        courseTextField.backgroundColor = UIColor.systemGray5
+        courseTextField.layer.borderWidth = 1
+        courseTextField.layer.borderColor = UIColor.systemGray5.cgColor
+        courseTextField.layer.cornerRadius = 20
+        let paddingView4: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
+        courseTextField.leftView = paddingView4
+        courseTextField.leftViewMode = .always
+        view.addSubview(courseTextField)
+        courseTextField.translatesAutoresizingMaskIntoConstraints = false
+        courseTextField.autocorrectionType = .no
+        courseTextField.autocapitalizationType = .none
+       
         
         postBodyTextField.text = "POST BODY"
         postBodyTextField.isUserInteractionEnabled = false
@@ -263,15 +260,17 @@ class NewPostViewController: UIViewController {
             courseTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
         
+        
         NSLayoutConstraint.activate([
-            coursesCollectionView.topAnchor.constraint(equalTo: courseTitleTextField
+            courseTextField.topAnchor.constraint(equalTo: courseTitleTextField
                 .bottomAnchor, constant: 10),
-            coursesCollectionView.heightAnchor.constraint(equalToConstant: 50),
-            coursesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            coursesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            courseTextField.heightAnchor.constraint(equalToConstant: 50),
+            courseTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            courseTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             ]
         )
         
+      
         NSLayoutConstraint.activate([
             box.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             box.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
@@ -283,7 +282,7 @@ class NewPostViewController: UIViewController {
  
         
         NSLayoutConstraint.activate([
-            postBodyTextField.topAnchor.constraint(equalTo: coursesCollectionView.bottomAnchor, constant: 50),
+            postBodyTextField.topAnchor.constraint(equalTo: courseTextField.bottomAnchor, constant: 50),
             postBodyTextField.heightAnchor.constraint(equalToConstant: 30),
             postBodyTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
@@ -306,59 +305,4 @@ class NewPostViewController: UIViewController {
     }
     
 
-}
-
-extension NewPostViewController: UICollectionViewDataSource {
-   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return courses.count
-   }
-   
-   func numberOfSections(in collectionView: UICollectionView) -> Int {
-       return 1
-   }
-
-   
-   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-       if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseReuseIdentifier, for: indexPath) as? CoursesCollectionViewCell{
-           cell.configure(courseVar: courses[indexPath.row])
-           cell.backgroundColor = UIColor.white
-           cell.contentView.layer.borderColor = UIColor.clear.cgColor
-           cell.layer.cornerRadius = 15
-           return cell
-       }
-       else{
-           return UICollectionViewCell()
-       }
-   }
-
-}
-extension NewPostViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let course = courses[indexPath.row]
-        return CGSize(width: course.name.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 2, height: collectionView.frame.height*0.6)
- 
-    }
-    
- 
-    
- 
-    func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        return headerView
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? CoursesCollectionViewCell {
-            courseSelected = courses[indexPath.row]
-            cell.backgroundColor = .gray
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? CoursesCollectionViewCell {
-            courseSelected = courses[indexPath.row]
-            cell.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
-        }
-    }
 }
