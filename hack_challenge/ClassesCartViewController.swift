@@ -75,7 +75,7 @@ class ClassesCartViewController: UIViewController{
     }
     
     @objc func pushMakeProfileViewController(){
-        navigationController?.pushViewController(MakeProfileViewController(), animated: true)
+        navigationController?.pushViewController(MakeProfileViewController(id: user_id), animated: true)
     }
 }
 

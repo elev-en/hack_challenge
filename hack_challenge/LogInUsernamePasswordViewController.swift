@@ -79,7 +79,7 @@ class LogInUsernamePasswordViewController: UIViewController {
         NetworkManager.userLogin(username: usernameTextField.text!, password: passwordTextField.text!) { response in
             print(response)
             self.delegate?.sendId(id: response.id)
-            self.navigationController?.pushViewController(TabBar(), animated: true)
+            self.navigationController?.pushViewController(TabBar(id: 1), animated: true)
             NetworkManager.userRenewSession(){_ in}
         }
             /*let alert = UIAlertController(title: "Error", message: "Incorrect username or password", preferredStyle: .alert)

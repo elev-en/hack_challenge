@@ -89,7 +89,7 @@ class SetProfilePictureViewController: UIViewController, ChangeImageDelegate {
     }
     
     @objc func pushPersonalProfileViewController(){
-        navigationController?.pushViewController(TabBar(), animated: true)
+        navigationController?.pushViewController(TabBar(id: user_id), animated: true)
     }
     
     @objc func presentChangeProfilePicViewController(){

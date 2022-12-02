@@ -19,8 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        NetworkManager.userRenewSession() {_ in }
-        window.rootViewController = UINavigationController(rootViewController: ViewController())
+        /*NetworkManager.userRenewSession() {profile in
+            if profile != nil {
+                window.rootViewController = UINavigationController(rootViewController: TabBar(id: profile.id))
+            }*/
+            window.rootViewController = UINavigationController(rootViewController: ViewController())
+            
+        //}
+        
         window.makeKeyAndVisible()
         
     }

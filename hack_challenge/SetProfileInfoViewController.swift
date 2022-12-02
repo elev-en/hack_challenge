@@ -179,7 +179,7 @@ class SetProfileInfoViewController: UIViewController{
             NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, gradYear: gradYear) {response in
                 print(response)
             }
-            navigationController?.pushViewController(SetProfilePictureViewController(), animated: true)
+            navigationController?.pushViewController(SetProfilePictureViewController(id: user_id), animated: true)
         } else if bioTextField.text == "" && digits != 4 {
             let alert = UIAlertController(title: "Error", message: "Please write a short bio and enter your year of graduation in the right format.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in

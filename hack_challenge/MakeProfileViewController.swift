@@ -65,7 +65,7 @@ class MakeProfileViewController: UIViewController {
     }
     
     @objc func pushSetProfileInfoViewController() {
-        navigationController?.pushViewController(SetProfileInfoViewController(), animated: true)
+        navigationController?.pushViewController(SetProfileInfoViewController(id: user_id), animated: true)
     }
     
     func setupConstraints(){

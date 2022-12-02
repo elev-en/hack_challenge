@@ -107,6 +107,7 @@ class NetworkManager {
                     print("Failed to decode userLogin")
                 }
             case .failure(let error):
+                //
                 print(error.localizedDescription)
             }
         }

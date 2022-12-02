@@ -67,7 +67,7 @@ class ViewController: UIViewController{
     }
     
     @objc func pushCreateAccountViewController() {
-        navigationController?.pushViewController(CreateUsernamePasswordViewController(inputDelegate: SetProfileInfoViewController()), animated: true)
+        navigationController?.pushViewController(CreateUsernamePasswordViewController(), animated: true)
     }
     
     @objc func hovering(_ recognizer: UIHoverGestureRecognizer) {

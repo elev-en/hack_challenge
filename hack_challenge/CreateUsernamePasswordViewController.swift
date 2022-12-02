@@ -9,18 +9,6 @@ import UIKit
 
 class CreateUsernamePasswordViewController: UIViewController {
     
-    weak var delegate: sendIdCreateDelegate?
-    var id: Int?
-    
-    init(inputDelegate: sendIdCreateDelegate){
-        self.delegate = inputDelegate
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     let background = UIImageView()
     let welcomeLabel = UILabel()
     let usernameTextField = UsernameTextField()
@@ -106,7 +94,6 @@ class CreateUsernamePasswordViewController: UIViewController {
         } else if(passwordTextField.text == confirmPasswordTextField.text){
             NetworkManager.createUser(username: usernameTextField.text!, password: passwordTextField.text!) {user in
                 print(user.id)
-                self.delegate?.sendId(id: user.id)
                 print("id sent")
                 self.navigationController?.pushViewController(EnterClassesViewController(id: user.id), animated: true)
             }
@@ -171,8 +158,4 @@ class CreateUsernamePasswordViewController: UIViewController {
         ])
     }
 
-}
-
-protocol sendIdCreateDelegate: UIViewController{
-    func sendId(id: Int)
 }
