@@ -85,7 +85,7 @@ class SearchViewController: UIViewController {
     }
     
     @objc func pushCoursesSearchViewController(){
-        navigationController?.pushViewController(CoursesSearchViewController(), animated: true)
+        navigationController?.pushViewController(CoursesSearchViewController(id:user_id), animated: true)
     }
     
     func setupConstraints(){

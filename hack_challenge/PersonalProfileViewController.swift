@@ -284,7 +284,7 @@ class PersonalProfileViewController: UIViewController{
     
     @objc func edit(){
         // push edit profile view controller
-        
+        navigationController?.pushViewController(EditProfilePushViewController(id: user_id), animated: true)
     
     }
  
