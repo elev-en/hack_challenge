@@ -12,14 +12,13 @@ struct Profile: Codable, Equatable {
     
     let id: Int
     let username: String
-    //let password: String
     var name: String?
     var bio: String?
-    var gradYear: Int?
+    var grad_year: Int?
     var posts: [Post]
     var comments: [Comment]
     var courses: [Course]
-    var friends: [Profile]
+    var friends: [Friend]
     var session_token: String
     var session_expiration: String
     var update_token: String
@@ -28,10 +27,9 @@ struct Profile: Codable, Equatable {
     enum CodingKeys: String, CodingKey{
         case id
         case username
-        //case password
         case name
         case bio
-        case gradYear
+        case grad_year
         case posts
         case comments
         case courses
@@ -49,13 +47,52 @@ struct Profile: Codable, Equatable {
     
 }
 
+struct FriendsList: Codable{
+    var friends: [Friend]
+}
+
+struct Friend: Codable, Equatable {
+    
+    let id: Int
+    let username: String
+    var name: String?
+    var bio: String?
+    var grad_year: Int?
+    var posts: [Post]
+    var comments: [Comment]
+    //var session_token: String
+    //var session_expiration: String
+    //var update_token: String
+    var pic_id: String
+    
+    enum CodingKeys: String, CodingKey{
+        case id
+        case username
+        case name
+        case bio
+        case grad_year
+        case posts
+        case comments
+        //case session_token
+        //case session_expiration
+        //case update_token
+        case pic_id
+    }
+    
+    static func == (lhs: Friend, rhs: Friend) -> Bool {
+        if lhs.name == rhs.name { return true }
+        return false
+    }
+    
+}
+
 struct User: Codable, Equatable{
     let id: Int
     let username: String
     //let password: String
     var name: String?
     var bio: String?
-    var gradYear: Int?
+    var grad_year: Int?
     var posts: [Post]
     var comments: [Comment]
     //var profileImage: String
@@ -66,7 +103,7 @@ struct User: Codable, Equatable{
         //case password
         case name
         case bio
-        case gradYear
+        case grad_year
         case posts
         case comments
         //case profileImage
@@ -80,6 +117,10 @@ struct User: Codable, Equatable{
 
 struct ProfileResponse: Codable{
     var users: [Profile]
+    
+    enum CodingKeys: String, CodingKey{
+        case users
+    }
 }
 
 

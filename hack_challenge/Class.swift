@@ -21,7 +21,7 @@ struct Course: Codable, Equatable {
     let id: Int
     let code: String
     let name: String
-    let users: [User]
+    let users: [User]?
     
     enum CodingKeys: String, CodingKey{
         case id

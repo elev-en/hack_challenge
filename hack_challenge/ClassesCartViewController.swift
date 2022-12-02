@@ -7,12 +7,18 @@
 
 import UIKit
 
-class ClassesCartViewController: UIViewController{
+class ClassesCartViewController: UIViewController, sendClassListDelegate{
+    func sendClassList(list: [Course]) {
+        //
+    }
+    
 
     let background = UIImageView()
     let doneButton = UIButton()
     let classesTableView = UITableView()
     let classReuseIdentifier = "ClassReuseIdentifier"
+    
+    weak var delegate: sendClassListDelegate?
     
     var classList: [Course] = []
     
@@ -106,12 +112,6 @@ extension ClassesCartViewController: UITableViewDataSource {
     
 }
 
-extension ClassesCartViewController: sendClassListDelegate {
-    func sendClassList(list: [Course]) {
-        classList.append(contentsOf: list)
-        print(classList)
-    }
-}
     
 
 

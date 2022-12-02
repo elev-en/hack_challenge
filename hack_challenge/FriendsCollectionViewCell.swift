@@ -71,8 +71,8 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     }
     
-    func configure(profile: Profile){
-        var name = "\(profile.name ?? "")"
+    func configure(friend: Friend){
+        var name = "\(friend.name ?? "")"
         profileName.text = name
         //profileImageView.image = UIImage(named: profile.profileImage)
     }
