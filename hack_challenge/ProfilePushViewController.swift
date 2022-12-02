@@ -107,7 +107,7 @@ class ProfilePushViewController: UIViewController {
         profileImageView.contentMode = .scaleAspectFit
  
         let name = "\(profile.name ?? "")"
-        let year = "\(profile.gradYear ?? 2026)"
+        let year = "\(profile.grad_year ?? 2026)"
 
         nameYearTextLabel.text = "\(name), \(year)"
         nameYearTextLabel.font = .systemFont(ofSize: 20, weight: .bold)

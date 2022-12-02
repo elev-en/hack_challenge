@@ -14,7 +14,7 @@ struct Profile: Codable, Equatable {
     let username: String
     var name: String?
     var bio: String?
-    var gradYear: Int?
+    var grad_year: Int?
     var posts: [Post]
     var comments: [Comment]
     var courses: [Course]
@@ -29,7 +29,7 @@ struct Profile: Codable, Equatable {
         case username
         case name
         case bio
-        case gradYear
+        case grad_year
         case posts
         case comments
         case courses
@@ -57,26 +57,26 @@ struct Friend: Codable, Equatable {
     let username: String
     var name: String?
     var bio: String?
-    var gradYear: Int?
+    var grad_year: Int?
     var posts: [Post]
     var comments: [Comment]
     //var session_token: String
     //var session_expiration: String
     //var update_token: String
-    //var profileImage: String
+    var pic_id: String
     
     enum CodingKeys: String, CodingKey{
         case id
         case username
         case name
         case bio
-        case gradYear
+        case grad_year
         case posts
         case comments
         //case session_token
         //case session_expiration
         //case update_token
-        //case profileImage
+        case pic_id
     }
     
     static func == (lhs: Friend, rhs: Friend) -> Bool {
@@ -92,7 +92,7 @@ struct User: Codable, Equatable{
     //let password: String
     var name: String?
     var bio: String?
-    var gradYear: Int?
+    var grad_year: Int?
     var posts: [Post]
     var comments: [Comment]
     //var profileImage: String
@@ -103,7 +103,7 @@ struct User: Codable, Equatable{
         //case password
         case name
         case bio
-        case gradYear
+        case grad_year
         case posts
         case comments
         //case profileImage

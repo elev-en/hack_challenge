@@ -98,7 +98,7 @@ class PersonalProfileViewController: UIViewController, sendIdLoginDelegate, send
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         profileImageView.contentMode = .scaleAspectFit
  
-        nameYearTextLabel.text = "\(profile!.name), \(profile!.gradYear)"
+        nameYearTextLabel.text = "\(profile!.name), \(profile!.grad_year)"
         nameYearTextLabel.font = .systemFont(ofSize: 20, weight: .bold)
         nameYearTextLabel.textColor = UIColor.black
         view.addSubview(nameYearTextLabel)
