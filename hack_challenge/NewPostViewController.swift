@@ -11,16 +11,30 @@ class NewPostViewController: UIViewController {
     
     let background = UIImageView()
     let user_id: Int
-    let newPostLabel = UILabel()
-    let header = UITextField()
-    let body = UITextField()
-    let loc = UITextField()
-    let meetupTime = UITextField()
-    let course = UITextField()
+    let postTitleTextField = UITextField()
+    let postTextField = UITextField()
+    let locationTitleTextField = UITextField()
+    let locationTextField = UITextField()
+    let box = UILabel()
+    let dateTitleTextField = UITextField()
+    let dateTextField = UITextField()
+    let courseTitleTextField = UITextField()
+    let postBodyTextField = UITextField()
+    let postBodyTextView = UITextView()
     let post = UIButton()
+    
+    var courses: [Course] = []
+    var courseSelected: Course?
+    let CourseReuseIdentifier: String = "CourseReuseIdentifier"
+    var coursesCollectionView: UICollectionView!
+    let spacing: CGFloat = 10
     
     init(id: Int){
         self.user_id = id
+        // TODO; NETWORK manager stuff for courses
+        /*courses = NetworkManager.getUserCourses(id: user_id){response in
+            print(response)
+        }*/
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,111 +51,314 @@ class NewPostViewController: UIViewController {
         background.image = UIImage(named: "background")
         background.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(background)
-
-        header.text = "Header"
-        header.font = .systemFont(ofSize: 20, weight: .bold)
-        header.textColor = UIColor(red: 60.0/255.0, green: 52.0/255.0, blue: 112/255.0, alpha: 1)
-        view.addSubview(header)
-        header.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        header.isUserInteractionEnabled = true
-        header.translatesAutoresizingMaskIntoConstraints = false
         
-        body.text = "Body"
-        body.font = .systemFont(ofSize: 16)
-        body.textColor = UIColor(red: 60.0/255.0, green: 52.0/255.0, blue: 112/255.0, alpha: 1)
-        view.addSubview(body)
-        body.isUserInteractionEnabled = true
-        body.translatesAutoresizingMaskIntoConstraints = false
-        
-        loc.text = "Meeting Location?"
-        loc.font = .systemFont(ofSize: 16)
-        loc.textColor = UIColor(red: 60.0/255.0, green: 52.0/255.0, blue: 112/255.0, alpha: 1)
-        view.addSubview(loc)
-        loc.isUserInteractionEnabled = true
-        loc.translatesAutoresizingMaskIntoConstraints = false
-        
-        meetupTime.text = "When to meet?"
-        meetupTime.placeholder = "MM/DD/YYYY"
-        meetupTime.font = .systemFont(ofSize: 16)
-        meetupTime.textColor = UIColor(red: 60.0/255.0, green: 52.0/255.0, blue: 112/255.0, alpha: 1)
-        view.addSubview(meetupTime)
-        meetupTime.isUserInteractionEnabled = true
-        meetupTime.translatesAutoresizingMaskIntoConstraints = false
-        
-        course.text = "Is this for a specific course?"
-        course.font = .systemFont(ofSize: 16)
-        course.textColor = UIColor(red: 60.0/255.0, green: 52.0/255.0, blue: 112/255.0, alpha: 1)
-        view.addSubview(course)
-        course.isUserInteractionEnabled = true
-        course.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        post.setTitle("SHARE", for: .normal)
-        post.backgroundColor = UIColor(red: 142.0/255.0, green: 136.0/255.0, blue: 184.0/255.0, alpha: 1)
-        post.layer.borderColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        post.layer.borderWidth = 0
-        post.layer.cornerRadius = 21
-        post.translatesAutoresizingMaskIntoConstraints = false
+        post.setTitle("POST", for: .normal)
         post.addTarget(self, action: #selector(sharePost), for: .touchUpInside)
+        post.setTitleColor(.systemBlue, for: .normal)
+        post.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        post.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(post)
+
+//        saveButton.setTitle("SAVE", for: .normal)
+//        saveButton.addTarget(self, action: #selector(changeFieldsAndDismiss), for: .touchUpInside)
+//        saveButton.setTitleColor(.systemBlue, for: .normal)
+//        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        saveButton.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(saveButton)
         
-        setupConstraints()
+        
+        postTitleTextField.text = "POST TITLE"
+        postTitleTextField.isUserInteractionEnabled = false
+        postTitleTextField.font = .systemFont(ofSize: 15, weight: .bold)
+        postTitleTextField.textColor = UIColor.black
+        view.addSubview(postTitleTextField)
+        postTitleTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        let name = NSAttributedString(string: "enter post title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        postTextField.attributedPlaceholder = name
+        postTextField.font = .systemFont(ofSize: 15, weight: .light)
+        postTextField.textColor = UIColor.black
+        postTextField.backgroundColor = UIColor.systemGray5
+        postTextField.layer.borderWidth = 1
+        postTextField.layer.borderColor = UIColor.systemGray5.cgColor
+        postTextField.layer.cornerRadius = 20
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
+        postTextField.leftView = paddingView
+        postTextField.leftViewMode = .always
+        view.addSubview(postTextField)
+        postTextField.translatesAutoresizingMaskIntoConstraints = false
+        postTextField.autocorrectionType = .no
+        postTextField.autocapitalizationType = .none
+        
+        locationTitleTextField.text = "LOCATION"
+        locationTitleTextField.isUserInteractionEnabled = false
+        locationTitleTextField.font = .systemFont(ofSize: 15, weight: .bold)
+        locationTitleTextField.textColor = UIColor.black
+        view.addSubview(locationTitleTextField)
+        locationTitleTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        let website = NSAttributedString(string: "ex: mann library, 2nd floor", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        locationTextField.attributedPlaceholder = website
+        locationTextField.font = .systemFont(ofSize: 15, weight: .light)
+        locationTextField.textColor = UIColor.black
+        locationTextField.backgroundColor = UIColor.systemGray5
+        locationTextField.layer.borderWidth = 1
+        locationTextField.layer.borderColor = UIColor.systemGray5.cgColor
+        locationTextField.layer.cornerRadius = 20
+        let paddingView2: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
+        locationTextField.leftView = paddingView2
+        locationTextField.leftViewMode = .always
+        view.addSubview(locationTextField)
+        locationTextField.translatesAutoresizingMaskIntoConstraints = false
+        locationTextField.autocorrectionType = .no
+        locationTextField.autocapitalizationType = .none
+        
+        box.numberOfLines = 20
+        box.backgroundColor = UIColor.systemGray5
+        box.clipsToBounds = true
+        box.layer.cornerRadius = 15
+        box.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(box)
+        
+        
+        box.numberOfLines = 20
+        box.backgroundColor = UIColor.systemGray5
+        box.clipsToBounds = true
+        box.layer.cornerRadius = 15
+        box.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(box)
+        
+        dateTitleTextField.text = "DATE"
+        dateTitleTextField.isUserInteractionEnabled = false
+        dateTitleTextField.font = .systemFont(ofSize: 15, weight: .bold)
+        dateTitleTextField.textColor = UIColor.black
+        view.addSubview(dateTitleTextField)
+        dateTitleTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        let date = NSAttributedString(string: "ex: wed, dec 5, 1:00 pm", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        dateTextField.attributedPlaceholder = date
+        dateTextField.font = .systemFont(ofSize: 15, weight: .light)
+        dateTextField.textColor = UIColor.black
+        dateTextField.backgroundColor = UIColor.systemGray5
+        dateTextField.layer.borderWidth = 1
+        dateTextField.layer.borderColor = UIColor.systemGray5.cgColor
+        dateTextField.layer.cornerRadius = 20
+        let paddingView3: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
+        dateTextField.leftView = paddingView3
+        dateTextField.leftViewMode = .always
+        view.addSubview(dateTextField)
+        dateTextField.translatesAutoresizingMaskIntoConstraints = false
+        dateTextField.autocorrectionType = .no
+        dateTextField.autocapitalizationType = .none
+        
+        courseTitleTextField.text = "SELECT COURSE"
+        courseTitleTextField.isUserInteractionEnabled = false
+        courseTitleTextField.font = .systemFont(ofSize: 15, weight: .bold)
+        courseTitleTextField.textColor = UIColor.black
+        view.addSubview(courseTitleTextField)
+        courseTitleTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        let courseLayout = UICollectionViewFlowLayout()
+        courseLayout.minimumLineSpacing = spacing
+        courseLayout.minimumInteritemSpacing = spacing
+        courseLayout.scrollDirection = .horizontal
+        
+        coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
+        coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        coursesCollectionView.backgroundColor = UIColor.white
+        coursesCollectionView.register(CoursesCollectionViewCell.self, forCellWithReuseIdentifier: CourseReuseIdentifier)
+        coursesCollectionView.dataSource = self
+        coursesCollectionView.delegate = self
+        view.addSubview(coursesCollectionView)
+
+        
+        
+        postBodyTextField.text = "POST BODY"
+        postBodyTextField.isUserInteractionEnabled = false
+        postBodyTextField.font = .systemFont(ofSize: 15, weight: .bold)
+        postBodyTextField.textColor = UIColor.black
+        view.addSubview(postBodyTextField)
+        postBodyTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        postBodyTextView.text = "enter more details"
+        postBodyTextView.contentInset = UIEdgeInsets(top: 10, left: 15, bottom: 0, right: 15)
+        postBodyTextView.font = .systemFont(ofSize: 15, weight: .light)
+        postBodyTextView.textColor = UIColor.black
+        postBodyTextView.backgroundColor = UIColor.systemGray5
+        postBodyTextView.layer.borderWidth = 1
+        postBodyTextView.layer.borderColor = UIColor.systemGray5.cgColor
+        postBodyTextView.layer.cornerRadius = 20
+        postBodyTextView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(postBodyTextView)
+        
+        setUpConstraints()
         
     }
     
-    func setupConstraints(){
-    
-        
+    func setUpConstraints(){
         NSLayoutConstraint.activate([
-            header.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.width*0.10),
-            header.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.10),
-            header.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.10),
-            header.bottomAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height*0.1)
+            post.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            post.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            post.heightAnchor.constraint(equalToConstant: 20),
+            post.widthAnchor.constraint(equalToConstant: 50)
+        ])
+
+
+        NSLayoutConstraint.activate([
+            postTitleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor
+                , constant: 30),
+            postTitleTextField.heightAnchor.constraint(equalToConstant: 30),
+            postTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
         
         NSLayoutConstraint.activate([
-            body.topAnchor.constraint(equalTo: header.bottomAnchor),
-            body.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.10),
-            body.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.10),
-            body.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: view.bounds.height*0.3)
+            postTextField.topAnchor.constraint(equalTo: postTitleTextField
+                .bottomAnchor, constant: 10),
+            postTextField.heightAnchor.constraint(equalToConstant: 50),
+            postTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            postTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            ]
+        )
+
+        NSLayoutConstraint.activate([
+            locationTitleTextField.topAnchor.constraint(equalTo: postTextField
+                .bottomAnchor, constant: 20),
+            locationTitleTextField.heightAnchor.constraint(equalToConstant: 20),
+            locationTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
         
         NSLayoutConstraint.activate([
-            loc.topAnchor.constraint(equalTo: body.bottomAnchor),
-            loc.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.10),
-            loc.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.10),
-            loc.bottomAnchor.constraint(equalTo: body.bottomAnchor, constant: view.bounds.height*0.1)
+            locationTextField.topAnchor.constraint(equalTo: locationTitleTextField
+                .bottomAnchor, constant: 10),
+            locationTextField.heightAnchor.constraint(equalToConstant: 50),
+            locationTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            locationTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            ]
+        )
+        
+        
+        NSLayoutConstraint.activate([
+            dateTitleTextField.topAnchor.constraint(equalTo: locationTextField
+                .bottomAnchor, constant: 20),
+            dateTitleTextField.heightAnchor.constraint(equalToConstant: 20),
+            dateTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
         
         NSLayoutConstraint.activate([
-            meetupTime.topAnchor.constraint(equalTo: loc.bottomAnchor),
-            meetupTime.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.10),
-            meetupTime.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.10),
-            meetupTime.bottomAnchor.constraint(equalTo: loc.bottomAnchor, constant: view.bounds.height*0.1)
+            dateTextField.topAnchor.constraint(equalTo: dateTitleTextField
+                .bottomAnchor, constant: 10),
+            dateTextField.heightAnchor.constraint(equalToConstant: 50),
+            dateTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            dateTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            ]
+        )
+        
+        NSLayoutConstraint.activate([
+            courseTitleTextField.topAnchor.constraint(equalTo: dateTextField
+                .bottomAnchor, constant: 20),
+            courseTitleTextField.heightAnchor.constraint(equalToConstant: 20),
+            courseTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
         
         NSLayoutConstraint.activate([
-            course.topAnchor.constraint(equalTo: meetupTime.bottomAnchor),
-            course.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.10),
-            course.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.10),
-            course.bottomAnchor.constraint(equalTo: meetupTime.bottomAnchor, constant: view.bounds.height*0.1)
+            coursesCollectionView.topAnchor.constraint(equalTo: courseTitleTextField
+                .bottomAnchor, constant: 10),
+            coursesCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            coursesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            coursesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            ]
+        )
+        
+        NSLayoutConstraint.activate([
+            box.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            box.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            box.topAnchor.constraint(equalTo: dateTextField
+                .bottomAnchor, constant: 10),
+            box.bottomAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: 10)
+        ])
+
+ 
+        
+        NSLayoutConstraint.activate([
+            postBodyTextField.topAnchor.constraint(equalTo: coursesCollectionView.bottomAnchor, constant: 50),
+            postBodyTextField.heightAnchor.constraint(equalToConstant: 30),
+            postBodyTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
         
         NSLayoutConstraint.activate([
-            post.topAnchor.constraint(equalTo: course.bottomAnchor),
-            post.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.3),
-            post.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.30),
-            post.bottomAnchor.constraint(equalTo: course.bottomAnchor, constant: view.bounds.height*0.1)
+            postBodyTextView.topAnchor.constraint(equalTo: postBodyTextField
+                .bottomAnchor, constant: 10),
+            postBodyTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            postBodyTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            postBodyTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
         ])
-        
+                
         
     }
     
     @objc func sharePost(){
         //networking to create new post
-        NetworkManager.createPostForUser(id: user_id, header: header.text!, body: body.text!, location: loc.text!, meetup_time: meetupTime.text!) {_ in}
+        NetworkManager.createPostForUser(id: user_id, header: postTextField.text!, body: postBodyTextView.text!, location: locationTextField.text!, meetup_time: dateTextField.text!) {_ in}
         self.dismiss(animated: true)
     }
     
 
+}
+
+extension NewPostViewController: UICollectionViewDataSource {
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       return courses.count
+   }
+   
+   func numberOfSections(in collectionView: UICollectionView) -> Int {
+       return 1
+   }
+
+   
+   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+       if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseReuseIdentifier, for: indexPath) as? CoursesCollectionViewCell{
+           cell.configure(courseVar: courses[indexPath.row])
+           cell.backgroundColor = UIColor.white
+           cell.contentView.layer.borderColor = UIColor.clear.cgColor
+           cell.layer.cornerRadius = 15
+           return cell
+       }
+       else{
+           return UICollectionViewCell()
+       }
+   }
+
+}
+extension NewPostViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let course = courses[indexPath.row]
+        return CGSize(width: course.name.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 2, height: collectionView.frame.height*0.6)
+ 
+    }
+    
+ 
+    
+ 
+    func collectionView(_ collectionView: UICollectionView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        return headerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? CoursesCollectionViewCell {
+            courseSelected = courses[indexPath.row]
+            cell.backgroundColor = .gray
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? CoursesCollectionViewCell {
+            courseSelected = courses[indexPath.row]
+            cell.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
+        }
+    }
 }
