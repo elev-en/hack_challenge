@@ -38,7 +38,8 @@ class SearchViewController: UIViewController {
         view.addSubview(background)
         
         searchByLabel.text = "Search by"
-        searchByLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        searchByLabel.font = UIFont(name: "Avenir-Light", size: 20)
+        searchByLabel.textColor = UIColor(red: 0.32, green: 0.28, blue: 0.49, alpha: 1)
         searchByLabel.textAlignment = .center
         searchByLabel.adjustsFontForContentSizeCategory = true
         searchByLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -47,27 +48,27 @@ class SearchViewController: UIViewController {
         profileButton.setTitle("PROFILES", for: .normal)
         profileButton.addTarget(self, action: #selector(pushProfileSearchViewController), for: .touchUpInside)
         profileButton.setTitleColor(.white, for: .normal)
-        profileButton.layer.cornerRadius = 5
+        profileButton.titleLabel?.font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 25)
+        profileButton.layer.cornerRadius = 20
         profileButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        profileButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         profileButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileButton)
         
         postButton.setTitle("POSTS", for: .normal)
         postButton.addTarget(self, action: #selector(pushPostSearchViewController), for: .touchUpInside)
         postButton.setTitleColor(.white, for: .normal)
-        postButton.layer.cornerRadius = 5
+        postButton.layer.cornerRadius = 20
+        postButton.titleLabel?.font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 25)
         postButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        postButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         postButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(postButton)
         
         courseButton.setTitle("COURSES", for: .normal)
         courseButton.addTarget(self, action: #selector(pushCoursesSearchViewController), for: .touchUpInside)
         courseButton.setTitleColor(.white, for: .normal)
-        courseButton.layer.cornerRadius = 5
+        courseButton.titleLabel?.font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 25)
+        courseButton.layer.cornerRadius = 20
         courseButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
-        courseButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         courseButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(courseButton)
         

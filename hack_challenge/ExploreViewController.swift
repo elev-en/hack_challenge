@@ -43,6 +43,7 @@ class ExploreViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
 
         title = "Home"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 16)]
         
         let postlayout = UICollectionViewFlowLayout()
         postlayout.minimumLineSpacing = spacing

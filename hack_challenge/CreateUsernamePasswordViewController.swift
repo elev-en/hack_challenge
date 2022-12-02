@@ -158,7 +158,7 @@ class CreateUsernamePasswordViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signUpButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: view.bounds.height * 0.02),
+            signUpButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: view.bounds.height * 0.07),
             signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             signUpButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05)
         ])
