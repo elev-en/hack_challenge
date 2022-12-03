@@ -31,7 +31,7 @@ class ClassesCartViewController: UIViewController{
         title = "Your Classes"
         
         self.tabBarController?.tabBar.isHidden = true
-        
+    
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -40,6 +40,7 @@ class ClassesCartViewController: UIViewController{
         classesTableView.translatesAutoresizingMaskIntoConstraints = false
         classesTableView.delegate = self
         classesTableView.dataSource = self
+        classesTableView.backgroundColor = .clear
         classesTableView.register(ClassesTableViewCell.self, forCellReuseIdentifier: classReuseIdentifier)
         view.addSubview(classesTableView)
         
@@ -99,6 +100,10 @@ extension ClassesCartViewController: UITableViewDelegate {
                 classList.remove(at: indexPath.row)
                 classesTableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;
     }
 }
 
