@@ -99,7 +99,7 @@ class PersonalProfileViewController: UIViewController{
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         profileImageView.contentMode = .scaleAspectFit
  
-        nameYearTextLabel.text = "\(profile!.name), \(profile!.grad_year)"
+        nameYearTextLabel.text = "\(profile!.name ?? ""), \(profile!.grad_year ?? 2026)"
         nameYearTextLabel.font = .systemFont(ofSize: 20, weight: .bold)
         nameYearTextLabel.textColor = UIColor.black
         view.addSubview(nameYearTextLabel)
@@ -118,7 +118,7 @@ class PersonalProfileViewController: UIViewController{
         courseLayout.minimumInteritemSpacing = spacing
         courseLayout.scrollDirection = .horizontal
         
-        courses = profile!.courses!
+        courses = profile!.courses ?? []
         coursesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: courseLayout)
         coursesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -128,11 +128,12 @@ class PersonalProfileViewController: UIViewController{
         coursesCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(coursesCollectionView)
         
-        if(profile!.friends!.count == 1){
-            numFriendsLabel.text = "\(profile!.friends!.count) friend"
+        friends = profile!.friends ?? []
+        if(friends.count == 1){
+            numFriendsLabel.text = "\(friends.count) friend"
         }
         else{
-            numFriendsLabel.text = "\(profile!.friends!.count) friends"
+            numFriendsLabel.text = "\(friends.count) friends"
         }
         numFriendsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         numFriendsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
@@ -145,7 +146,6 @@ class PersonalProfileViewController: UIViewController{
         friendsLayout.minimumInteritemSpacing = spacing
         friendsLayout.scrollDirection = .horizontal
         
-        friends = profile!.friends!
         friendsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: friendsLayout)
         friendsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -155,7 +155,8 @@ class PersonalProfileViewController: UIViewController{
         friendsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
         view.addSubview(friendsCollectionView)
         
-        numPostsLabel.text = "\(profile!.posts!.count) posts"
+        posts = profile!.posts ?? []
+        numPostsLabel.text = "\(posts.count) posts"
         numPostsLabel.font = .systemFont(ofSize: 14, weight: .regular)
         numPostsLabel.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         view.addSubview(numPostsLabel)
@@ -167,7 +168,6 @@ class PersonalProfileViewController: UIViewController{
         postsLayout.minimumInteritemSpacing = spacing
         postsLayout.scrollDirection = .vertical
         
-        posts = profile!.posts!
         postsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: postsLayout)
         postsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         postsCollectionView.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
@@ -178,7 +178,7 @@ class PersonalProfileViewController: UIViewController{
         view.addSubview(postsCollectionView)
         
  
-        bioTextField.text = "\(profile!.bio)"
+        bioTextField.text = "\(profile!.bio ?? "")"
         bioTextField.font = .systemFont(ofSize: 14, weight: .regular)
         bioTextField.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
         bioTextField.isUserInteractionEnabled = false
@@ -191,8 +191,6 @@ class PersonalProfileViewController: UIViewController{
     }
     
     func setUpConstraints(){
-        
-        let verticalPadding: CGFloat = 2
         let sidePadding: CGFloat = 20
  
         NSLayoutConstraint.activate([

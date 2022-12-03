@@ -18,7 +18,7 @@ class NewPostViewController: UIViewController {
     let box = UILabel()
     let dateTitleTextField = UITextField()
     let datePicker = UIDatePicker()
-    let dateTextField = UITextField()
+    //let dateTextField = UITextField()
     let courseTitleTextField = UITextField()
     let courseTextField = UITextField()
     let postBodyTextField = UITextField()

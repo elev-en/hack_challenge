@@ -70,13 +70,27 @@ class PostPushViewController: UIViewController {
             if name != nil {
                 if let index = name.firstIndex(of: " ") {
                     let firstName = String(name[..<index])
-                    
                     self.profileName.text = firstName
                 } else {
                     self.profileName.text = name
                 }
             }
+            
+            var addText = "add"
+            self.added = false
+            
+            // if statement to see if user is already added to post
+            var attendes = self.post.post_attendees
+
+            if((attendes?.contains(poster)) != nil){
+                addText = "added"
+                self.added = true
+            }
+            self.addToEvent.setTitle(addText, for: .normal)
+            
         }
+        
+        
         profileName.textAlignment = .left
         profileName.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         profileName.textColor = UIColor(red: 0.424, green: 0.314, blue: 0.439, alpha: 1.00)
@@ -171,6 +185,14 @@ class PostPushViewController: UIViewController {
         addComment.action = #selector(pushAddComment)
         navigationItem.rightBarButtonItem = addComment
         
+        addToEvent.addTarget(self, action: #selector(addToEventMethod), for: .touchUpInside)
+        addToEvent.backgroundColor = UIColor.white
+        addToEvent.setTitleColor(.black, for: .normal)
+        addToEvent.layer.borderWidth = 1
+        addToEvent.layer.cornerRadius = 8
+        view.addSubview(addToEvent)
+        addToEvent.translatesAutoresizingMaskIntoConstraints = false
+        
         setupConstraints()
     }
     
@@ -230,6 +252,12 @@ class PostPushViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            addToEvent.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.06),
+            addToEvent.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
+        ])
+        
+        
+        NSLayoutConstraint.activate([
             commentsLabel.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.06),
             commentsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
@@ -249,6 +277,13 @@ class PostPushViewController: UIViewController {
         commentVC.title = ""
         navigationController?.pushViewController(commentVC, animated: true)
         
+    }
+    
+    @objc func addToEventMethod(){
+        if(!added){
+            
+
+        }
     }
     
 

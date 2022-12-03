@@ -309,6 +309,7 @@ class ProfilePushViewController: UIViewController {
             NetworkManager.unfriend(user_id: user_id, friend_id: profile.id) {_ in}
             followed = false
             followButton.title = "follow  "
+
         }
         else{
             selfProfile.friends!.append(profile)

@@ -215,7 +215,7 @@ class SetProfileInfoViewController: UIViewController{
     }
     
     @objc func pushSetProfilePicViewController(){
-        let gradYear = Int(gradTextField.text ?? "") ?? 0
+        let gradYear = Int(gradTextField.text ?? "") ?? 2026
         let digits = getDigits(num: gradYear)
         if bioTextField.text != "" && digits == 4 && numberTextField.text != "" {
             NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, grad_year: gradYear, number: numberTextField.text!) {response in
