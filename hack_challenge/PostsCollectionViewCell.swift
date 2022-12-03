@@ -132,7 +132,7 @@ class PostsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(post: Post){
-        NetworkManager.getUser(id: post.user_id){poster in
+        NetworkManager.getUser(id: post.user_id){ [self]poster in
             var name = "\(poster.name ?? "")"
             if name != nil {
                 if let index = name.firstIndex(of: " ") {
@@ -143,11 +143,12 @@ class PostsCollectionViewCell: UICollectionViewCell {
                     self.profileName.text = name
                 }
             }
+            profileImageView.image = UIImage(named: poster.picture_id ?? "default")
         }
-        timeStamp.text = "wed, dec 1st, 5:00 pm"
-        // profileImageView.image = post.poster.profileImage
+        timeStamp.text = post.timestamp
+        
         titleLabel.text = post.header
-        //courseTextField.text = post.course.name
+        courseTextField.text = post.course
         location.text = post.location
     }
     

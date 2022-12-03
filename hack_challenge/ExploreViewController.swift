@@ -44,7 +44,7 @@ class ExploreViewController: UIViewController {
 
         self.tabBarController?.tabBar.isHidden = false
 
-        title = "Home"
+        title = ""
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 16)]
         
         let postlayout = UICollectionViewFlowLayout()

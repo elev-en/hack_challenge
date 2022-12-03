@@ -387,8 +387,8 @@ class NetworkManager {
         }
     }
     
-    static func userAttendPost(session_token: String, completion: @escaping (Post) -> Void) {
-        let endpoint = "\(host)posts/"
+    static func userAttendPost(user_id: Int, post_id: Int, session_token: String, completion: @escaping (Post) -> Void) {
+        let endpoint = "\(host)posts/\(post_id)/attend/\(user_id)/"
         var headers: HTTPHeaders {
             let header: HTTPHeaders = [
                 "Authorization": "Bearer \(session_token)"

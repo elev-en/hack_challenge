@@ -23,6 +23,7 @@ class PostPushViewController: UIViewController {
     var addComment = UIBarButtonItem()
     let refreshControl = UIRefreshControl()
     var content: [Comment] = []
+    let addButton = UIButton()
         
     let CommentsReuseIdentifier: String = "CommentsReuseIdentifier"
     var comments: UICollectionView!
@@ -139,6 +140,14 @@ class PostPushViewController: UIViewController {
         commentsLabel.isUserInteractionEnabled = false
         commentsLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        addButton.setTitle("add", for: .normal)
+        addButton.layer.backgroundColor = UIColor(red: 0.60, green: 0.62, blue: 0.80, alpha: 1.00).cgColor
+        addButton.layer.borderWidth = 0
+        addButton.layer.cornerRadius = 5
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addTarget(self, action: #selector(addToAttendees), for: .touchUpInside)
+        view.addSubview(addButton)
+        
         let commentsLayout = UICollectionViewFlowLayout()
         commentsLayout.minimumLineSpacing = spacing
         commentsLayout.minimumInteritemSpacing = spacing
@@ -154,7 +163,7 @@ class PostPushViewController: UIViewController {
         comments.delegate = self
         view.addSubview(comments)
         
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        
 
         if #available(iOS 10.0, *) {
             comments.refreshControl = refreshControl
@@ -171,15 +180,12 @@ class PostPushViewController: UIViewController {
         setupConstraints()
     }
     
-    @objc func refreshData() {
-        NetworkManager.getUser(id: user_id){ user in
-            NetworkManager.getAllCommentsForPost(post_id: self.post_id, session_token: user.session_token!) {post in
-                self.content = post.comments
-                self.comments.reloadData()
-                self.refreshControl.endRefreshing()
+    @objc func addToAttendees(){
+        NetworkManager.getUser(id: user_id) {user in
+            NetworkManager.userAttendPost(user_id: self.user_id, post_id: self.post_id, session_token: user.session_token!){_ in
             }
         }
-        
+        addButton.setTitle("added", for: .normal)
     }
     
     func setupConstraints(){
@@ -232,9 +238,14 @@ class PostPushViewController: UIViewController {
             postBody.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -sidePadding)
         ])
         
+        NSLayoutConstraint.activate([
+           addButton.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.06),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
+        ])
+        
         
         NSLayoutConstraint.activate([
-            commentsLabel.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.06),
+            commentsLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: view.bounds.height * 0.06),
             commentsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
         
