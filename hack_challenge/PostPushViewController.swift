@@ -22,7 +22,8 @@ class PostPushViewController: UIViewController {
     let commentsLabel = UILabel()
     var addComment = UIBarButtonItem()
     let refreshControl = UIRefreshControl()
-
+    var added = false
+    var addToEvent = UIButton()
     
     var content: [Comment] = []
 
@@ -126,7 +127,7 @@ class PostPushViewController: UIViewController {
         view.addSubview(courseTextField)
  
 
-        meetupTime.text = "wed, dec 1st, 5:00 pm"
+        //meetupTime.text = "wed, dec 1st, 5:00 pm"
         //timeStamp.text = post.timeStamp
         meetupTime.textAlignment = .left
         meetupTime.font = UIFont.systemFont(ofSize: 10, weight: .bold)
@@ -186,8 +187,9 @@ class PostPushViewController: UIViewController {
         navigationItem.rightBarButtonItem = addComment
         
         addToEvent.addTarget(self, action: #selector(addToEventMethod), for: .touchUpInside)
-        addToEvent.backgroundColor = UIColor.white
+        addToEvent.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
         addToEvent.setTitleColor(.black, for: .normal)
+        //addToEvent.titleLabel?.font = UIFont(name: "Helvetica", size: 12)
         addToEvent.layer.borderWidth = 1
         addToEvent.layer.cornerRadius = 8
         view.addSubview(addToEvent)
