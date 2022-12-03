@@ -185,7 +185,7 @@ class EditProfilePushViewController: UIViewController {
     }
     
     @objc func save(){
-        let gradYear = Int(gradTextField.text ?? "") ?? 0
+        let gradYear = Int(gradTextField.text ?? "") ?? 2026
         let digits = getDigits(num: gradYear)
         if bioTextField.text != "" && digits == 4 {
             NetworkManager.updateUser(id: user_id, name: nameTextField.text!, bio: bioTextField.text!, grad_year: gradYear, number: numberTextField.text!) {response in
