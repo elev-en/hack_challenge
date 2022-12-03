@@ -317,7 +317,7 @@ class NewPostViewController: UIViewController {
     @objc func sharePost(){
         //networking to create new post
         let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd.MM.yy HH:mm:ss"
+                dateFormatter.dateFormat = "dd.MM.yy HH:mm"
         let somedateString = dateFormatter.string(from: datePicker.date)
         print(somedateString)
         NetworkManager.getUser(id: user_id){user in

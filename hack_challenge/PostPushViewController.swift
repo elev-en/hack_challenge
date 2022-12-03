@@ -77,14 +77,14 @@ class PostPushViewController: UIViewController {
                 }
             }
             
-            var addText = "add"
+            var addText = " add "
             self.added = false
             
             // if statement to see if user is already added to post
             var attendes = self.post.post_attendees
 
             if((attendes?.contains(poster)) != nil){
-                addText = "added"
+                addText = " added "
                 self.added = true
             }
             self.addToEvent.setTitle(addText, for: .normal)
@@ -189,7 +189,7 @@ class PostPushViewController: UIViewController {
         addToEvent.addTarget(self, action: #selector(addToEventMethod), for: .touchUpInside)
         addToEvent.backgroundColor = UIColor(red: 0.843, green: 0.855, blue: 0.988, alpha: 1.00)
         addToEvent.setTitleColor(.black, for: .normal)
-        //addToEvent.titleLabel?.font = UIFont(name: "Helvetica", size: 12)
+        addToEvent.titleLabel?.font = UIFont(name: "Helvetica", size: 10)
         addToEvent.layer.borderWidth = 1
         addToEvent.layer.cornerRadius = 8
         view.addSubview(addToEvent)
@@ -254,13 +254,13 @@ class PostPushViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            addToEvent.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.06),
+            addToEvent.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.05),
             addToEvent.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
         
         
         NSLayoutConstraint.activate([
-            commentsLabel.topAnchor.constraint(equalTo: postBody.bottomAnchor, constant: view.bounds.height * 0.06),
+            commentsLabel.topAnchor.constraint(equalTo: addToEvent.bottomAnchor, constant: view.bounds.height * 0.06),
             commentsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
         ])
         
