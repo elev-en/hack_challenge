@@ -30,6 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let id_str = loggedUserId()
             let id_num = (id_str as NSString).integerValue
             window.rootViewController = UINavigationController(rootViewController: TabBar(id: id_num))
+            NetworkManager.getUser(id: id_num){user in
+                NetworkManager.userRenewSession(session_token: user.session_token!) {_ in}
+            }
+            
         } else {
             window.rootViewController = UINavigationController(rootViewController: ViewController())
         }

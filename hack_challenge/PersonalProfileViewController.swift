@@ -273,7 +273,7 @@ class PersonalProfileViewController: UIViewController{
     
     @objc func logout_button(){
         // push edit profile view controller
-        navigationController?.pushViewController(LogInUsernamePasswordViewController(), animated: true)
+        navigationController?.pushViewController(ViewController(), animated: true)
         logout()
     }
  
@@ -310,7 +310,7 @@ extension PersonalProfileViewController: UICollectionViewDelegateFlowLayout {
         }
         else{
             if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
-                let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, id: user_id)
+                let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, user_id: user_id, post_id: posts[indexPath.row].id)
                 postVC.title = ""
                 navigationController?.pushViewController(postVC, animated: true)
             }

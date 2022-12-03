@@ -29,6 +29,8 @@ class EnterClassesViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.setHidesBackButton(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = true
+
 
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")

@@ -10,6 +10,7 @@ import UIKit
 class PostPushViewController: UIViewController {
     
     let user_id: Int
+    let post_id: Int
     let profileImageView = UIImageView()
     let profileName = UILabel()
     let titleLabel = UILabel()
@@ -20,6 +21,7 @@ class PostPushViewController: UIViewController {
     let location = UILabel()
     let commentsLabel = UILabel()
     var addComment = UIBarButtonItem()
+    let refreshControl = UIRefreshControl()
 
     
     var content: [Comment] = []
@@ -32,10 +34,11 @@ class PostPushViewController: UIViewController {
     var post: Post!
     weak var delegate: ChangePostInfoDelegate?
  
-    init(post: Post, delegate: ChangePostInfoDelegate?, id: Int) {
+    init(post: Post, delegate: ChangePostInfoDelegate?, user_id: Int, post_id: Int) {
         self.post = post
         self.delegate = delegate
-        self.user_id = id
+        self.user_id = user_id
+        self.post_id = post_id
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,7 +49,11 @@ class PostPushViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.isHidden = false
+        
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
+        
+       
 
         //profileImageView.image = UIImage(named: post.poster.profileImage)
         profileImageView.image = UIImage(named: "frog")
@@ -151,6 +158,14 @@ class PostPushViewController: UIViewController {
         comments.delegate = self
         view.addSubview(comments)
         
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+
+        if #available(iOS 10.0, *) {
+            comments.refreshControl = refreshControl
+        } else {
+            comments.addSubview(refreshControl)
+        }
+        
         addComment.image = UIImage(systemName: "plus.message")
         addComment.target = self
         addComment.action = #selector(pushAddComment)
@@ -159,6 +174,10 @@ class PostPushViewController: UIViewController {
         setupConstraints()
     }
     
+    @objc func refreshData() {
+       // NetworkManager.getAllCommentsForPost(post_id: self.post_id, session_token: , completion: <#T##(CommentResponse) -> Void#>)
+        
+    }
     
     func setupConstraints(){
         let verticalPadding: CGFloat = 2

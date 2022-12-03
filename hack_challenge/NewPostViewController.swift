@@ -44,6 +44,8 @@ class NewPostViewController: UIViewController {
         
         view.backgroundColor = .white
         
+        self.tabBarController?.tabBar.isHidden = false
+        
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -137,7 +139,8 @@ class NewPostViewController: UIViewController {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(datePicker)
         
-        let date = NSAttributedString(string: "ex: wed, dec 5, 1:00 pm", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        
+        /*let date = NSAttributedString(string: "ex: wed, dec 5, 1:00 pm", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         dateTextField.attributedPlaceholder = date
         dateTextField.font = .systemFont(ofSize: 15, weight: .light)
         dateTextField.textColor = UIColor.black
@@ -151,7 +154,7 @@ class NewPostViewController: UIViewController {
         view.addSubview(dateTextField)
         dateTextField.translatesAutoresizingMaskIntoConstraints = false
         dateTextField.autocorrectionType = .no
-        dateTextField.autocapitalizationType = .none
+        dateTextField.autocapitalizationType = .none*/
         
         courseTitleTextField.text = "COURSE"
         courseTitleTextField.isUserInteractionEnabled = false
@@ -288,9 +291,8 @@ class NewPostViewController: UIViewController {
         NSLayoutConstraint.activate([
             box.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             box.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            box.topAnchor.constraint(equalTo: dateTextField
-                .bottomAnchor, constant: 10),
-            box.bottomAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: 10)
+            box.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 10),
+            box.bottomAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 10)
         ])
 
  
@@ -314,8 +316,22 @@ class NewPostViewController: UIViewController {
     
     @objc func sharePost(){
         //networking to create new post
+        let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd.MM.yy HH:mm:ss"
+        let somedateString = dateFormatter.string(from: datePicker.date)
+        print(somedateString)
         NetworkManager.getUser(id: user_id){user in
-            NetworkManager.createPostForUser(id: self.user_id, header: self.postTextField.text!, body: self.postBodyTextView.text!, location: self.locationTextField.text!, meetup_time: self.dateTextField.text!, session_token: user.session_token!) {_ in}
+            print(self.user_id)
+            print(self.postBodyTextView.text!)
+            print(self.locationTextField.text!)
+            print(user.session_token!)
+            NetworkManager.createPostForUser(id: self.user_id,
+                                             header: self.postTextField.text!,
+                                             body: self.postBodyTextView.text!,
+                                             location: self.locationTextField.text!,
+                                             meetup_time: somedateString,
+                                             course: self.courseTextField.text!,
+                                             session_token: user.session_token!) {_ in}
             self.dismiss(animated: true)
         }
        

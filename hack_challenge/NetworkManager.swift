@@ -213,13 +213,14 @@ class NetworkManager {
         }
     }
     
-    static func createPostForUser(id: Int, header: String, body: String, location: String, meetup_time: String, session_token: String, completion: @escaping (Post) -> Void) {
+    static func createPostForUser(id: Int, header: String, body: String, location: String, meetup_time: String, course: String, session_token: String, completion: @escaping (Post) -> Void) {
         let endpoint = "\(host)users/\(id)/add/post/"
         let params: Parameters = [
             "header": header,
             "body": body,
             "location": location,
-            "meetup_time": meetup_time
+            "meetup_time": meetup_time,
+            "course": course
         ]
         var headers: HTTPHeaders {
             let header: HTTPHeaders = [

@@ -38,6 +38,7 @@ class ProfileSearchPushViewController: UIViewController, UISearchControllerDeleg
        super.viewDidLoad()
        
        self.navigationItem.setHidesBackButton(true, animated: false)
+       self.tabBarController?.tabBar.isHidden = false
 
        title = ""
 

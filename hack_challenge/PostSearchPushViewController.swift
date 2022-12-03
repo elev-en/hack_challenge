@@ -37,6 +37,8 @@ class PostSearchPushViewController: UIViewController, UISearchControllerDelegate
         super.viewDidLoad()
         
         self.navigationItem.setHidesBackButton(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
+
 
         title = "search for posts"
         
@@ -170,7 +172,7 @@ extension PostSearchPushViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
-            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, id: user_id)
+            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, user_id: user_id, post_id: allPosts[indexPath.row].id)
             postVC.title = ""
             navigationController?.pushViewController(postVC, animated: true)
         }

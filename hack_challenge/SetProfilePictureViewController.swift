@@ -35,6 +35,8 @@ class SetProfilePictureViewController: UIViewController, ChangeImageDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.isHidden = true
 
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")

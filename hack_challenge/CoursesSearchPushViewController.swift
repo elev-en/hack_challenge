@@ -36,8 +36,10 @@ class CoursesSearchViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = false
+
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")
         background.translatesAutoresizingMaskIntoConstraints = false

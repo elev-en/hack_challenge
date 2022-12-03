@@ -15,6 +15,7 @@ struct Post: Codable {
     let location: String
     let meetupTime: String
     let user_id: Int
+    let course: String
     let comments: [Comment]
     let post_attendees: [Profile]?
     //let course: Course
@@ -27,6 +28,7 @@ struct Post: Codable {
         case timestamp
         case meetupTime
         case user_id
+        case course
         case comments
         case post_attendees
         //case course

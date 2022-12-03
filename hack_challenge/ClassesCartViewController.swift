@@ -30,6 +30,8 @@ class ClassesCartViewController: UIViewController{
         super.viewDidLoad()
         title = "Your Classes"
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")
         background.translatesAutoresizingMaskIntoConstraints = false

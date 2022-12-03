@@ -73,6 +73,8 @@ class ProfilePushViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.isHidden = false
+        
         let default_friend = Profile(id: 0, username: "default", picture_id: "default", comments: [])
         var default_friends_profiles: [Profile] = []
         friend_profile = default_friend
@@ -352,7 +354,7 @@ extension ProfilePushViewController: UICollectionViewDelegateFlowLayout {
         }
         else{
             if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
-                let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, id: user_id)
+                let postVC = PostPushViewController(post: posts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, user_id: user_id, post_id: posts[indexPath.row].id)
                 postVC.title = ""
                 navigationController?.pushViewController(postVC, animated: true)
             }

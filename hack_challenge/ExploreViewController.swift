@@ -42,6 +42,8 @@ class ExploreViewController: UIViewController {
         
         self.navigationItem.setHidesBackButton(true, animated: false)
 
+        self.tabBarController?.tabBar.isHidden = false
+
         title = "Home"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 16)]
         
@@ -135,7 +137,7 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? PostsCollectionViewCell {
-            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, id: user_id)
+            let postVC = PostPushViewController(post: allPosts[indexPath.row], delegate: cell as? ChangePostInfoDelegate, user_id: user_id, post_id: allPosts[indexPath.row].id)
             postVC.title = "post"
             navigationController?.pushViewController(postVC, animated: true)
         }

@@ -29,8 +29,11 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.hidesBackButton = true
         self.navigationItem.setHidesBackButton(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
+
         
         background.contentMode = .scaleAspectFill
         background.image = UIImage(named: "background")
