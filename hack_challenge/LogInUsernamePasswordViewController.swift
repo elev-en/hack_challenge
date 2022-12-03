@@ -9,7 +9,6 @@ import UIKit
 
 class LogInUsernamePasswordViewController: UIViewController {
 
-    
     let background = UIImageView()
     let welcomeBackLabel = UILabel()
     let usernameTextField = UsernameTextField()
@@ -70,7 +69,7 @@ class LogInUsernamePasswordViewController: UIViewController {
             self.navigationController?.pushViewController(TabBar(id: response.id), animated: true)
             self.setCurrentLoginID("\(response.id)")
             print()
-            NetworkManager.userRenewSession(){_ in}
+            NetworkManager.userRenewSession(session_token: response.session_token!){_ in}
         }
             /*let alert = UIAlertController(title: "Error", message: "Incorrect username or password", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in

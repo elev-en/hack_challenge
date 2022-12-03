@@ -208,9 +208,12 @@ extension AddClassesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: classesReuseIdentifier, for: indexPath) as! ClassesTableViewCell
         if searchController.isActive && searchController.searchBar.text != "" {
             let classObject = filteredClasses[indexPath.row]
+            cell.configure(course: classObject)
+        } else {
+            let classObject = allClasses[indexPath.row]
+            cell.configure(course: classObject)
         }
-        let classObject = allClasses[indexPath.row]
-        cell.configure(course: classObject)
+        
         //cell.changeBackground(selected: false)
         return cell
     }

@@ -9,13 +9,22 @@ import UIKit
 
 class AddCommentPushViewController: UIViewController {
 
+    let user_id: Int
+    let post_id: Int
     let headerLabel = UILabel()
     let commentTitleTextField = UITextField()
     let commentTextField = UITextField()
     let saveButton = UIButton()
     
+    init(user_id: Int, post_id: Int){
+        self.user_id = user_id
+        self.post_id = post_id
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +114,11 @@ class AddCommentPushViewController: UIViewController {
     
     @objc func changeFieldsAndDismiss(){
         // TODO network manager stuff to add comment
+        NetworkManager.getUser(id: user_id) {user in
+            NetworkManager.createCommentForPost(body: self.commentTextField.text!, user_id: self.user_id, post_id: self.post_id, session_token: user.session_token!){_ in
+                
+            }
+        }
         navigationController?.popViewController(animated: true)
     }
 }
