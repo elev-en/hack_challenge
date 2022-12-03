@@ -23,7 +23,7 @@ class PostsCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
- 
+
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         setupViews()

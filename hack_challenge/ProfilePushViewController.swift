@@ -306,7 +306,9 @@ class ProfilePushViewController: UIViewController {
             if(index != -1){
                 selfProfile.friends!.remove(at: index)
             }
-            NetworkManager.unfriend(user_id: user_id, friend_id: profile.id) {_ in}
+            NetworkManager.getUser(id: user_id) { user in
+                NetworkManager.unfriend(user_id: self.user_id, friend_id: self.profile.id, session_token: user.session_token!) {_ in}
+            }
             followed = false
             followButton.title = "follow  "
 

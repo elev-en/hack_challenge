@@ -14,9 +14,10 @@ class ProfilePicCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.layer.cornerRadius = 5
         contentView.clipsToBounds = true
-        contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        contentView.backgroundColor = UIColor.clear
         
         profileImageView.contentMode = .scaleAspectFit
+        profileImageView.clipsToBounds = true
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         

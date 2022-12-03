@@ -87,19 +87,23 @@ class CoursesSearchViewController: UIViewController {
             background.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
+        
+        
         NSLayoutConstraint.activate([
             classesTableView.topAnchor.constraint(equalTo: view.topAnchor),
             classesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width*0.02),
             classesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width*0.02),
-            classesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            classesTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
             addClassesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addClassesButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            addClassesButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             addClassesButton.widthAnchor.constraint(equalTo: view.widthAnchor),
             addClassesButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
         ])
+        
+        
     }
     
     @objc func addClasses(){
@@ -142,7 +146,7 @@ class CoursesSearchViewController: UIViewController {
     }
     
     @objc func pushClassesCartView(){
-        navigationController?.pushViewController(ClassesCartViewController(id: user_id, classList: classList), animated: true)
+        navigationController?.pushViewController(ClassCartPushViewController(id: user_id, classList: classList), animated: true)
     }
     
 }

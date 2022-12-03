@@ -44,6 +44,7 @@
 		EC5213622932CF670029A754 /* MakeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5213612932CF670029A754 /* MakeProfileViewController.swift */; };
 		EC5213642932D0890029A754 /* SetProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5213632932D0890029A754 /* SetProfilePictureViewController.swift */; };
 		EC5213662932FB900029A754 /* SetProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5213652932FB900029A754 /* SetProfileInfoViewController.swift */; };
+		EC54678F293AFBFC0018E29B /* ClassCartPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC54678E293AFBFC0018E29B /* ClassCartPushViewController.swift */; };
 		EC65B07C292C598600D04BA0 /* CreateUsernamePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */; };
 		EC65B07E292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B07D292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift */; };
 		EC65B084292EB78700D04BA0 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC65B083292EB78700D04BA0 /* PasswordTextField.swift */; };
@@ -101,6 +102,7 @@
 		EC5213612932CF670029A754 /* MakeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeProfileViewController.swift; sourceTree = "<group>"; };
 		EC5213632932D0890029A754 /* SetProfilePictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfilePictureViewController.swift; sourceTree = "<group>"; };
 		EC5213652932FB900029A754 /* SetProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileInfoViewController.swift; sourceTree = "<group>"; };
+		EC54678E293AFBFC0018E29B /* ClassCartPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCartPushViewController.swift; sourceTree = "<group>"; };
 		EC65B07B292C598600D04BA0 /* CreateUsernamePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernamePasswordViewController.swift; sourceTree = "<group>"; };
 		EC65B07D292C59C100D04BA0 /* LogInUsernamePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUsernamePasswordViewController.swift; sourceTree = "<group>"; };
 		EC65B082292C60DE00D04BA0 /* Alteron-OV9no.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alteron-OV9no.otf"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				ECA3F3DD2933DBFD004EDAE0 /* ChangeProfilePicViewController.swift */,
 				ECFFEF442936F9D100CAF926 /* ProfilePicCollectionViewCell.swift */,
 				EC52135F2932BB8E0029A754 /* ClassesCartViewController.swift */,
+				EC54678E293AFBFC0018E29B /* ClassCartPushViewController.swift */,
 				EC5213652932FB900029A754 /* SetProfileInfoViewController.swift */,
 				EC65B09029310BF200D04BA0 /* ClassesTableViewCell.swift */,
 				EC65B083292EB78700D04BA0 /* PasswordTextField.swift */,
@@ -383,6 +386,7 @@
 				EC5213662932FB900029A754 /* SetProfileInfoViewController.swift in Sources */,
 				5FB0D70D292AED2000EC8018 /* ProfilePushViewController.swift in Sources */,
 				5FB0D709292AEB3E00EC8018 /* CoursesSearchPushViewController.swift in Sources */,
+				EC54678F293AFBFC0018E29B /* ClassCartPushViewController.swift in Sources */,
 				604534ED2937D720003B65D0 /* CoursesForProflePushCollectionViewCell.swift in Sources */,
 				5FB0D6FD292AE69400EC8018 /* PersonalProfileViewController.swift in Sources */,
 				60D3370129357842009C6E73 /* PostsCollectionViewCell.swift in Sources */,

@@ -24,7 +24,7 @@ class TabBar: UITabBarController {
         
         super.viewDidLoad()
         
-        //self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
         UITabBar.appearance().barTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         tabBar.tintColor = .label

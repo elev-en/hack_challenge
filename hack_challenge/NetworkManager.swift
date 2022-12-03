@@ -413,7 +413,7 @@ class NetworkManager {
     //-------------FRIENDS--------------//
     
     static func friend(user_id: Int, friend_id: Int, session_token: String, completion: @escaping (Profile) -> Void) {
-        let endpoint = "\(host)friends/\(user_id)/friend/\(friend_id)/"
+        let endpoint = "\(host)users/\(user_id)/friend/\(friend_id)/"
         var headers: HTTPHeaders {
             let header: HTTPHeaders = [
                 "Authorization": "Bearer \(session_token)"
@@ -435,9 +435,15 @@ class NetworkManager {
         }
     }
     
-    static func unfriend(user_id: Int, friend_id: Int, completion: @escaping (Course) -> Void) {
+    static func unfriend(user_id: Int, friend_id: Int, session_token: String, completion: @escaping (Course) -> Void) {
         let endpoint = "\(host)friends/\(user_id)/unfriend/\(friend_id)/"
-        AF.request(endpoint, method: .post, encoding: JSONEncoding.default).validate().responseData { response in
+        var headers: HTTPHeaders {
+            let header: HTTPHeaders = [
+                "Authorization": "Bearer \(session_token)"
+            ]
+            return header
+        }
+        AF.request(endpoint, method: .post, encoding: JSONEncoding.default, headers: headers).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()

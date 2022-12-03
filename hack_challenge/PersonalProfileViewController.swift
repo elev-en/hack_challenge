@@ -17,7 +17,6 @@ class PersonalProfileViewController: UIViewController{
     let user_id: Int
     let headerLabel = UILabel()
     var logoutButton = UIBarButtonItem()
-    var editButton = UIBarButtonItem()
     var profileImageView = UIImageView()
     let nameYearTextLabel = UILabel()
     let coursesLabel = UILabel()
@@ -49,7 +48,7 @@ class PersonalProfileViewController: UIViewController{
         
         NetworkManager.getUser(id: user_id) {user in
             self.profile = user
-            print("got user")
+            print(self.profile?.friends)
         }
     }
     
@@ -78,11 +77,6 @@ class PersonalProfileViewController: UIViewController{
         headerLabel.clipsToBounds = true
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerLabel)
-        
-        editButton.title = "   edit"
-        editButton.target = self
-        editButton.action = #selector(edit)
-        self.navigationItem.leftBarButtonItem = editButton
         
         logoutButton.title = "logout   "
         logoutButton.target = self
@@ -262,11 +256,6 @@ class PersonalProfileViewController: UIViewController{
     
     func logout() {
         UserDefaults.standard.set(nil, forKey: "userID")
-    }
-    
-    @objc func edit(){
-        // push edit profile view controller
-        navigationController?.pushViewController(EditProfilePushViewController(id: user_id), animated: true)
     }
     
     @objc func logout_button(){

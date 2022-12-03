@@ -19,6 +19,8 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.75, green: 0.77, blue: 0.98, alpha: 1.00)
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
         appNameLabel.text = "CUStudy"
         appNameLabel.textColor = .white

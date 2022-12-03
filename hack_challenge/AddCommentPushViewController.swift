@@ -29,8 +29,6 @@ class AddCommentPushViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.937, green: 0.941, blue: 0.996, alpha: 1.00)
-
-        title = "add comment"
         
         headerLabel.numberOfLines = 40
         headerLabel.backgroundColor = .systemGray6
